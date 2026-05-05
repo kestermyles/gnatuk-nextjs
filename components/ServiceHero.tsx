@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { CTAButton } from './CTAButton';
 import { SITE } from '@/lib/constants';
 
@@ -7,12 +8,36 @@ type ServiceHeroProps = {
   subtitle: string;
   intro?: string;
   benefits: string[];
+  backgroundImage?: string;
 };
 
-export function ServiceHero({ eyebrow, title, subtitle, intro, benefits }: ServiceHeroProps) {
+export function ServiceHero({
+  eyebrow,
+  title,
+  subtitle,
+  intro,
+  benefits,
+  backgroundImage,
+}: ServiceHeroProps) {
   return (
-    <section className="bg-gnat-navy text-white">
-      <div className="container-prose py-14 md:py-20">
+    <section className="relative isolate overflow-hidden bg-gnat-navy text-white">
+      {backgroundImage && (
+        <>
+          <Image
+            src={backgroundImage}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center opacity-30"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-r from-gnat-navy via-gnat-navy/85 to-gnat-navy/40"
+          />
+        </>
+      )}
+      <div className="container-prose relative py-14 md:py-20">
         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gnat-orange">
           {eyebrow}
         </p>

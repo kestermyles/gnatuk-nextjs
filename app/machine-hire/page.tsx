@@ -100,6 +100,7 @@ export default function MachineHirePage() {
         eyebrow="Machine Hire — Brokk Fleet"
         title="Robotic Demolition Machine Hire"
         subtitle="Compact robotic demolition machines for confined access, controlled removal and safer delivery in live environments."
+        backgroundImage="/images/services/hero-home.jpg"
         benefits={[
           'Confined access specialists',
           'Live operational environments',

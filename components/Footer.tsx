@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { SERVICES, SITE } from '@/lib/constants';
 
 export function Footer() {
@@ -6,10 +7,16 @@ export function Footer() {
     <footer className="bg-gnat-navy-deep text-gnat-concrete">
       <div className="container-prose grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-1">
-          <Link href="/" className="text-2xl font-extrabold text-white">
-            GNAT <span className="text-gnat-orange">UK</span>
+          <Link href="/" className="inline-block" aria-label="GNAT UK Home">
+            <Image
+              src="/images/logo.png"
+              alt="GNAT UK"
+              width={160}
+              height={81}
+              className="h-12 w-auto brightness-0 invert"
+            />
           </Link>
-          <p className="mt-3 text-sm text-gnat-steel">
+          <p className="mt-4 text-sm text-gnat-steel">
             {SITE.tagline}
           </p>
           <p className="mt-6 text-sm text-gnat-steel">
@@ -85,27 +92,33 @@ export function Footer() {
           <div className="mt-6 flex items-center gap-3">
             <a
               href={SITE.social.instagram}
-              aria-label="Instagram"
+              aria-label="Follow GNAT UK on Instagram"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-gnat-steel/40 text-gnat-steel transition hover:border-gnat-orange hover:text-gnat-orange"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 transition hover:bg-gnat-orange"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.8" />
-                <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.8" />
-                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
-              </svg>
+              <Image
+                src="/images/social/instagram.png"
+                alt=""
+                width={20}
+                height={20}
+                className="h-5 w-5"
+              />
             </a>
             <a
               href={SITE.social.facebook}
-              aria-label="Facebook"
+              aria-label="Follow GNAT UK on Facebook"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-gnat-steel/40 text-gnat-steel transition hover:border-gnat-orange hover:text-gnat-orange"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 transition hover:bg-gnat-orange"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M14 6.5h2.5V3h-3a4 4 0 0 0-4 4v2.5H8V13h1.5v8h3v-8H15l.5-3.5h-3V7a.5.5 0 0 1 .5-.5z" />
-              </svg>
+              <Image
+                src="/images/social/facebook.png"
+                alt=""
+                width={20}
+                height={20}
+                className="h-5 w-5"
+              />
             </a>
           </div>
         </div>

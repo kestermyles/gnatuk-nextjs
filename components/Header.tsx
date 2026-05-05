@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { CTAButton } from './CTAButton';
 import { SERVICES, SITE } from '@/lib/constants';
@@ -41,11 +42,17 @@ export function Header() {
       <div className="container-prose flex h-16 items-center justify-between md:h-20">
         <Link
           href="/"
-          className="flex items-center gap-2 text-xl font-bold tracking-tight text-gnat-navy"
+          className="flex items-center gap-3"
           aria-label="GNAT UK Home"
         >
-          <span className="font-extrabold">GNAT</span>
-          <span className="text-gnat-orange">UK</span>
+          <Image
+            src="/images/logo.png"
+            alt="GNAT UK"
+            width={160}
+            height={81}
+            priority
+            className="h-10 w-auto md:h-12"
+          />
         </Link>
 
         <nav aria-label="Primary" className="hidden md:block">

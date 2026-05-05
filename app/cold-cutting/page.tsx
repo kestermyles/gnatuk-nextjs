@@ -62,6 +62,7 @@ export default function ColdCuttingPage() {
         eyebrow="Abrasive Cold Cutting"
         title="Abrasive Cold Cutting for Controlled Industrial Isolation"
         subtitle="Spark-free cutting of steel, pipework and vessels in live, hazardous or volatile environments — delivered with precision, control and minimal disruption."
+        backgroundImage="/images/services/hero-home.jpg"
         benefits={[
           'Spark-free cutting in hazardous zones',
           'No heat affected zone (no distortion)',

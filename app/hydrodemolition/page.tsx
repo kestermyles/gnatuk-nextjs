@@ -63,6 +63,7 @@ export default function HydrodemolitionPage() {
         title="Hydrodemolition for Structural Concrete Removal"
         subtitle="Precision concrete removal without damage to the structure beneath."
         intro="Non-percussive, controlled removal for live infrastructure, repair and strengthening works."
+        backgroundImage="/images/services/hero-home.jpg"
         benefits={[
           'Selective concrete removal',
           'Reinforcement preserved',
