@@ -29,11 +29,11 @@ export default function HomePage() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center opacity-35"
+          className="object-cover object-center"
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-r from-gnat-navy via-gnat-navy/85 to-gnat-navy/40"
+          className="absolute inset-0 bg-gradient-to-r from-gnat-navy/40 via-gnat-navy/30 to-transparent"
         />
         <div className="container-prose relative py-16 md:py-24 lg:py-28">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gnat-orange">

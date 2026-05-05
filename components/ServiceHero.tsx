@@ -29,11 +29,11 @@ export function ServiceHero({
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center opacity-30"
+            className="object-cover object-center"
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-r from-gnat-navy via-gnat-navy/85 to-gnat-navy/40"
+            className="absolute inset-0 bg-gradient-to-r from-gnat-navy/40 via-gnat-navy/30 to-transparent"
           />
         </>
       )}
