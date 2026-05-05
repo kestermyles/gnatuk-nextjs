@@ -9,12 +9,12 @@ const config: Config = {
     extend: {
       colors: {
         gnat: {
-          navy: '#1a2332',
-          'navy-deep': '#0f1822',
+          navy: '#0d1825',
+          'navy-deep': '#070e18',
           orange: '#ff6b35',
-          'orange-hover': '#e55a28',
+          'orange-hover': '#e55525',
           steel: '#8b95a0',
-          'steel-dark': '#5a6470',
+          'steel-dark': '#4d5764',
           concrete: '#e8eaed',
           'concrete-light': '#f5f6f8',
           white: '#ffffff',
