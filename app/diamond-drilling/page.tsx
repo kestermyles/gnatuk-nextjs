@@ -63,7 +63,7 @@ export default function DiamondDrillingPage() {
         title="Diamond Drilling & Sawing for Controlled Structural Removal"
         subtitle="Precision cutting in reinforced concrete, structures and heavy plant — delivered safely, accurately, and without compromise."
         intro="From confined internal works to large-scale structural separation, we deliver clean, controlled outcomes where conventional methods introduce risk."
-        backgroundImage="/images/services/diamond-drilling-hero.jpg"
+        backgroundImage="/images/services/hero-home.jpg"
         benefits={[
           'Confined access specialists',
           'Live operational environments',
