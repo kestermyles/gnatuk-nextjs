@@ -120,7 +120,7 @@ export function Header() {
               <li key={s.slug}>
                 <Link
                   href={`/${s.slug}`}
-                  className="px-3 py-2 text-[15px] font-medium text-gnat-navy transition-colors hover:text-gnat-orange lg:px-4 lg:text-base"
+                  className="px-4 py-2 text-[15px] font-medium text-gnat-navy transition-colors hover:text-gnat-orange lg:px-6 lg:text-base"
                 >
                   {s.shortName}
                 </Link>
@@ -129,7 +129,7 @@ export function Header() {
             <li>
               <Link
                 href="/contact"
-                className="px-3 py-2 text-[15px] font-medium text-gnat-navy transition-colors hover:text-gnat-orange lg:px-4 lg:text-base"
+                className="px-4 py-2 text-[15px] font-medium text-gnat-navy transition-colors hover:text-gnat-orange lg:px-6 lg:text-base"
               >
                 Contact
               </Link>
