@@ -38,7 +38,67 @@ export function Header() {
       <a href="#main" className="skip-link">
         Skip to content
       </a>
-      <div className="container-prose flex h-20 items-center justify-between gap-4 md:h-24 md:gap-6">
+
+      <div className="hidden border-b border-gnat-concrete bg-gnat-concrete-light md:block">
+        <div className="container-prose flex h-10 items-center justify-between text-sm">
+          <a
+            href={`tel:${SITE.phoneE164}`}
+            className="flex items-center gap-2 text-gnat-navy transition-colors hover:text-gnat-orange"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+              className="text-gnat-orange"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span className="font-semibold">{SITE.phoneDisplay}</span>
+          </a>
+          <div className="flex items-center gap-2">
+            <a
+              href={SITE.social.instagram}
+              aria-label="Follow GNAT UK on Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-7 w-7 items-center justify-center rounded-full transition hover:bg-white"
+            >
+              <Image
+                src="/images/social/instagram.png"
+                alt=""
+                width={16}
+                height={16}
+                className="h-4 w-4"
+              />
+            </a>
+            <a
+              href={SITE.social.facebook}
+              aria-label="Follow GNAT UK on Facebook"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-7 w-7 items-center justify-center rounded-full transition hover:bg-white"
+            >
+              <Image
+                src="/images/social/facebook.png"
+                alt=""
+                width={16}
+                height={16}
+                className="h-4 w-4"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="container-prose flex h-20 items-center justify-between gap-6 md:h-24">
         <Link
           href="/"
           className="flex shrink-0 items-center"
@@ -60,7 +120,7 @@ export function Header() {
               <li key={s.slug}>
                 <Link
                   href={`/${s.slug}`}
-                  className="px-2.5 py-2 text-[13px] font-medium text-gnat-navy transition-colors hover:text-gnat-orange lg:px-3.5 lg:text-[15px]"
+                  className="px-3 py-2 text-[15px] font-medium text-gnat-navy transition-colors hover:text-gnat-orange lg:px-4 lg:text-base"
                 >
                   {s.shortName}
                 </Link>
@@ -69,7 +129,7 @@ export function Header() {
             <li>
               <Link
                 href="/contact"
-                className="px-2.5 py-2 text-[13px] font-medium text-gnat-navy transition-colors hover:text-gnat-orange lg:px-3.5 lg:text-[15px]"
+                className="px-3 py-2 text-[15px] font-medium text-gnat-navy transition-colors hover:text-gnat-orange lg:px-4 lg:text-base"
               >
                 Contact
               </Link>
@@ -77,13 +137,7 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="hidden shrink-0 items-center gap-3 md:flex lg:gap-4">
-          <a
-            href={`tel:${SITE.phoneE164}`}
-            className="hidden text-sm font-semibold text-gnat-navy transition-colors hover:text-gnat-orange lg:block"
-          >
-            {SITE.phoneDisplay}
-          </a>
+        <div className="hidden shrink-0 md:block">
           <CTAButton href="/contact" size="sm" variant="primary">
             Request Method Proposal
           </CTAButton>
