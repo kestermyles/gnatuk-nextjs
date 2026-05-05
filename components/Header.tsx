@@ -39,7 +39,7 @@ export function Header() {
         Skip to content
       </a>
 
-      <div className="hidden border-b border-gnat-concrete bg-gnat-concrete-light lg:block">
+      <div className="border-b border-gnat-concrete bg-gnat-concrete-light">
         <div className="container-prose flex h-10 items-center justify-between text-sm">
           <a
             href={`tel:${SITE.phoneE164}`}
@@ -63,7 +63,7 @@ export function Header() {
             </svg>
             <span className="font-semibold">{SITE.phoneDisplay}</span>
           </a>
-          <div className="flex items-center gap-2">
+          <div className="hidden items-center gap-2 sm:flex">
             <a
               href={SITE.social.instagram}
               aria-label="Follow GNAT UK on Instagram"
@@ -98,7 +98,7 @@ export function Header() {
         </div>
       </div>
 
-      <div className="container-prose flex h-20 items-center justify-between gap-6 lg:h-24">
+      <div className="container-prose flex h-20 items-center justify-between gap-6 xl:h-24">
         <Link
           href="/"
           className="flex shrink-0 items-center"
@@ -110,11 +110,11 @@ export function Header() {
             width={160}
             height={81}
             priority
-            className="h-12 w-auto md:h-14 lg:h-16"
+            className="h-12 w-auto md:h-14 xl:h-16"
           />
         </Link>
 
-        <nav aria-label="Primary" className="hidden lg:flex lg:flex-1 lg:justify-center">
+        <nav aria-label="Primary" className="hidden xl:flex xl:flex-1 xl:justify-center">
           <ul className="flex items-center">
             {SERVICES.map((s) => (
               <li key={s.slug}>
@@ -137,7 +137,7 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="hidden shrink-0 lg:block">
+        <div className="hidden shrink-0 xl:block">
           <CTAButton href="/contact" size="sm" variant="primary">
             Request Method Proposal
           </CTAButton>
@@ -148,7 +148,7 @@ export function Header() {
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           onClick={() => setOpen(!open)}
-          className="flex h-11 w-11 shrink-0 items-center justify-center rounded text-gnat-navy lg:hidden"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded text-gnat-navy xl:hidden"
         >
           {open ? (
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
@@ -163,7 +163,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="lg:hidden">
+        <div className="xl:hidden">
           <nav aria-label="Mobile" className="border-t border-gnat-concrete bg-white">
             <ul className="container-prose space-y-1 py-4">
               {SERVICES.map((s) => (
@@ -185,14 +185,6 @@ export function Header() {
                 >
                   Contact
                 </Link>
-              </li>
-              <li className="pt-3">
-                <a
-                  href={`tel:${SITE.phoneE164}`}
-                  className="block rounded px-3 py-3 text-base font-semibold text-gnat-orange"
-                >
-                  {SITE.phoneDisplay}
-                </a>
               </li>
               <li className="pt-2">
                 <CTAButton href="/contact" variant="primary" size="md" className="w-full">
