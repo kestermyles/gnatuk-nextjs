@@ -64,6 +64,7 @@ export default function HydrodemolitionPage() {
         subtitle="Precision concrete removal without damage to the structure beneath."
         intro="Non-percussive, controlled removal for live infrastructure, repair and strengthening works."
         backgroundImage="/images/services/hydrodemolition-hero.jpg"
+        backgroundAlt="High-pressure water lance removing deteriorated concrete from a reinforced structure during hydrodemolition works"
         benefits={[
           'Selective concrete removal',
           'Reinforcement preserved',

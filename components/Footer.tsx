@@ -13,7 +13,7 @@ export function Footer() {
               alt="GNAT UK"
               width={160}
               height={81}
-              className="h-12 w-auto brightness-0 invert"
+              className="h-12 w-auto"
             />
           </Link>
           <p className="mt-4 text-sm text-gnat-steel">

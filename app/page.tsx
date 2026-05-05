@@ -25,7 +25,7 @@ export default function HomePage() {
       <section className="relative isolate overflow-hidden bg-gnat-navy text-white">
         <Image
           src="/images/services/hero-home.jpg"
-          alt=""
+          alt="Specialist demolition team operating in a confined, structurally complex industrial environment"
           fill
           priority
           sizes="100vw"

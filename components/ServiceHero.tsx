@@ -9,6 +9,7 @@ type ServiceHeroProps = {
   intro?: string;
   benefits: string[];
   backgroundImage?: string;
+  backgroundAlt?: string;
 };
 
 export function ServiceHero({
@@ -18,6 +19,7 @@ export function ServiceHero({
   intro,
   benefits,
   backgroundImage,
+  backgroundAlt = '',
 }: ServiceHeroProps) {
   return (
     <section className="relative isolate overflow-hidden bg-gnat-navy text-white">
@@ -25,7 +27,7 @@ export function ServiceHero({
         <>
           <Image
             src={backgroundImage}
-            alt=""
+            alt={backgroundAlt}
             fill
             priority
             sizes="100vw"

@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 import { ServiceHero } from '@/components/ServiceHero';
 import { ContentSection, FeatureGrid, BulletList, CheckList } from '@/components/ContentSection';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { CTAButton } from '@/components/CTAButton';
 import { CTABlock } from '@/components/CTABlock';
 import { FAQAccordion } from '@/components/FAQAccordion';
 import { RelatedServices } from '@/components/RelatedServices';
@@ -25,39 +28,53 @@ export const metadata: Metadata = {
 
 const fleet = [
   {
+    slug: 'brokk70',
     name: 'Brokk 70',
     spec: 'Ultra-compact | 560mm access',
     body: 'For the tightest internal access where nothing else fits.',
+    alt: 'Brokk 70 ultra-compact robotic demolition machine for sub-600mm access',
   },
   {
+    slug: 'brokk110',
     name: 'Brokk 110',
     spec: 'Compact | confined access',
     body: 'For small-scale demolition in restricted internal spaces.',
+    alt: 'Brokk 110 compact robotic demolition machine for confined-access work',
   },
   {
+    slug: 'brokk170',
     name: 'Brokk 170',
     spec: 'Compact power | internal structural work',
     body: 'For heavier internal removal where access is still limited.',
+    alt: 'Brokk 170 robotic demolition machine for internal structural work',
   },
   {
+    slug: 'brokk200',
     name: 'Brokk 200',
     spec: 'High output | structural demolition',
     body: 'For core structural demolition across most site conditions.',
+    alt: 'Brokk 200 robotic demolition machine for core structural demolition',
   },
   {
+    slug: 'brokk300',
     name: 'Brokk 300',
     spec: 'Heavy duty | extended reach',
     body: 'For deeper structural removal where reach and power increase.',
+    alt: 'Brokk 300 heavy-duty robotic demolition machine with extended reach',
   },
   {
+    slug: 'brokk500',
     name: 'Brokk 500',
     spec: 'High impact | large-scale work',
     body: 'For major structural demolition where output matters.',
+    alt: 'Brokk 500 high-impact robotic demolition machine for large-scale work',
   },
   {
+    slug: 'brokk800',
     name: 'Brokk 800',
     spec: 'Maximum power | extreme duty',
     body: 'For the heaviest demolition in the most demanding environments.',
+    alt: 'Brokk 800 maximum-power robotic demolition machine for extreme-duty environments',
   },
 ];
 
@@ -100,7 +117,8 @@ export default function MachineHirePage() {
         eyebrow="Machine Hire — Brokk Fleet"
         title="Robotic Demolition Machine Hire"
         subtitle="Compact robotic demolition machines for confined access, controlled removal and safer delivery in live environments."
-        backgroundImage="/images/services/hero-home.jpg"
+        backgroundImage="/images/services/machine-hire-hero.jpg"
+        backgroundAlt="Brokk remote-operated robotic demolition machine working inside a confined-access industrial space"
         benefits={[
           'Confined access specialists',
           'Live operational environments',
@@ -120,18 +138,38 @@ export default function MachineHirePage() {
         eyebrow="Available fleet"
         heading="Brokk fleet — sized to the work."
       >
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {fleet.map((m) => (
-            <div
-              key={m.name}
-              className="rounded-lg border border-gnat-concrete bg-white p-6 transition-all hover:border-gnat-orange hover:shadow-md"
+            <article
+              key={m.slug}
+              className="group flex flex-col overflow-hidden rounded-lg border border-gnat-concrete bg-white transition-all hover:border-gnat-orange hover:shadow-md"
             >
-              <p className="text-xs font-semibold uppercase tracking-wider text-gnat-orange">
-                {m.spec}
-              </p>
-              <h3 className="mt-2 text-2xl font-bold text-gnat-navy">{m.name}</h3>
-              <p className="mt-3 leading-relaxed text-gnat-steel-dark">{m.body}</p>
-            </div>
+              <div className="relative aspect-[4/3] overflow-hidden bg-gnat-concrete">
+                <Image
+                  src={`/images/machines/${m.slug}.jpg`}
+                  alt={m.alt}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-6">
+                <p className="text-xs font-semibold uppercase tracking-wider text-gnat-orange">
+                  {m.spec}
+                </p>
+                <h3 className="mt-2 text-2xl font-bold text-gnat-navy">{m.name}</h3>
+                <p className="mt-3 flex-1 leading-relaxed text-gnat-steel-dark">{m.body}</p>
+                <Link
+                  href="/contact"
+                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-gnat-orange transition-colors hover:text-gnat-orange-hover"
+                >
+                  Enquire about {m.name}
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+                    <path d="M1 8H15M15 8L9 2M15 8L9 14" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+              </div>
+            </article>
           ))}
         </div>
       </ContentSection>
@@ -177,7 +215,16 @@ export default function MachineHirePage() {
         eyebrow="Decision support"
         heading="Not sure which machine you need?"
         intro="Most enquiries start there. We help you identify the right machine, the right setup, and where needed, the right method. No over-spec. No guesswork."
-      />
+      >
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <CTAButton href="/contact" variant="primary" size="lg">
+            Get a Machine Recommendation
+          </CTAButton>
+          <CTAButton href={`tel:${SITE.phoneE164}`} variant="secondary" size="lg">
+            Call: {SITE.phoneDisplay}
+          </CTAButton>
+        </div>
+      </ContentSection>
 
       <ContentSection eyebrow="FAQ" heading="Machine hire — common questions.">
         <FAQAccordion faqs={faqs} />

@@ -64,6 +64,7 @@ export default function RoboticDemolitionPage() {
         subtitle="Remote-operated demolition systems selected by method — not just machine."
         intro="Built for restricted access, structural sensitivity and live infrastructure."
         backgroundImage="/images/services/robotic-demolition-hero.jpg"
+        backgroundAlt="Remote-operated robotic demolition machine breaking out reinforced concrete in a confined live environment"
         benefits={[
           'Confined access specialists',
           'Live operational environments',
