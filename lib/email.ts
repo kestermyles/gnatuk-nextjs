@@ -12,6 +12,13 @@ function getResend(): Resend {
   return resendInstance;
 }
 
+// Parse a comma-separated env var (e.g. "nick@x,marc@x") into a clean string[].
+function parseList(value: string | undefined): string[] | undefined {
+  if (!value) return undefined;
+  const items = value.split(',').map((s) => s.trim()).filter(Boolean);
+  return items.length ? items : undefined;
+}
+
 const enquiryTypeLabel: Record<ContactFormValues['enquiryType'], string> = {
   'method-proposal': 'Method Proposal',
   'machine-hire': 'Machine Hire / Availability',
@@ -20,9 +27,9 @@ const enquiryTypeLabel: Record<ContactFormValues['enquiryType'], string> = {
 
 export async function sendContactEmail(data: ContactFormValues) {
   const from = process.env.FROM_EMAIL || `GNAT UK Website <noreply@gnatuk.com>`;
-  const to = process.env.CONTACT_EMAIL || SITE.email;
-  const cc = process.env.CC_EMAIL ? [process.env.CC_EMAIL] : undefined;
-  const bcc = process.env.BCC_EMAIL ? [process.env.BCC_EMAIL] : undefined;
+  const to = parseList(process.env.CONTACT_EMAIL) ?? [SITE.email];
+  const cc = parseList(process.env.CC_EMAIL);
+  const bcc = parseList(process.env.BCC_EMAIL);
 
   const subject = `New ${enquiryTypeLabel[data.enquiryType]}${
     data.company ? ` — ${data.company}` : ''
@@ -78,7 +85,7 @@ SUBMITTED: ${submitted}
 
 export async function sendAutoReply(data: ContactFormValues) {
   const from = process.env.FROM_EMAIL || `GNAT UK Website <noreply@gnatuk.com>`;
-  const replyTo = process.env.CONTACT_EMAIL || SITE.email;
+  const replyTo = parseList(process.env.CONTACT_EMAIL) ?? [SITE.email];
 
   const subject = `We've received your enquiry — ${SITE.name}`;
   const firstName = data.name.split(' ')[0] || data.name;
