@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { contactFormSchema } from '@/lib/validation';
-import { sendContactEmail } from '@/lib/email';
+import { sendAutoReply, sendContactEmail } from '@/lib/email';
 import { rateLimit } from '@/lib/rate-limit';
 
 export const runtime = 'nodejs';
@@ -62,6 +62,16 @@ export async function POST(request: Request) {
         { status: 502 },
       );
     }
+
+    // Auto-reply to the lead. Failure here must not block the success response —
+    // the internal notification already landed and the team has the lead.
+    try {
+      const auto = await sendAutoReply(parsed.data);
+      if (auto.error) console.error('Auto-reply error:', auto.error);
+    } catch (autoErr) {
+      console.error('Auto-reply threw:', autoErr);
+    }
+
     return NextResponse.json({ ok: true, id: result.data?.id });
   } catch (err) {
     console.error('Contact route error:', err);

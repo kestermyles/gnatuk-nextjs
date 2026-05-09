@@ -21,6 +21,7 @@ const enquiryTypeLabel: Record<ContactFormValues['enquiryType'], string> = {
 export async function sendContactEmail(data: ContactFormValues) {
   const from = process.env.FROM_EMAIL || `GNAT UK Website <noreply@gnatuk.com>`;
   const to = process.env.CONTACT_EMAIL || SITE.email;
+  const cc = process.env.CC_EMAIL ? [process.env.CC_EMAIL] : undefined;
   const bcc = process.env.BCC_EMAIL ? [process.env.BCC_EMAIL] : undefined;
 
   const subject = `New ${enquiryTypeLabel[data.enquiryType]}${
@@ -66,8 +67,60 @@ SUBMITTED: ${submitted}
   return getResend().emails.send({
     from,
     to,
+    cc,
     bcc,
     replyTo: data.email,
+    subject,
+    text,
+    html,
+  });
+}
+
+export async function sendAutoReply(data: ContactFormValues) {
+  const from = process.env.FROM_EMAIL || `GNAT UK Website <noreply@gnatuk.com>`;
+  const replyTo = process.env.CONTACT_EMAIL || SITE.email;
+
+  const subject = `We've received your enquiry — ${SITE.name}`;
+  const firstName = data.name.split(' ')[0] || data.name;
+
+  const text = `Hi ${firstName},
+
+Thanks for getting in touch with ${SITE.name}.
+
+We've received your enquiry and a member of our team will be in contact within 24 hours.
+
+If you need to speak to someone urgently, call us on ${SITE.phoneDisplay}.
+
+Best regards,
+${SITE.name}
+${SITE.tagline}
+${SITE.phoneDisplay}
+${SITE.email}
+${SITE.url}
+`;
+
+  const html = `<!DOCTYPE html>
+<html>
+  <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a2332; line-height: 1.6; max-width: 640px; margin: 0 auto; padding: 24px;">
+    <p style="margin: 0 0 16px;">Hi ${escapeHtml(firstName)},</p>
+    <p style="margin: 0 0 16px;">Thanks for getting in touch with <strong>${SITE.name}</strong>.</p>
+    <p style="margin: 0 0 16px;">We've received your enquiry and a member of our team will be in contact within 24 hours.</p>
+    <p style="margin: 0 0 24px;">If you need to speak to someone urgently, call us on <a href="tel:${SITE.phoneE164}" style="color: #ff6b35; text-decoration: none; font-weight: 600;">${SITE.phoneDisplay}</a>.</p>
+    <hr style="border: none; border-top: 1px solid #e8eaed; margin: 24px 0;" />
+    <p style="margin: 0; color: #5a6470; font-size: 14px;">
+      <strong style="color: #1a2332;">${SITE.name}</strong><br />
+      ${SITE.tagline}<br />
+      <a href="tel:${SITE.phoneE164}" style="color: #5a6470; text-decoration: none;">${SITE.phoneDisplay}</a> &middot;
+      <a href="mailto:${SITE.email}" style="color: #5a6470; text-decoration: none;">${SITE.email}</a><br />
+      <a href="${SITE.url}" style="color: #5a6470; text-decoration: none;">${SITE.url}</a>
+    </p>
+  </body>
+</html>`;
+
+  return getResend().emails.send({
+    from,
+    to: data.email,
+    replyTo,
     subject,
     text,
     html,
