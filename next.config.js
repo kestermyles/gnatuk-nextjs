@@ -45,6 +45,20 @@ const nextConfig = {
       ['sensitive-bank-vault-deconstruction-in-a-grade-1-listed-building', 'bank-of-england-vault-grade-1-london'],
       ['york-walkway-diamond-sawing-saves-the-day', 'york-walkway-diamond-sawing-rougier-street'],
     ];
+    // Old fabricated case-study and insight detail slugs (briefly live before being
+    // replaced by the curated views). Redirect to the index pages.
+    const retiredFabricated = [
+      ['/case-studies/water-treatment-clarifier-refurbishment', '/case-studies'],
+      ['/case-studies/hospital-plant-room-strip-out', '/case-studies'],
+      ['/case-studies/comah-petrochemical-cold-cut-tie-in', '/case-studies'],
+      ['/case-studies/data-centre-slab-penetration', '/case-studies'],
+      ['/case-studies/nuclear-ancillary-building-deconstruction', '/case-studies'],
+      ['/insights/early-method-definition-saves-money', '/insights'],
+      ['/insights/brokk-70-110-170-comparison', '/insights'],
+      ['/insights/hydrodemolition-vs-mechanical-breaking', '/insights'],
+      ['/insights/amp8-demolition-supply-chain', '/insights'],
+      ['/insights/cold-cutting-atex-zones-dsear', '/insights'],
+    ];
     return [
       { source: '/diamond-drilling-and-sawing', destination: '/diamond-drilling', permanent: true },
       { source: '/abrasive-cold-cutting', destination: '/cold-cutting', permanent: true },
@@ -55,6 +69,11 @@ const nextConfig = {
       ...wixToBlog.map(([wix, blog]) => ({
         source: `/post/${wix}`,
         destination: `/blog/${blog}`,
+        permanent: true,
+      })),
+      ...retiredFabricated.map(([source, destination]) => ({
+        source,
+        destination,
         permanent: true,
       })),
     ];

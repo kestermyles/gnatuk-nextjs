@@ -3,6 +3,9 @@
 // lightly cleaned up for SEO clarity (originalTitle preserves the published version).
 // Author attribution preserved exactly as published.
 
+/** Where this post is surfaced. A post can appear in multiple curated listings. */
+export type Surface = 'blog' | 'case-study' | 'insight';
+
 export type BlogPost = {
   slug: string;
   /** The slug used on the original Wix site (gnatuk.com/post/[wixSlug]). Used for 301 redirects. */
@@ -14,6 +17,8 @@ export type BlogPost = {
   body: string[];
   date: string; // ISO yyyy-mm-dd
   category: 'Project' | 'Fleet' | 'Team' | 'Industry' | 'Award' | 'Method';
+  /** Which curated listings show this post. Detail URL is always /blog/[slug]. */
+  surfaces: Surface[];
   heroImage: string;
   heroAlt: string;
   author: string;
@@ -30,6 +35,7 @@ export const BLOG: BlogPost[] = [
       'A highly complex project: precision abrasive cold-cutting on a massive industrial vessel, followed by a full robotic debricking of its interior.',
     date: '2025-10-01',
     category: 'Project',
+    surfaces: ['case-study'],
     heroImage: '/images/blog/refractory-vessel-cold-cut.jpg',
     heroAlt: 'Brokk robotic demolition machine debricking a large refractory vessel',
     author: 'Nick Turnbull',
@@ -49,6 +55,7 @@ export const BLOG: BlogPost[] = [
       'Robotics first, always. But in confined or irregular spaces where robotic access isn\'t viable, controlled hand lancing keeps the work moving — with the same commitment to safety and efficiency.',
     date: '2025-07-11',
     category: 'Method',
+    surfaces: ['insight'],
     heroImage: '/images/blog/hand-lancing-hydrodemolition.jpg',
     heroAlt: 'Operative carrying out controlled hand lancing hydrodemolition',
     author: 'Nick Turnbull',
@@ -67,6 +74,7 @@ export const BLOG: BlogPost[] = [
       'Decommissioning of a Turbine Hall is proceeding smoothly, thanks to GnatUK\'s skilled HILTI concrete wire-sawing team — bulk concrete sections cut, craned out and removed in sequence.',
     date: '2024-12-02',
     category: 'Project',
+    surfaces: ['case-study'],
     heroImage: '/images/blog/turbine-hall-wire-saw.jpg',
     heroAlt: 'HILTI wire sawing equipment cutting bulk concrete sections in a turbine hall',
     author: 'Nick Turnbull',
@@ -84,6 +92,7 @@ export const BLOG: BlogPost[] = [
       'One of our BROKK 500 units, fully loaded and ready to start a long work assignment in London — 40% more demolition power than its predecessor, the BROKK 400.',
     date: '2024-08-01',
     category: 'Fleet',
+    surfaces: ['blog'],
     heroImage: '/images/blog/brokk-500-london.jpg',
     heroAlt: 'Brokk 500 robotic demolition unit loaded onto a transport ready for site',
     author: 'Nick Turnbull',
@@ -101,6 +110,7 @@ export const BLOG: BlogPost[] = [
       'Seven Brokk robots stripped 200 tonnes of contaminated brick lining from six rotating kilns at an Elementis chromium plant over six months.',
     date: '2024-07-01',
     category: 'Project',
+    surfaces: ['case-study'],
     heroImage: '/images/blog/chromium-kiln-debricking-elementis.jpg',
     heroAlt:
       'Brokk demolition robot debricking a contaminated chromium kiln at an Elementis chemical plant',
@@ -127,6 +137,7 @@ export const BLOG: BlogPost[] = [
       'A compact Brokk 60 was craned through a cut in the kiln wall to safely de-brick the refractory lining inside a tight, confined vessel.',
     date: '2024-04-26',
     category: 'Project',
+    surfaces: ['case-study'],
     heroImage: '/images/blog/brokk-60-refractory-kiln-strip.jpg',
     heroAlt: 'Brokk 60 robot de-bricking the refractory lining inside a kiln vessel',
     author: 'Nick Turnbull',
@@ -145,6 +156,7 @@ export const BLOG: BlogPost[] = [
       'Brokk robots and Hilti track saws cleared a sealed Beeching-era railway arch to open a new pedestrian walkway, finishing three days early.',
     date: '2023-11-08',
     category: 'Project',
+    surfaces: ['case-study'],
     heroImage: '/images/blog/railway-arch-pedestrian-walkway-shotcrete.jpg',
     heroAlt:
       'Brokk robot deconstructing concrete infill inside a sealed Beeching-era railway arch',
@@ -168,6 +180,7 @@ export const BLOG: BlogPost[] = [
       'Brokk 60 robots are craned into foundation pits to peck away surplus concrete from piles, leaving rebar exposed and ready for new steel.',
     date: '2023-10-19',
     category: 'Method',
+    surfaces: ['insight'],
     heroImage: '/images/blog/robotic-pile-deconstruction-brokk-60.jpeg',
     heroAlt:
       'Brokk 60 robot pecking concrete from a pile head to expose the rebar inside a foundation pit',
@@ -188,6 +201,7 @@ export const BLOG: BlogPost[] = [
       'Husqvarna DXR140 robots on mast climbers deconstructed a 21m, 500-tonne reinforced silo from the inside out at the Grade I listed Ditherington flax mill.',
     date: '2023-08-02',
     category: 'Project',
+    surfaces: ['case-study'],
     heroImage: '/images/blog/shropshire-flax-mill-silo-deconstruction.jpg',
     heroAlt:
       'Husqvarna DXR140 robot deconstructing the reinforced concrete silo at Shropshire\'s Ditherington flax mill',
@@ -214,6 +228,7 @@ export const BLOG: BlogPost[] = [
       'A diesel and a 3-phase electric Brokk 800 were craned into a basement to peck out heavily reinforced concrete foundations in record time.',
     date: '2023-07-31',
     category: 'Project',
+    surfaces: ['case-study'],
     heroImage: '/images/blog/twin-brokk-800-foundation-demolition.jpeg',
     heroAlt:
       'Two Brokk 800 demolition robots breaking out reinforced concrete foundations in a basement',
@@ -234,6 +249,7 @@ export const BLOG: BlogPost[] = [
       'Husqvarna and Brokk robots deconstructed a 19-storey Leeds city centre tower from the top down, working alongside Bobcats to clear concrete and rebar.',
     date: '2023-07-20',
     category: 'Project',
+    surfaces: ['case-study'],
     heroImage: '/images/blog/top-down-robotic-demolition-leeds-tower.jpg',
     heroAlt:
       'Brokk and Husqvarna robots performing top-down demolition on a 19 storey Leeds city centre tower',
@@ -256,6 +272,7 @@ export const BLOG: BlogPost[] = [
       'Facade retention paired with top-down robotic deconstruction preserves architectural heritage while enabling fast, low-disruption interior rebuilds.',
     date: '2023-06-23',
     category: 'Method',
+    surfaces: ['insight'],
     heroImage: '/images/blog/large-facade-retention-scheme.jpg',
     heroAlt:
       'Facade retention scheme with original building elevation preserved as the interior is deconstructed',
@@ -283,6 +300,7 @@ export const BLOG: BlogPost[] = [
       'Abrasive cold-cutting opened a safe access route into a volatile oil tank so a Brokk 800 Diesel could remove over 2000m³ of solidified sludge.',
     date: '2023-06-12',
     category: 'Project',
+    surfaces: ['case-study'],
     heroImage: '/images/blog/cold-cutting-brokk-800-oil-sludge-tank.jpeg',
     heroAlt:
       'Brokk 800 Diesel robot removing solidified oil sludge from an oil storage tank after abrasive cold cutting access',
@@ -305,6 +323,7 @@ export const BLOG: BlogPost[] = [
       'High-pressure hydro-abrasive cutting on track-based manipulators safely deconstructs volatile chemical vessels with no spark or heat risk.',
     date: '2023-02-16',
     category: 'Method',
+    surfaces: ['insight'],
     heroImage: '/images/blog/abrasive-cold-cutting-pressure-vessels.jpg',
     heroAlt:
       'Track-based abrasive cold-cutting manipulator dismantling a volatile chemical pressure vessel',
@@ -327,6 +346,7 @@ export const BLOG: BlogPost[] = [
       'Compact Brokk 250 and Husqvarna DXR 250 robots, plus the larger Brokk 800, deconstruct redundant high street bank vaults for landlord redevelopments.',
     date: '2023-01-19',
     category: 'Method',
+    surfaces: ['insight'],
     heroImage: '/images/blog/bank-vault-demolition-brokk-husqvarna.jpg',
     heroAlt: 'Brokk demolition robot breaking into a high-security reinforced concrete bank vault',
     author: 'Keith Hodgson',
@@ -348,6 +368,7 @@ export const BLOG: BlogPost[] = [
       'A Husqvarna DXR140 robot with hydraulic pecker safely deconstructed concrete screed inside an Archimedes screw trough on a 40-degree incline.',
     date: '2023-01-01',
     category: 'Project',
+    surfaces: ['case-study'],
     heroImage: '/images/blog/husqvarna-140-archimedes-screw-trough.jpg',
     heroAlt:
       'Husqvarna DXR140 robot removing concrete screed inside a steeply inclined Archimedes screw trough',
@@ -370,6 +391,7 @@ export const BLOG: BlogPost[] = [
       'A compact Brokk 60 broke out tunnel benching inside a 1.5m diameter sewer for Active Tunnelling Ltd, eliminating the HAV risk of hand-held breakers.',
     date: '2022-12-31',
     category: 'Project',
+    surfaces: ['case-study'],
     heroImage: '/images/blog/tunnel-benching-brokk-60-sewer.jpg',
     heroAlt: 'Brokk 60 robot breaking out tunnel benching inside a 1.5 metre diameter sewer pipe',
     author: 'Nick Turnbull',
@@ -391,6 +413,7 @@ export const BLOG: BlogPost[] = [
       'Aquajet hydrodemolition robots and Hilti wire saws worked in tandem to isolate and refurbish concrete plinths in a North East car factory.',
     date: '2022-12-30',
     category: 'Project',
+    surfaces: ['case-study'],
     heroImage: '/images/blog/hydrodemolition-diamond-wire-car-factory.jpg',
     heroAlt:
       'Aquajet hydrodemolition robot and Hilti diamond wire saw working on concrete plinths in a car factory floor',
@@ -412,6 +435,7 @@ export const BLOG: BlogPost[] = [
       'A Husqvarna DXR140 fitted with a high-reach boom and hydraulic pecker broke out tall basement ceilings and concrete beams in a restricted-access factory.',
     date: '2022-12-30',
     category: 'Method',
+    surfaces: ['insight'],
     heroImage: '/images/blog/high-reach-confined-space-husqvarna-dxr140.jpg',
     heroAlt:
       'Husqvarna DXR140 robot with high-reach boom breaking out a basement ceiling in a confined space',
@@ -433,6 +457,7 @@ export const BLOG: BlogPost[] = [
       'The Aquajet ERGO system mounts to standard scaffolding to remotely strip refractory inside biomass boilers and kilns four times faster than hand lancing.',
     date: '2022-12-30',
     category: 'Method',
+    surfaces: ['insight'],
     heroImage: '/images/blog/ergo-hydrodemolition-biomass-boiler.jpg',
     heroAlt:
       'Aquajet ERGO hydrodemolition system removing castable refractory inside a biomass boiler furnace',
@@ -454,6 +479,7 @@ export const BLOG: BlogPost[] = [
       'Diamond floor sawing and an Aquajet hydrodemolition robot cut 2500m of clean 100mm x 50mm rebates after percussive breakers had failed.',
     date: '2022-10-28',
     category: 'Project',
+    surfaces: ['case-study'],
     heroImage: '/images/blog/hydroblasting-factory-floor-rebates.jpg',
     heroAlt:
       'Aquajet hydrodemolition robot chasing precision rebates into a factory concrete floor',
@@ -474,6 +500,7 @@ export const BLOG: BlogPost[] = [
       'A bespoke mast-climber rig with a remotely operated hydraulic pecker arm was engineered to safely de-brick a vast refractory vessel from the top down.',
     date: '2022-10-01',
     category: 'Method',
+    surfaces: ['insight'],
     heroImage: '/images/services/hero-home.jpg',
     heroAlt:
       'Mast-climber mounted remote manipulator system de-bricking refractory lining inside a large vessel',
@@ -494,6 +521,7 @@ export const BLOG: BlogPost[] = [
       'The NALTA system replaces hand lances with a remote-controlled oscillating lance, working flat or curved surfaces down to a 400mm radius.',
     date: '2022-08-21',
     category: 'Method',
+    surfaces: ['insight'],
     heroImage: '/images/services/hydrodemolition-hero.jpg',
     heroAlt: 'NALTA remote-controlled hydrodemolition lance system removing concrete from a structure',
     author: 'Nick Turnbull',
@@ -514,6 +542,7 @@ export const BLOG: BlogPost[] = [
       'When 3-phase power isn\'t available, the 11-tonne Brokk 800 Diesel with 10m reach and MB 1200 breaker delivers unmatched off-grid demolition power.',
     date: '2022-07-27',
     category: 'Fleet',
+    surfaces: ['blog'],
     heroImage: '/images/blog/brokk-800-diesel-foundation-demolition.jpg',
     heroAlt:
       'Brokk 800 Diesel demolition robot breaking deep reinforced concrete foundations during a factory refurbishment',
@@ -535,6 +564,7 @@ export const BLOG: BlogPost[] = [
       'Hilti WS15 wire saws cold-cut three sections of live 1.6m steel sewage flume in central Glasgow, each isolation completed in just over an hour.',
     date: '2022-04-27',
     category: 'Project',
+    surfaces: ['case-study'],
     heroImage: '/images/blog/diamond-wire-sawing-glasgow-sewer-flumes.jpg',
     heroAlt:
       'Hilti WS15 diamond wire saw cold-cutting a live 1.6m diameter steel sewer flume pipe in Glasgow',
@@ -556,6 +586,7 @@ export const BLOG: BlogPost[] = [
       'Robotic hydrodemolition at up to 36000 psi removed 150mm of damaged concrete from a busy arterial city bridge deck with minimum downtime.',
     date: '2022-03-27',
     category: 'Project',
+    surfaces: ['case-study'],
     heroImage: '/images/blog/hydroblasting-city-bridge-deck.jpg',
     heroAlt: 'Robotic hydrodemolition equipment removing damaged concrete from a city bridge deck',
     author: 'Nick Turnbull',
@@ -576,6 +607,7 @@ export const BLOG: BlogPost[] = [
       'A Conjet hydrodemolition robot stripped degraded concrete from a working North Sea jetty deck while preserving steel substructures and the marine environment.',
     date: '2021-12-01',
     category: 'Project',
+    surfaces: ['case-study'],
     heroImage: '/images/blog/hydrodemolition-north-sea-jetty.jpg',
     heroAlt: 'Conjet hydrodemolition robot stripping degraded concrete from a North Sea jetty deck',
     author: 'Nick Turnbull',
@@ -595,6 +627,7 @@ export const BLOG: BlogPost[] = [
       'Gnat\'s adapted Brokk 330 ‘Fillie’ worked 24/7 inside Britain\'s largest active TBM, helping remove 30,000 tonnes of material from the Farnworth Tunnel.',
     date: '2021-05-18',
     category: 'Project',
+    surfaces: ['case-study'],
     heroImage: '/images/blog/farnworth-tunnel-brokk-330-fillie.jpg',
     heroAlt:
       "Adapted Brokk 330 'Fillie' demolition robot mounted inside a 9 metre diameter TBM at the Farnworth Tunnel",
@@ -616,6 +649,7 @@ export const BLOG: BlogPost[] = [
       'Track sawing and stitch drilling deconstructed a heavily reinforced Bank of England holding vault inside a 16th-century Grade I listed London building.',
     date: '2021-05-10',
     category: 'Project',
+    surfaces: ['case-study'],
     heroImage: '/images/blog/bank-of-england-vault-grade-1-london.jpg',
     heroAlt:
       'Diamond track saw cutting through a heavily reinforced Bank of England vault wall in a Grade I listed London building',
@@ -641,6 +675,7 @@ export const BLOG: BlogPost[] = [
       'Diamond track sawing and stitch drilling removed three reinforced concrete walkways above York\'s Rougier Street, finishing 20 weeks ahead of schedule.',
     date: '2021-04-09',
     category: 'Project',
+    surfaces: ['case-study'],
     heroImage: '/images/blog/york-walkway-diamond-sawing-rougier-street.jpg',
     heroAlt:
       "Diamond track saw cutting through a reinforced concrete walkway above York's Rougier Street",

@@ -50,7 +50,18 @@ export default function BlogPostPage({ params }: { params: Params }) {
   const post = getBlogPostBySlug(params.slug);
   if (!post) notFound();
 
-  const others = BLOG.filter((p) => p.slug !== post.slug)
+  // Breadcrumb + "more from..." use the post's primary surface so context matches
+  // however the user arrived (case-study reader sees more case studies, etc.).
+  const primarySurface = post.surfaces[0] ?? 'blog';
+  const surfaceMeta = {
+    'case-study': { label: 'Case Studies', href: '/case-studies', moreLabel: 'More projects' },
+    insight: { label: 'Insights', href: '/insights', moreLabel: 'More insights' },
+    blog: { label: 'Blog', href: '/blog', moreLabel: 'More from the blog' },
+  }[primarySurface];
+
+  const others = BLOG.filter(
+    (p) => p.slug !== post.slug && p.surfaces.includes(primarySurface),
+  )
     .sort((a, b) => (a.date < b.date ? 1 : -1))
     .slice(0, 3);
 
@@ -58,7 +69,7 @@ export default function BlogPostPage({ params }: { params: Params }) {
     <>
       <Breadcrumbs
         items={[
-          { name: 'Blog', href: '/blog' },
+          { name: surfaceMeta.label, href: surfaceMeta.href },
           { name: post.title, href: `/blog/${post.slug}` },
         ]}
       />
@@ -103,7 +114,7 @@ export default function BlogPostPage({ params }: { params: Params }) {
         {others.length > 0 && (
           <section className="border-t border-gnat-concrete bg-gnat-concrete-light">
             <div className="container-prose py-14 md:py-16">
-              <h2 className="text-2xl font-bold text-gnat-navy md:text-3xl">More from the blog</h2>
+              <h2 className="text-2xl font-bold text-gnat-navy md:text-3xl">{surfaceMeta.moreLabel}</h2>
               <div className="mt-8 grid gap-6 md:grid-cols-3">
                 {others.map((o) => (
                   <Link

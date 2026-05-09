@@ -28,7 +28,9 @@ function formatDate(iso: string): string {
 }
 
 export default function BlogPage() {
-  const sorted = [...BLOG].sort((a, b) => (a.date < b.date ? 1 : -1));
+  const sorted = BLOG.filter((p) => p.surfaces.includes('blog')).sort((a, b) =>
+    a.date < b.date ? 1 : -1,
+  );
 
   return (
     <>
@@ -44,8 +46,9 @@ export default function BlogPage() {
               From the field.
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-gnat-steel-dark">
-              Project completions, fleet updates, method notes and industry observations
-              from the GNAT UK team.
+              Fleet updates and short notes from the GNAT UK team. For project case
+              studies see <Link href="/case-studies" className="font-semibold text-gnat-orange hover:underline">Case Studies</Link>;
+              for method and technique writing see <Link href="/insights" className="font-semibold text-gnat-orange hover:underline">Insights</Link>.
             </p>
           </div>
 

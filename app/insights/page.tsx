@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CTABlock } from '@/components/CTABlock';
-import { INSIGHTS } from '@/lib/insights';
+import { BLOG } from '@/lib/blog';
 import { SITE } from '@/lib/constants';
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Insights | GNAT UK',
     description:
-      'Method, equipment and sector notes from GNAT UK\'s specialist demolition team.',
+      'Method, equipment and technique notes from GNAT UK\'s specialist demolition team.',
     url: `${SITE.url}/insights`,
   },
 };
@@ -28,8 +28,10 @@ function formatDate(iso: string): string {
 }
 
 export default function InsightsPage() {
-  const sorted = [...INSIGHTS].sort((a, b) => (a.date < b.date ? 1 : -1));
-  const [featured, ...rest] = sorted;
+  const insights = BLOG.filter((p) => p.surfaces.includes('insight')).sort(
+    (a, b) => (a.date < b.date ? 1 : -1),
+  );
+  const [featured, ...rest] = insights;
 
   return (
     <>
@@ -42,19 +44,18 @@ export default function InsightsPage() {
               Insights
             </p>
             <h1 className="mt-4 text-4xl font-bold leading-tight text-gnat-navy md:text-5xl">
-              Method, equipment and sector notes.
+              Method, equipment and technique notes.
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-gnat-steel-dark">
               Practical writing for the people who specify, procure and deliver specialist
-              demolition. Decision frameworks, equipment comparisons, and the kind of
-              detail that doesn&apos;t fit on a service page.
+              demolition. Method explanations, equipment notes and the kind of detail that
+              doesn&apos;t fit on a service page.
             </p>
           </div>
 
-          {/* Featured (most recent) */}
           {featured && (
             <Link
-              href={`/insights/${featured.slug}`}
+              href={`/blog/${featured.slug}`}
               className="group mt-14 grid gap-8 overflow-hidden rounded-lg border border-gnat-concrete bg-white shadow-sm transition hover:border-gnat-orange/50 hover:shadow-md md:grid-cols-[1.4fr_1fr]"
             >
               <div className="relative aspect-[16/10] w-full overflow-hidden bg-gnat-concrete-light md:aspect-auto">
@@ -83,12 +84,11 @@ export default function InsightsPage() {
             </Link>
           )}
 
-          {/* Rest */}
-          <div className="mt-10 grid gap-8 md:grid-cols-2">
+          <div className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {rest.map((post) => (
               <Link
                 key={post.slug}
-                href={`/insights/${post.slug}`}
+                href={`/blog/${post.slug}`}
                 className="group flex flex-col overflow-hidden rounded-lg border border-gnat-concrete bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-gnat-orange/50 hover:shadow-md"
               >
                 <div className="relative aspect-[16/9] w-full overflow-hidden bg-gnat-concrete-light">
@@ -96,7 +96,7 @@ export default function InsightsPage() {
                     src={post.heroImage}
                     alt={post.heroAlt}
                     fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                     className="object-cover transition duration-300 group-hover:scale-[1.02]"
                   />
                 </div>
@@ -111,7 +111,7 @@ export default function InsightsPage() {
                     {post.excerpt}
                   </p>
                   <p className="mt-4 text-xs font-semibold text-gnat-navy group-hover:text-gnat-orange">
-                    {post.readingTime} →
+                    Read →
                   </p>
                 </div>
               </Link>

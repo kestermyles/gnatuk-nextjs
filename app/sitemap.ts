@@ -1,7 +1,5 @@
 import type { MetadataRoute } from 'next';
 import { SERVICES, SITE } from '@/lib/constants';
-import { CASE_STUDIES } from '@/lib/case-studies';
-import { INSIGHTS } from '@/lib/insights';
 import { BLOG } from '@/lib/blog';
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -20,34 +18,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
       changeFrequency: 'monthly',
     },
-    ...CASE_STUDIES.map((cs) => ({
-      url: `${SITE.url}/case-studies/${cs.slug}`,
-      lastModified,
-      priority: 0.7,
-      changeFrequency: 'yearly' as const,
-    })),
     {
       url: `${SITE.url}/insights`,
       lastModified,
       priority: 0.8,
-      changeFrequency: 'weekly',
+      changeFrequency: 'monthly',
     },
-    ...INSIGHTS.map((p) => ({
-      url: `${SITE.url}/insights/${p.slug}`,
-      lastModified: new Date(p.date),
-      priority: 0.7,
-      changeFrequency: 'yearly' as const,
-    })),
     {
       url: `${SITE.url}/blog`,
       lastModified,
       priority: 0.7,
-      changeFrequency: 'weekly',
+      changeFrequency: 'monthly',
     },
+    // Canonical detail URL for every post is /blog/[slug] (regardless of which
+    // listing surfaces it). /case-studies and /insights are curated views.
     ...BLOG.map((p) => ({
       url: `${SITE.url}/blog/${p.slug}`,
       lastModified: new Date(p.date),
-      priority: 0.5,
+      priority: p.surfaces.includes('case-study') ? 0.7 : 0.6,
       changeFrequency: 'yearly' as const,
     })),
     {
