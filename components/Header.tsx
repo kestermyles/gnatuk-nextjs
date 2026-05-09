@@ -178,6 +178,14 @@ export function Header() {
             </li>
             <li>
               <Link
+                href="/news"
+                className="whitespace-nowrap px-5 py-2 text-base font-medium text-gnat-navy transition-colors hover:text-gnat-orange"
+              >
+                News
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/contact"
                 className="whitespace-nowrap px-5 py-2 text-base font-medium text-gnat-navy transition-colors hover:text-gnat-orange"
               >
@@ -249,6 +257,15 @@ export function Header() {
                   className="block rounded px-3 py-3 text-base text-gnat-navy hover:bg-gnat-concrete-light"
                 >
                   Insights
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/news"
+                  onClick={() => setOpen(false)}
+                  className="block rounded px-3 py-3 text-base text-gnat-navy hover:bg-gnat-concrete-light"
+                >
+                  News
                 </Link>
               </li>
               <li>
