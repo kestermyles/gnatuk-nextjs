@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { ContactForm } from '@/components/ContactForm';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { CoverageMapClient } from '@/components/CoverageMapClient';
 import { SITE } from '@/lib/constants';
 
 export const metadata: Metadata = {
@@ -110,6 +111,66 @@ export default function ContactPage() {
               </ul>
             </div>
           </aside>
+        </div>
+      </section>
+
+      <section className="border-t border-gnat-concrete bg-gnat-concrete-light">
+        <div className="container-prose py-14 md:py-20">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gnat-orange">
+              Coverage
+            </p>
+            <h2 className="mt-3 text-3xl font-bold leading-tight text-gnat-navy md:text-4xl">
+              Where we work.
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-gnat-steel-dark">
+              Specialist demolition, robotic and confined-access work delivered nationwide
+              from our Richmond head office and operational bases.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
+            <div className="h-[420px] overflow-hidden rounded-lg border border-gnat-concrete bg-white shadow-sm">
+              <CoverageMapClient />
+            </div>
+            <ul className="space-y-4">
+              <li className="rounded-lg border border-gnat-concrete bg-white p-5">
+                <p className="text-xs font-semibold uppercase tracking-wider text-gnat-orange">
+                  Head Office
+                </p>
+                <p className="mt-2 text-base font-semibold text-gnat-navy">
+                  Richmond, North Yorkshire
+                </p>
+                <p className="mt-1 text-sm leading-relaxed text-gnat-steel-dark">
+                  {SITE.address.streetAddress}
+                  <br />
+                  {SITE.address.locality}, {SITE.address.postalCode}
+                </p>
+              </li>
+              <li className="rounded-lg border border-gnat-concrete bg-white p-5">
+                <p className="text-xs font-semibold uppercase tracking-wider text-gnat-orange">
+                  Midlands Operational Base
+                </p>
+                <p className="mt-2 text-base font-semibold text-gnat-navy">
+                  Birmingham (placeholder)
+                </p>
+                <p className="mt-1 text-sm leading-relaxed text-gnat-steel-dark">
+                  Mobilisation point for projects across the Midlands and Welsh Marches.
+                </p>
+              </li>
+              <li className="rounded-lg border border-gnat-concrete bg-white p-5">
+                <p className="text-xs font-semibold uppercase tracking-wider text-gnat-orange">
+                  Southern Operational Base
+                </p>
+                <p className="mt-2 text-base font-semibold text-gnat-navy">
+                  Greater London (placeholder)
+                </p>
+                <p className="mt-1 text-sm leading-relaxed text-gnat-steel-dark">
+                  Mobilisation point for projects across the South East and Thames Valley.
+                </p>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
     </>
