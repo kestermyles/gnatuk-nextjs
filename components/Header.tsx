@@ -98,7 +98,7 @@ export function Header() {
         </div>
       </div>
 
-      <div className="container-prose flex h-20 items-center justify-between gap-6 xl:h-24">
+      <div className="container-prose flex h-20 items-center justify-between gap-6 min-[1400px]:h-24">
         <Link
           href="/"
           className="flex shrink-0 items-center"
@@ -110,17 +110,20 @@ export function Header() {
             width={160}
             height={81}
             priority
-            className="h-12 w-auto md:h-14 xl:h-16"
+            className="h-12 w-auto md:h-14 min-[1400px]:h-16"
           />
         </Link>
 
-        <nav aria-label="Primary" className="hidden xl:flex xl:flex-1 xl:justify-center">
+        <nav
+          aria-label="Primary"
+          className="hidden min-[1400px]:flex min-[1400px]:flex-1 min-[1400px]:justify-center"
+        >
           <ul className="flex items-center">
             {SERVICES.map((s) => (
               <li key={s.slug}>
                 <Link
                   href={`/${s.slug}`}
-                  className="px-6 py-2 text-base font-medium text-gnat-navy transition-colors hover:text-gnat-orange"
+                  className="whitespace-nowrap px-5 py-2 text-base font-medium text-gnat-navy transition-colors hover:text-gnat-orange"
                 >
                   {s.shortName}
                 </Link>
@@ -129,7 +132,7 @@ export function Header() {
             <li>
               <Link
                 href="/contact"
-                className="px-6 py-2 text-base font-medium text-gnat-navy transition-colors hover:text-gnat-orange"
+                className="whitespace-nowrap px-5 py-2 text-base font-medium text-gnat-navy transition-colors hover:text-gnat-orange"
               >
                 Contact
               </Link>
@@ -137,7 +140,7 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="hidden shrink-0 xl:block">
+        <div className="hidden shrink-0 min-[1400px]:block">
           <CTAButton href="/contact" size="sm" variant="primary">
             Request Method Proposal
           </CTAButton>
@@ -148,7 +151,7 @@ export function Header() {
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           onClick={() => setOpen(!open)}
-          className="flex h-11 w-11 shrink-0 items-center justify-center rounded text-gnat-navy xl:hidden"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded text-gnat-navy min-[1400px]:hidden"
         >
           {open ? (
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
@@ -163,7 +166,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="xl:hidden">
+        <div className="min-[1400px]:hidden">
           <nav aria-label="Mobile" className="border-t border-gnat-concrete bg-white">
             <ul className="container-prose space-y-1 py-4">
               {SERVICES.map((s) => (
