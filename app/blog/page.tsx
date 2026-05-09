@@ -3,19 +3,19 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CTABlock } from '@/components/CTABlock';
-import { NEWS } from '@/lib/news';
+import { BLOG } from '@/lib/blog';
 import { SITE } from '@/lib/constants';
 
 export const metadata: Metadata = {
-  title: 'News — Project Updates, Fleet & Industry',
+  title: 'Blog — Project Updates, Fleet & Industry',
   description:
-    'Recent project completions, fleet updates, team certifications and industry events from GNAT UK\'s specialist demolition team.',
-  alternates: { canonical: `${SITE.url}/news` },
+    'Recent project completions, fleet updates and industry notes from GNAT UK\'s specialist demolition team.',
+  alternates: { canonical: `${SITE.url}/blog` },
   openGraph: {
-    title: 'News | GNAT UK',
+    title: 'Blog | GNAT UK',
     description:
       'Recent project completions, fleet updates and industry news from GNAT UK.',
-    url: `${SITE.url}/news`,
+    url: `${SITE.url}/blog`,
   },
 };
 
@@ -27,25 +27,25 @@ function formatDate(iso: string): string {
   });
 }
 
-export default function NewsPage() {
-  const sorted = [...NEWS].sort((a, b) => (a.date < b.date ? 1 : -1));
+export default function BlogPage() {
+  const sorted = [...BLOG].sort((a, b) => (a.date < b.date ? 1 : -1));
 
   return (
     <>
-      <Breadcrumbs items={[{ name: 'News', href: '/news' }]} />
+      <Breadcrumbs items={[{ name: 'Blog', href: '/blog' }]} />
 
       <section className="bg-white">
         <div className="container-prose py-14 md:py-20">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gnat-orange">
-              News
+              Blog
             </p>
             <h1 className="mt-4 text-4xl font-bold leading-tight text-gnat-navy md:text-5xl">
-              What we&apos;ve been doing.
+              From the field.
             </h1>
             <p className="mt-5 text-lg leading-relaxed text-gnat-steel-dark">
-              Project completions, fleet updates, team certifications, awards and industry
-              events. The shorter, sharper updates from the field.
+              Project completions, fleet updates, method notes and industry observations
+              from the GNAT UK team.
             </p>
           </div>
 
@@ -53,7 +53,7 @@ export default function NewsPage() {
             {sorted.map((post) => (
               <Link
                 key={post.slug}
-                href={`/news/${post.slug}`}
+                href={`/blog/${post.slug}`}
                 className="group flex flex-col overflow-hidden rounded-lg border border-gnat-concrete bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-gnat-orange/50 hover:shadow-md"
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-gnat-concrete-light">
@@ -70,7 +70,7 @@ export default function NewsPage() {
                 </div>
                 <div className="flex flex-1 flex-col p-5">
                   <p className="text-xs font-semibold uppercase tracking-wider text-gnat-steel-dark">
-                    {formatDate(post.date)}
+                    {formatDate(post.date)} &middot; {post.author}
                   </p>
                   <h2 className="mt-2 text-base font-bold leading-snug text-gnat-navy">
                     {post.title}

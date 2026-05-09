@@ -178,10 +178,10 @@ export function Header() {
             </li>
             <li>
               <Link
-                href="/news"
+                href="/blog"
                 className="whitespace-nowrap px-5 py-2 text-base font-medium text-gnat-navy transition-colors hover:text-gnat-orange"
               >
-                News
+                Blog
               </Link>
             </li>
             <li>
@@ -261,11 +261,11 @@ export function Header() {
               </li>
               <li>
                 <Link
-                  href="/news"
+                  href="/blog"
                   onClick={() => setOpen(false)}
                   className="block rounded px-3 py-3 text-base text-gnat-navy hover:bg-gnat-concrete-light"
                 >
-                  News
+                  Blog
                 </Link>
               </li>
               <li>
