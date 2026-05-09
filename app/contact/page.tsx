@@ -136,38 +136,93 @@ export default function ContactPage() {
             <ul className="space-y-4">
               <li className="rounded-lg border border-gnat-concrete bg-white p-5">
                 <p className="text-xs font-semibold uppercase tracking-wider text-gnat-orange">
-                  Head Office
+                  Head Office — Richmond
                 </p>
-                <p className="mt-2 text-base font-semibold text-gnat-navy">
-                  Richmond, North Yorkshire
-                </p>
-                <p className="mt-1 text-sm leading-relaxed text-gnat-steel-dark">
-                  {SITE.address.streetAddress}
+                <p className="mt-2 text-sm leading-relaxed text-gnat-navy">
+                  Unit 5, Jackson Court, Olympic Way
                   <br />
-                  {SITE.address.locality}, {SITE.address.postalCode}
+                  Richmond, North Yorkshire
+                  <br />
+                  England DL10 4FD
                 </p>
+                <dl className="mt-3 space-y-1 text-sm text-gnat-steel-dark">
+                  <div>
+                    <dt className="inline font-semibold text-gnat-navy">tel </dt>
+                    <dd className="inline">
+                      <a href="tel:+441748826046" className="hover:text-gnat-orange">
+                        01748 826046
+                      </a>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="inline font-semibold text-gnat-navy">email </dt>
+                    <dd className="inline">
+                      <a href="mailto:office@gnatuk.com" className="hover:text-gnat-orange">
+                        office@gnatuk.com
+                      </a>
+                    </dd>
+                  </div>
+                </dl>
               </li>
               <li className="rounded-lg border border-gnat-concrete bg-white p-5">
                 <p className="text-xs font-semibold uppercase tracking-wider text-gnat-orange">
-                  Midlands Operational Base
+                  Midlands Office — Derby
                 </p>
-                <p className="mt-2 text-base font-semibold text-gnat-navy">
-                  Birmingham (placeholder)
+                <p className="mt-2 text-sm leading-relaxed text-gnat-navy">
+                  Unit 7, Riverside Park
+                  <br />
+                  East Service Road, Raynesway
+                  <br />
+                  Spondon, Derby DE21 7RW
                 </p>
-                <p className="mt-1 text-sm leading-relaxed text-gnat-steel-dark">
-                  Mobilisation point for projects across the Midlands and Welsh Marches.
-                </p>
+                <dl className="mt-3 space-y-1 text-sm text-gnat-steel-dark">
+                  <div>
+                    <dt className="inline font-semibold text-gnat-navy">tel </dt>
+                    <dd className="inline">
+                      <a href="tel:+448448404440" className="hover:text-gnat-orange">
+                        0844 840 4440
+                      </a>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="inline font-semibold text-gnat-navy">email </dt>
+                    <dd className="inline">
+                      <a href="mailto:mike.hill@gnatuk.com" className="hover:text-gnat-orange">
+                        mike.hill@gnatuk.com
+                      </a>
+                    </dd>
+                  </div>
+                </dl>
               </li>
               <li className="rounded-lg border border-gnat-concrete bg-white p-5">
                 <p className="text-xs font-semibold uppercase tracking-wider text-gnat-orange">
-                  Southern Operational Base
+                  Stevenage Office
                 </p>
-                <p className="mt-2 text-base font-semibold text-gnat-navy">
-                  Greater London (placeholder)
+                <p className="mt-2 text-sm leading-relaxed text-gnat-navy">
+                  The Old Lordship Farm
+                  <br />
+                  Walkern Road, Bennington
+                  <br />
+                  Hertfordshire SG2 7LL
                 </p>
-                <p className="mt-1 text-sm leading-relaxed text-gnat-steel-dark">
-                  Mobilisation point for projects across the South East and Thames Valley.
-                </p>
+                <dl className="mt-3 space-y-1 text-sm text-gnat-steel-dark">
+                  <div>
+                    <dt className="inline font-semibold text-gnat-navy">tel </dt>
+                    <dd className="inline">
+                      <a href="tel:+448448405550" className="hover:text-gnat-orange">
+                        0844 840 5550
+                      </a>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="inline font-semibold text-gnat-navy">email </dt>
+                    <dd className="inline">
+                      <a href="mailto:office@gnatuk.com" className="hover:text-gnat-orange">
+                        office@gnatuk.com
+                      </a>
+                    </dd>
+                  </div>
+                </dl>
               </li>
             </ul>
           </div>

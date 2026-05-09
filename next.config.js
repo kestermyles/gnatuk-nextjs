@@ -11,6 +11,40 @@ const nextConfig = {
     ],
   },
   async redirects() {
+    // Wix /post/[slug] → new /blog/[slug] mapping for all 30 ported posts.
+    // Preserves backlink equity post-DNS-cutover.
+    const wixToBlog = [
+      ['precision-cold-cutting-brokk-debricking-within-the-complex-geometry-of-a-large-refractory-vessel', 'refractory-vessel-cold-cut-brokk-debricking'],
+      ['hydrodemolition-a-case-for-hand-lancing', 'hydrodemolition-hand-lancing'],
+      ['turbine-hall-bulk-concrete-cutting-undertaken-by-our-wire-sawing-team', 'turbine-hall-wire-sawing'],
+      ['one-of-our-brokk-500s-embarking-on-an-extended-project-in-london', 'brokk-500-london-deployment'],
+      ['de-bricking-a-contaminated-chromium-kiln-circa-2012', 'chromium-kiln-debricking-elementis'],
+      ['as-easy-as-1-2-3-one-of-gnatuk-s-brokk-60-s-punching-well-above', 'brokk-60-refractory-kiln-strip'],
+      ['tunnel-vision-see-how-pedestrian-safety-concerns-trump-a-constipated-railway-arch', 'railway-arch-pedestrian-walkway-shotcrete'],
+      ['troublesome-piles', 'robotic-pile-deconstruction-brokk-60'],
+      ['shropshire-flax-mill-deconstruction', 'shropshire-flax-mill-silo-deconstruction'],
+      ['a-brace-of-brokk-800-s-bullying-formidable-foundations', 'twin-brokk-800-foundation-demolition'],
+      ['top-down-robotic-demolition-peck-cut-clear-repeat-x19-floors', 'top-down-robotic-demolition-leeds-tower'],
+      ['one-of-the-biggest-facade-retention-schemes-outside-london', 'large-facade-retention-scheme'],
+      ['abrasive-cold-cutting-in-tandem-with-brokk-800-saves-the-day', 'cold-cutting-brokk-800-oil-sludge-tank'],
+      ['abrasive-cold-cutting', 'abrasive-cold-cutting-pressure-vessels'],
+      ['breaking-into-a-high-security-reinforced-concrete-bank-vaults-legally', 'bank-vault-demolition-brokk-husqvarna'],
+      ['gravity-defying-concrete-removal-on-a-40-degree-slope', 'husqvarna-140-archimedes-screw-trough'],
+      ['gnat-uk-sitting-down-on-the-job', 'tunnel-benching-brokk-60-sewer'],
+      ['hydrodemolition-diamond-wire-sawing-car-factory-floor-refurbishment', 'hydrodemolition-diamond-wire-car-factory'],
+      ['access-all-areas-we-just-love-confined-space-demolition', 'high-reach-confined-space-husqvarna-dxr140'],
+      ['a-safer-alternative-to-traditional-concrete-demolition', 'ergo-hydrodemolition-biomass-boiler'],
+      ['hydroblasting-rebates-in-a-factory-floor', 'hydroblasting-factory-floor-rebates'],
+      ['refractory-kiln-de-construction', 'mast-climber-refractory-kiln-debricking'],
+      ['nalta-concrete-hydro-demolition', 'nalta-hydrodemolition-system'],
+      ['diesel-do-nicely', 'brokk-800-diesel-foundation-demolition'],
+      ['the-art-of-diamond-wire-sawing-raw-sewage-flume-pipes', 'diamond-wire-sawing-glasgow-sewer-flumes'],
+      ['hydro-blasting-on-city-bridge-deck', 'hydroblasting-city-bridge-deck'],
+      ['hydrodemolition-on-a-north-sea-jetty', 'hydrodemolition-north-sea-jetty'],
+      ['railway-tunnel-reconstruction', 'farnworth-tunnel-brokk-330-fillie'],
+      ['sensitive-bank-vault-deconstruction-in-a-grade-1-listed-building', 'bank-of-england-vault-grade-1-london'],
+      ['york-walkway-diamond-sawing-saves-the-day', 'york-walkway-diamond-sawing-rougier-street'],
+    ];
     return [
       { source: '/diamond-drilling-and-sawing', destination: '/diamond-drilling', permanent: true },
       { source: '/abrasive-cold-cutting', destination: '/cold-cutting', permanent: true },
@@ -18,27 +52,11 @@ const nextConfig = {
       // /news was a brief intermediate route name; consolidated under /blog.
       { source: '/news', destination: '/blog', permanent: true },
       { source: '/news/:slug', destination: '/blog/:slug', permanent: true },
-      // Wix blog post URLs → new /blog/[slug]. Preserves backlink equity post-cutover.
-      {
-        source: '/post/precision-cold-cutting-brokk-debricking-within-the-complex-geometry-of-a-large-refractory-vessel',
-        destination: '/blog/refractory-vessel-cold-cut-brokk-debricking',
+      ...wixToBlog.map(([wix, blog]) => ({
+        source: `/post/${wix}`,
+        destination: `/blog/${blog}`,
         permanent: true,
-      },
-      {
-        source: '/post/hydrodemolition-a-case-for-hand-lancing',
-        destination: '/blog/hydrodemolition-hand-lancing',
-        permanent: true,
-      },
-      {
-        source: '/post/turbine-hall-bulk-concrete-cutting-undertaken-by-our-wire-sawing-team',
-        destination: '/blog/turbine-hall-wire-sawing',
-        permanent: true,
-      },
-      {
-        source: '/post/one-of-our-brokk-500s-embarking-on-an-extended-project-in-london',
-        destination: '/blog/brokk-500-london-deployment',
-        permanent: true,
-      },
+      })),
     ];
   },
   async headers() {

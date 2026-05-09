@@ -4,8 +4,7 @@ import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
-// PLACEHOLDER LOCATIONS — replace with real operational bases when known.
-// Coordinates are approximate; only the head office is real (Richmond, North Yorkshire).
+// Real GNAT UK office locations.
 const locations: Array<{
   name: string;
   address: string;
@@ -13,20 +12,20 @@ const locations: Array<{
   isHeadOffice?: boolean;
 }> = [
   {
-    name: 'Head Office',
-    address: 'Richmond, North Yorkshire',
+    name: 'Head Office — Richmond',
+    address: 'Unit 5, Jackson Court, Olympic Way, Richmond, North Yorkshire DL10 4FD',
     coords: [54.404, -1.737],
     isHeadOffice: true,
   },
   {
-    name: 'Midlands Operational Base',
-    address: 'Birmingham (placeholder)',
-    coords: [52.486, -1.89],
+    name: 'Midlands Office — Derby',
+    address: 'Unit 7, Riverside Park, East Service Road, Raynesway, Spondon, Derby DE21 7RW',
+    coords: [52.916, -1.421],
   },
   {
-    name: 'Southern Operational Base',
-    address: 'Greater London (placeholder)',
-    coords: [51.505, -0.09],
+    name: 'Stevenage Office',
+    address: 'The Old Lordship Farm, Walkern Road, Bennington, Hertfordshire SG2 7LL',
+    coords: [51.892, -0.116],
   },
 ];
 

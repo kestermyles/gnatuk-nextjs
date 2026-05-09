@@ -1,10 +1,15 @@
-// Blog posts ported verbatim from the original Wix site at gnatuk.com/blog.
-// All authored by Nick Turnbull. Dates preserved from the original publications.
-// Hero images scraped from the original posts and stored under /public/images/blog/.
+// All blog posts ported from the original Wix site at gnatuk.com/blog.
+// Body content is verbatim from the published posts. Titles and excerpts have been
+// lightly cleaned up for SEO clarity (originalTitle preserves the published version).
+// Author attribution preserved exactly as published.
 
 export type BlogPost = {
   slug: string;
+  /** The slug used on the original Wix site (gnatuk.com/post/[wixSlug]). Used for 301 redirects. */
+  wixSlug: string;
   title: string;
+  /** The exact title as published on Wix, preserved for reference. */
+  originalTitle?: string;
   excerpt: string;
   body: string[];
   date: string; // ISO yyyy-mm-dd
@@ -17,6 +22,8 @@ export type BlogPost = {
 export const BLOG: BlogPost[] = [
   {
     slug: 'refractory-vessel-cold-cut-brokk-debricking',
+    wixSlug:
+      'precision-cold-cutting-brokk-debricking-within-the-complex-geometry-of-a-large-refractory-vessel',
     title:
       'Precision Cold-Cutting & BROKK Debricking within the Complex Geometry of a Large Refractory Vessel',
     excerpt:
@@ -36,6 +43,7 @@ export const BLOG: BlogPost[] = [
   },
   {
     slug: 'hydrodemolition-hand-lancing',
+    wixSlug: 'hydrodemolition-a-case-for-hand-lancing',
     title: 'Hydrodemolition — A Case for Hand Lancing',
     excerpt:
       'Robotics first, always. But in confined or irregular spaces where robotic access isn\'t viable, controlled hand lancing keeps the work moving — with the same commitment to safety and efficiency.',
@@ -52,9 +60,11 @@ export const BLOG: BlogPost[] = [
   },
   {
     slug: 'turbine-hall-wire-sawing',
-    title: 'Turbine Hall — Bulk Concrete Cutting undertaken by our Wire Sawing Team',
+    wixSlug: 'turbine-hall-bulk-concrete-cutting-undertaken-by-our-wire-sawing-team',
+    title: 'Turbine Hall Decommissioning — Bulk Concrete Cutting with HILTI Wire Sawing',
+    originalTitle: 'Turbine Hall - Bulk Concrete Cutting undertaken by our Wire Sawing Team!',
     excerpt:
-      'Decommissioning of a Turbine Hall is proceeding smoothly, thanks to GnatUK\'s skilled HILTI concrete wire-sawing team.',
+      'Decommissioning of a Turbine Hall is proceeding smoothly, thanks to GnatUK\'s skilled HILTI concrete wire-sawing team — bulk concrete sections cut, craned out and removed in sequence.',
     date: '2024-12-02',
     category: 'Project',
     heroImage: '/images/blog/turbine-hall-wire-saw.jpg',
@@ -67,7 +77,9 @@ export const BLOG: BlogPost[] = [
   },
   {
     slug: 'brokk-500-london-deployment',
-    title: 'One of our BROKK 500s, embarking on an extended demolition project in London',
+    wixSlug: 'one-of-our-brokk-500s-embarking-on-an-extended-project-in-london',
+    title: 'Brokk 500 Heads to London for an Extended Demolition Project',
+    originalTitle: 'One of our BROKK 500s, embarking on an extended demolition project in London!',
     excerpt:
       'One of our BROKK 500 units, fully loaded and ready to start a long work assignment in London — 40% more demolition power than its predecessor, the BROKK 400.',
     date: '2024-08-01',
@@ -78,6 +90,576 @@ export const BLOG: BlogPost[] = [
     body: [
       'One of our BROKK 500 units, fully loaded and ready to start a long work assignment in London.',
       'This powerhouse is set to impress, boasting 40% more demolition power than its predecessor, the BROKK 400. It\'s fair to say our clients love our BROKKs.',
+    ],
+  },
+  {
+    slug: 'chromium-kiln-debricking-elementis',
+    wixSlug: 'de-bricking-a-contaminated-chromium-kiln-circa-2012',
+    title: 'De-bricking a Contaminated Chromium Kiln with Brokk Robotics',
+    originalTitle: 'De-bricking a Contaminated Chromium Kiln! - circa 2012!',
+    excerpt:
+      'Seven Brokk robots stripped 200 tonnes of contaminated brick lining from six rotating kilns at an Elementis chromium plant over six months.',
+    date: '2024-07-01',
+    category: 'Project',
+    heroImage: '/images/blog/chromium-kiln-debricking-elementis.jpg',
+    heroAlt:
+      'Brokk demolition robot debricking a contaminated chromium kiln at an Elementis chemical plant',
+    author: 'Keith',
+    body: [
+      'Regular replacement of Kiln and Furnace Refractory Linings incurs Loss of Production Time and, in the past, prior to the development of Robotic Demolition Procedures, necessitated the use of inefficient, hazardous manual demolition operations.',
+      'Seven of Gnat\'s Robots were centre stage in the decommissioning of this major Chromium Chemical Plant, carefully ‘wrecking’ the linings of several vast steel kilns.',
+      'Hydraulically operated pecker arms — more at home breaking out heavily reinforced concrete, were used to delicately remove tonnes of contaminated brick linings in a confined-space operation which demanded extreme safety precautions.',
+      'At the heart of this process were six rotating cylindrical kilns, up to 100m long, used to heat and mix the various materials. Varying in diameters from 3m to 5m, these horizontal steel kilns had, over the years, built up a thick layer of fine chromic oxide powder known as ‘roast’.',
+      'The enclosed kilns were designated as confined spaces, so any proposed lining removal method necessitated a severe health and safety regime.',
+      'GNAT UK\'s range of Demolition Robots offer varying sized arm reaches and hammer power ideal for tackling all kiln diameters. Access holes were cut in kiln sides and, for the narrowest 3m high vessel some 30m long, Gnat used one of their smaller robots the Brokk 90.',
+      'A second opening, cut in the floor of each kiln, allowed bricks and roast powder coating to drop directly into a dump truck standing beneath.',
+      'As the six month operation to remove some 200 tonnes of brick and chemical powder contaminant neared its successful end, Elementis’ Bob Armstrong shared his contractor\'s satisfaction.',
+      'Whilst Kiln Stripping procedures may not have changed significantly since 2012, Gnat\'s continued investment in State of the Art Robotic Technology enables us to confidently tackle the toughest, most demanding refractory wrecking work that the industry can throw at us — More Efficiently, More Safely — And Quicker.',
+    ],
+  },
+  {
+    slug: 'brokk-60-refractory-kiln-strip',
+    wixSlug: 'as-easy-as-1-2-3-one-of-gnatuk-s-brokk-60-s-punching-well-above',
+    title: 'Brokk 60 Refractory Kiln Strip in a Confined Vessel',
+    originalTitle:
+      "As Easy as 1, 2, 3! One of GnatUK's Brokk 60's, punching well above its weight during a Refractory Kiln-Strip!",
+    excerpt:
+      'A compact Brokk 60 was craned through a cut in the kiln wall to safely de-brick the refractory lining inside a tight, confined vessel.',
+    date: '2024-04-26',
+    category: 'Project',
+    heroImage: '/images/blog/brokk-60-refractory-kiln-strip.jpg',
+    heroAlt: 'Brokk 60 robot de-bricking the refractory lining inside a kiln vessel',
+    author: 'Nick Turnbull',
+    body: [
+      'Gnat UK — simplifying KILN DeBricking with remarkable ease.',
+      'Access to this large Vessel was achieved by cutting through the kiln refractory wall, enabling our Compact Brokk 60 Robot to be craned into the well of the Kiln.',
+      'The Brokk 60\'s small footprint, compact power and excellent manoeuvrability enabled it to systematically and safely de-brick the refractory linings.',
+    ],
+  },
+  {
+    slug: 'railway-arch-pedestrian-walkway-shotcrete',
+    wixSlug: 'tunnel-vision-see-how-pedestrian-safety-concerns-trump-a-constipated-railway-arch',
+    title: 'Railway Arch Refurbishment for a Safer Pedestrian Walkway',
+    originalTitle: 'Tunnel Vision! Railway Bridge Refurbishment - Creating a safe pedestrian thoroughfare!',
+    excerpt:
+      'Brokk robots and Hilti track saws cleared a sealed Beeching-era railway arch to open a new pedestrian walkway, finishing three days early.',
+    date: '2023-11-08',
+    category: 'Project',
+    heroImage: '/images/blog/railway-arch-pedestrian-walkway-shotcrete.jpg',
+    heroAlt:
+      'Brokk robot deconstructing concrete infill inside a sealed Beeching-era railway arch',
+    author: 'Steve Tempest-Mitchell',
+    body: [
+      'Pedestrian safety was the primary objective driving this bridge refurbishment initiative.',
+      'Along with countless other Beeching Era Railway Bridges, this arch had been totally blocked and sealed. Prior to our intervention, pedestrians had to negotiate heavy vehicular traffic on the main road, without the luxury of a dedicated walkway.',
+      'To rectify this, Gnat UK was entrusted with removing the obstructive stone and the concrete infill.',
+      'Our team utilised HILTI Track Saws to cut and isolate sections of the infilled structure, marking a pivotal initial phase in the arch\'s transformation and the establishment of a new pedestrian walkway. Our BROKK Robots, equipped with Hydraulic Peckers, then systematically deconstructed the concrete infill.',
+      'As our deconstruction work progressed, the Main Contractors consolidated the void by pneumatically projecting SHOTCRETE onto the surface at high velocity in preparation for the construction of the new Pedestrian thoroughfare.',
+      'The Main Contractor was delighted when Gnat UK\'s work was completed a full three days ahead of the estimated schedule.',
+      'By addressing such safety concerns, we are not only preserving our industrial heritage, but also ensuring that our urban environments become more accessible and secure for everyone.',
+    ],
+  },
+  {
+    slug: 'robotic-pile-deconstruction-brokk-60',
+    wixSlug: 'troublesome-piles',
+    title: 'Robotic Pile Deconstruction with the Brokk 60',
+    originalTitle: "Troublesome Piles? Try Gnat UK's Brokk Robotic Pile Deconstruction Service!",
+    excerpt:
+      'Brokk 60 robots are craned into foundation pits to peck away surplus concrete from piles, leaving rebar exposed and ready for new steel.',
+    date: '2023-10-19',
+    category: 'Method',
+    heroImage: '/images/blog/robotic-pile-deconstruction-brokk-60.jpeg',
+    heroAlt:
+      'Brokk 60 robot pecking concrete from a pile head to expose the rebar inside a foundation pit',
+    author: 'Keith',
+    body: [
+      'TOILET-HUMOUR ASIDE, Gnat UK are experts at dismantling concrete piles.',
+      'OUR FOCUS: revealing the rebar underneath to make room for new steel and concrete.',
+      'Here, our Hydraulic-Pecker-Packing Brokk 60s were carefully craned into foundation pits, to efficiently remove excess concrete while leaving the rebar intact and ready for the next phase.',
+      'NO FUSS, NO FRILLS — the exposed rebar is left, prepped and ready for the infusion of new concrete and steel. It\'s all about precision and practicality as we transform troublesome piles into solid foundations, ensuring durability and functionality — for whatever comes next.',
+    ],
+  },
+  {
+    slug: 'shropshire-flax-mill-silo-deconstruction',
+    wixSlug: 'shropshire-flax-mill-deconstruction',
+    title: 'Top-Down Deconstruction of the Shropshire Flax Mill Silo',
+    originalTitle: 'Top-Down Demolition - Shropshire Flax Mill Deconstruction',
+    excerpt:
+      'Husqvarna DXR140 robots on mast climbers deconstructed a 21m, 500-tonne reinforced silo from the inside out at the Grade I listed Ditherington flax mill.',
+    date: '2023-08-02',
+    category: 'Project',
+    heroImage: '/images/blog/shropshire-flax-mill-silo-deconstruction.jpg',
+    heroAlt:
+      'Husqvarna DXR140 robot deconstructing the reinforced concrete silo at Shropshire\'s Ditherington flax mill',
+    author: 'Nick Turnbull',
+    body: [
+      'Working within the confines of a Listed Building environment, Innovative demolition techniques were adopted by specialist Gnat UK, when charged with sensitively deconstructing a reinforced concrete multi-celled storage silo located in a historically significant eighteenth-century Shropshire flax mill.',
+      'The main grade-one listed, five storey structure boasts international importance as the world\'s first iron-framed building and the currently derelict complex is being restored. The rectangular 21-metre-tall 1950\'s silo, surrounded by several listed buildings, was no longer needed and had to be demolished within its footprint.',
+      'The heavily reinforced silo contained a honeycomb network of 15 sizeable rectangular flax storage cells and was a central structure within the group of buildings (some up to 220 years old) forming the flax mill in Ditherington near Shrewsbury. The mill complex, built in 1796, was initially used to process and spin flax before later conversion into a maltings factory producing malt from barley.',
+      'Gnat\'s Husqvarna robotic demolition machines, mounted on mast climbers erected inside each cell, were used to successfully demolish the 500-tonne structure from the inside out in order to avoid damage to the surrounding grade-one listed structures — situated just a metre away.',
+      'Specialist demolition experts from Gnat UK deployed to ensure that English Heritage\'s stringent ‘no external damage’ criteria could be met.',
+      '"The silo had to be deconstructed in small pieces, working within the maze of cells, themselves reinforced by a network of internal concrete columns," says Nick Turnbull, Managing Director of Gnat UK. "It was impractical to erect internal scaffolding, so we came up with the idea of securing access with mast climbers positioned in sequence inside every cell."',
+      'Onto each of the three mast climber platforms, Gnat positioned a small yet powerful 1000kg Husqvarna DX140 Robot to remove the 150-millimetre thick cell walls. Concrete debris was allowed to fall to ground level through the narrow 400-millimetre gap left between the platform perimeter and cell sides.',
+      'The 4-metre-wide platforms were initially raised 19 meters to deconstruct the silo\'s roof. The mast climbers were then slowly lowered inside each cell, removing the walls top-down in a carefully controlled sequence to ensure the silo\'s continuing stability. Debris from each cell had to be removed from the silo floor area at the base of the silo before the mast climbers could be moved between cells.',
+      '"It was a complicated deconstruction procedure, each cell would be reduced in height by 5 meters, and we had to dismantle and re-erect the mast climbers within the cells repeatedly," recalls Nick Turnbull. "But our technique proved significantly quicker, safer and less costly than any conventional method." The full 20 metre wide silo was encapsulated by protective sheeting to reduce dust and noise. But existing underground services around the structure prevented the erection of any external cranes or heavy plant.',
+      '"Gnat proved a professional and very competent contractor," said English Heritage Project Manager Andrew Patterson. "They came up with a clever and very successful demolition technique that caused no damage to our listed buildings less than 2 metres away." "We were working to a very tight timescale," he added. "Gnat\'s relatively fast solution proved invaluable as conventional demolition by hand would undoubtedly have taken much longer."',
+    ],
+  },
+  {
+    slug: 'twin-brokk-800-foundation-demolition',
+    wixSlug: 'a-brace-of-brokk-800-s-bullying-formidable-foundations',
+    title: 'Twin Brokk 800 Robots Tackle Heavy Basement Foundations',
+    originalTitle: "A BRACE of BROKK 800's Bullying Formidable Foundations!",
+    excerpt:
+      'A diesel and a 3-phase electric Brokk 800 were craned into a basement to peck out heavily reinforced concrete foundations in record time.',
+    date: '2023-07-31',
+    category: 'Project',
+    heroImage: '/images/blog/twin-brokk-800-foundation-demolition.jpeg',
+    heroAlt:
+      'Two Brokk 800 demolition robots breaking out reinforced concrete foundations in a basement',
+    author: 'Keith',
+    body: [
+      'It\'s not often that we see two of our BROKK 800\'s on the same site, but this job needed some serious extra clout.',
+      'Two of Gnat UK\'s mighty Brokk 800\'s — a Diesel Powered and a 3-Phase Electric model, were carefully craned into this basement area to Hydraulically peck out the substantial concrete foundations. These heavyweights — packing a mighty punch to make light work of even the most formidable Concrete reinforcement — proved to be the ideal choice and made short work of the task in record time.',
+      'Standing tall as a leader in the industry, Gnat UK possesses Europe\'s largest fleet of 3 Phase Electric BROKK and HUSQVARNA robotic demolition machines. These cutting-edge machines are specifically designed for use in areas where restricted access or environmental hazards would render conventional methods impractical. The versatility of these demolition machines allows us to cater to various project requirements, providing a comprehensive range of robots and attachments for every task — These are available for Contract Hire, with or without Operators.',
+      'Our commitment is to deliver efficient and effective solutions that meet and exceed our clients\' expectations, ensuring the success of each demolition project we undertake.',
+    ],
+  },
+  {
+    slug: 'top-down-robotic-demolition-leeds-tower',
+    wixSlug: 'top-down-robotic-demolition-peck-cut-clear-repeat-x19-floors',
+    title: 'Top-Down Robotic Demolition of a 19-Storey Leeds Tower',
+    originalTitle: 'Top-Down-Robotic Demolition! - Peck, Cut, Clear, Repeat...... x19 floors!',
+    excerpt:
+      'Husqvarna and Brokk robots deconstructed a 19-storey Leeds city centre tower from the top down, working alongside Bobcats to clear concrete and rebar.',
+    date: '2023-07-20',
+    category: 'Project',
+    heroImage: '/images/blog/top-down-robotic-demolition-leeds-tower.jpg',
+    heroAlt:
+      'Brokk and Husqvarna robots performing top-down demolition on a 19 storey Leeds city centre tower',
+    author: 'Nick Turnbull',
+    body: [
+      'Our HUSQVARNA and BROKK Electro-Hydraulic Robots were deployed to de-construct this 19 Storey tower block in Leeds City Centre, from the Top Down.',
+      'Working closely with the main contractor, Gnat UK deconstructed this 19 storey block in Leeds City Centre.',
+      'The robots systematically deconstructed the walls and floors with Hydraulic Peckers and Steel Shears, whilst our Bobcats worked alongside, removing the resultant bulk Concrete and Rebar from the site for disposal, to ensure the work flow was uninterrupted and contiguous.',
+      'Careful consideration was given to the stability of the building at all times, with load bearing walls identified prior to demolition commencing to ensure that they are maintained in place until redundant.',
+      'Being remotely operated, the procedure was safe, quick and efficient — without any danger of HAV syndrome, associated with traditional manual methods.',
+      'Gnat UK deliver a Nationwide Contract Hire Service to Main Contractors, providing Site-Specific BROKK and HUSQVARNA Robots, HILTI Diamond Drilling and Sawing, Abrasive Cold Cutting and AQUAJET and ERGO Robotic Hydrodemolition Teams as required.',
+    ],
+  },
+  {
+    slug: 'large-facade-retention-scheme',
+    wixSlug: 'one-of-the-biggest-facade-retention-schemes-outside-london',
+    title: 'Large-Scale Facade Retention with Top-Down Deconstruction',
+    originalTitle: 'One of the biggest Facade Retention Schemes outside London!',
+    excerpt:
+      'Facade retention paired with top-down robotic deconstruction preserves architectural heritage while enabling fast, low-disruption interior rebuilds.',
+    date: '2023-06-23',
+    category: 'Method',
+    heroImage: '/images/blog/large-facade-retention-scheme.jpg',
+    heroAlt:
+      'Facade retention scheme with original building elevation preserved as the interior is deconstructed',
+    author: 'Nick Turnbull',
+    body: [
+      'Facade retention, in harmony with systematic top-down deconstruction methods, effectively preserves the Architectural integrity of existing buildings, whilst deconstructing and refurbishing the interior structure, to meet with new-use requirements.',
+      'This approach offers several advantages:',
+      'Preservation of Historic or Architectural Value: Facade retention allows for the preservation of the historical or architectural significance of a building while still enabling the construction of a new and modern interior.',
+      'Cost-Effectiveness: Compared to complete demolition and reconstruction, facade retention with top-down demolition can be more cost-effective. It eliminates the need for extensive reconstruction and material sourcing, resulting in potential cost savings.',
+      'Time Savings: The top-down demolition approach allows for simultaneous construction activities. While the upper levels of the building are being demolished, new construction work can commence on the lower floors. This parallel operation reduces overall construction time and accelerates project completion.',
+      'Reduced Disruption: Facade retention minimises disruptions to the surrounding environment. By keeping the external walls intact, noise, dust, and debris are contained within the construction site, reducing the impact on neighbouring properties and the general public.',
+      'Sustainability: Retaining the building facade reduces the amount of waste generated during the construction process. By reusing the existing structure, there is less need for new materials, resulting in a reduced carbon footprint and a more environmentally friendly approach.',
+      'Improved Safety: Facade retention ensures the structural stability and integrity of the building during construction. The existing facade acts as a protective barrier, providing support and stability to the surrounding area and minimising the risk of accidents or structural failures.',
+      'Design Flexibility: Facade retention allows for flexibility in the design and layout of the new interior space. By preserving the external structure, architects and designers can work within the constraints of the existing facade while creating modern and functional spaces inside.',
+      'Gnat UK provides support and expertise to Main Contractors, delivering bespoke solutions or contract-hire services as site conditions require. Call Us for a competitive quote.',
+    ],
+  },
+  {
+    slug: 'cold-cutting-brokk-800-oil-sludge-tank',
+    wixSlug: 'abrasive-cold-cutting-in-tandem-with-brokk-800-saves-the-day',
+    title: 'Cold Cutting and Brokk 800 Clear 2000m³ of Solidified Oil Sludge',
+    originalTitle:
+      'Abrasive Cold Cutting in tandem with Brokk 800 tackles 2000 Cubic Metres of Solidified Oil Sludge!',
+    excerpt:
+      'Abrasive cold-cutting opened a safe access route into a volatile oil tank so a Brokk 800 Diesel could remove over 2000m³ of solidified sludge.',
+    date: '2023-06-12',
+    category: 'Project',
+    heroImage: '/images/blog/cold-cutting-brokk-800-oil-sludge-tank.jpeg',
+    heroAlt:
+      'Brokk 800 Diesel robot removing solidified oil sludge from an oil storage tank after abrasive cold cutting access',
+    author: 'Keith',
+    body: [
+      'In a challenging situation, Gnat UK tackled a major obstacle head-on when tasked with finding a solution to remove a massive volume of solidified oil sludge from within an Oil Storage Holding Tank.',
+      'Recognising the inherent risks associated with the tank\'s volatile contents, we implemented our cutting-edge Abrasive Cold Cutting Manipulators. These state-of-the-art tools were employed to precisely cut through the tank sides, creating a secure access route.',
+      'Our advanced Brokk 800 Diesel Robot was then deployed remotely to safely enter the tank\'s interior.',
+      'SUCCESSFUL REMOVAL ACHIEVED.',
+      'Thanks to the exceptional capabilities of the Brokk 800 Diesel robot, we were able to extract over 2000 square meters of solidified oil from the tank, ensuring its complete removal. Furthermore, all contaminated waste materials were promptly and responsibly disposed of by licensed contractors.',
+      'For comprehensive information regarding our unparalleled expertise in Cold Cutting, Robotic Hydrodemolition, Diamond Drilling & Sawing, Asbestos Removal Support Services, and our cutting-edge Brokk & Husqvarna Demolition Robots, get in touch with us today.',
+    ],
+  },
+  {
+    slug: 'abrasive-cold-cutting-pressure-vessels',
+    wixSlug: 'abrasive-cold-cutting',
+    title: 'Abrasive Cold Cutting for Volatile Pressure Vessels',
+    originalTitle: 'Abrasive Cold Cutting Volatile Pressure Vessels',
+    excerpt:
+      'High-pressure hydro-abrasive cutting on track-based manipulators safely deconstructs volatile chemical vessels with no spark or heat risk.',
+    date: '2023-02-16',
+    category: 'Method',
+    heroImage: '/images/blog/abrasive-cold-cutting-pressure-vessels.jpg',
+    heroAlt:
+      'Track-based abrasive cold-cutting manipulator dismantling a volatile chemical pressure vessel',
+    author: 'Nick Turnbull',
+    body: [
+      'The volatile chemicals stored within the Vessels — with the commensurate risk of explosion — made Abrasive Cold-Cutting the safest decommissioning procedure.',
+      'Gnat UK removed the top of the vessel with high-pressure hydro-abrasive cutting equipment using track-based manipulators to guide the Cold-Cutting Heads accurately.',
+      'Hazardous Waste Removal Specialists removed any remaining chemical residue, and the Bunded Area was Environmentally Cleaned and Decontaminated.',
+      'Our Cold Cutting team then completed the deconstruction, cold-cutting the vessel into manageable sections to facilitate safe removal from the work area by crane.',
+      'The process is slow and painstaking — often compared to watching paint dry. However, Abrasive Cold-Cutting is necessary for safe, accurate deconstruction in and around Volatile environments.',
+      'Gnat UK delivers a Nationwide Cold Cutting Service. Get in touch to find out more.',
+    ],
+  },
+  {
+    slug: 'bank-vault-demolition-brokk-husqvarna',
+    wixSlug: 'breaking-into-a-high-security-reinforced-concrete-bank-vaults-legally',
+    title: 'Demolishing High-Security Reinforced Bank Vaults',
+    originalTitle: 'Breaking into High Security Reinforced Concrete Bank Vaults - Legally!',
+    excerpt:
+      'Compact Brokk 250 and Husqvarna DXR 250 robots, plus the larger Brokk 800, deconstruct redundant high street bank vaults for landlord redevelopments.',
+    date: '2023-01-19',
+    category: 'Method',
+    heroImage: '/images/blog/bank-vault-demolition-brokk-husqvarna.jpg',
+    heroAlt: 'Brokk demolition robot breaking into a high-security reinforced concrete bank vault',
+    author: 'Keith Hodgson',
+    body: [
+      'We Do Love Confined Space Demolition.',
+      'Ongoing changes within the banking sector and closure of numerous high street banks is resulting in an ever increasing number of premises being redeveloped by landlords. The conversion process typically involves changing the vacant premises back into Retail Units or Private Dwellings. However removing the High Security Reinforced Concrete and Steel Vaults is proving a huge headache for the Developers. Bank Vault Demolition Solutions — It\'s not supposed to be easy.',
+      'Gnat UK have a proven track record in Demolishing Bank Vaults and over the last 30 years have developed a range of Specialist Skills and Methods to Deconstruct and Remove them Safely and Quickly. Site conditions will dictate the optimum method deployed with available access invariably determining the size and type of Robot that can be deployed.',
+      'On sites with Restricted Access, compact robots are the preferred choice, for example the Rubber tracked BROKK 250, or the versatile, powerful Husqvarna DXR 250\'s are extremely manoeuvrable and able to access premises through doorways and then climb the stairs. Equally, when access is less of an issue, we can deploy larger Robots, including the mighty Brokk 800, which packs a mighty punch that makes light work of even the most formidable high security Concrete Constructions.',
+      'Gnat UK has the largest fleet of 3 Phase Electric BROKK and HUSQVARNA robotic demolition machines in Europe, designed to operate in areas of demolition where Restricted Access or Environmental Hazard make conventional methods impractical.',
+      'We supply the full range and size of Robots and Attachments to suit every task. These are available for Contract Hire, with or without Operators.',
+    ],
+  },
+  {
+    slug: 'husqvarna-140-archimedes-screw-trough',
+    wixSlug: 'gravity-defying-concrete-removal-on-a-40-degree-slope',
+    title: 'Concrete Screed Removal on a 40-Degree Archimedes Screw Trough',
+    originalTitle: 'Gravity-defying concrete removal on a 40 degree slope',
+    excerpt:
+      'A Husqvarna DXR140 robot with hydraulic pecker safely deconstructed concrete screed inside an Archimedes screw trough on a 40-degree incline.',
+    date: '2023-01-01',
+    category: 'Project',
+    heroImage: '/images/blog/husqvarna-140-archimedes-screw-trough.jpg',
+    heroAlt:
+      'Husqvarna DXR140 robot removing concrete screed inside a steeply inclined Archimedes screw trough',
+    author: 'Keith Hodgson',
+    body: [
+      'We Do Love Confined Space Demolition.',
+      'This project required the selective removal of concrete screed in the deep well of an Archimedes Screw Trough — on a challenging working incline of 40 Degrees.',
+      'One of our small Husqvarna 140 Demolition Robots with a Hydraulic Pecker Attachment was deployed to deconstruct the Concrete Screed within the steeply inclined Trough.',
+      'With the operator controlling the Husqvarna 140 remotely from a safe, clear vantage point, we were able to deconstruct the redundant concrete on the steep incline — accurately, safely and quickly.',
+      'This small but powerful robot is specially designed and developed for demolition work in confined space. Its small footprint is harnessed to optimal power output and, being remotely operated, can function in inhospitable areas inaccessible to conventional machines.',
+      'Gnat UK has the largest fleet of 3 Phase Electric BROKK and HUSQVARNA robotic demolition machines in Europe, designed to operate in areas of demolition where Restricted Access or Environmental Hazard make conventional methods impractical. We supply the full range and size of Robots and Attachments to suit every task. These are available for Contract Hire, with or without Operators.',
+    ],
+  },
+  {
+    slug: 'tunnel-benching-brokk-60-sewer',
+    wixSlug: 'gnat-uk-sitting-down-on-the-job',
+    title: 'Tunnel Benching Deconstruction in a 1.5m Sewer with Brokk 60',
+    originalTitle: 'GNAT UK.. Sitting Down on the Job..?',
+    excerpt:
+      'A compact Brokk 60 broke out tunnel benching inside a 1.5m diameter sewer for Active Tunnelling Ltd, eliminating the HAV risk of hand-held breakers.',
+    date: '2022-12-31',
+    category: 'Project',
+    heroImage: '/images/blog/tunnel-benching-brokk-60-sewer.jpg',
+    heroAlt: 'Brokk 60 robot breaking out tunnel benching inside a 1.5 metre diameter sewer pipe',
+    author: 'Nick Turnbull',
+    body: [
+      'So.... There ARE times when it\'s OK to Sit Down on the Job.',
+      'GNAT UK were recently asked to undertake Tunnel Benching Deconstruction Work in a 1.5 m. Diameter Main Sewage Pipe System.',
+      'Owing to the Limited Access and extremely tight working space issues on this project, this procedure had previously been tackled using conventional hand-held breakers. A time consuming, physically taxing activity, carrying with it, the commensurate risk of HAV.',
+      'Gnat\'s preferred — and Safer — solution was to deploy one of our compact BROKK 60\'s to break out the redundant Tunnel Benching. The powerful little BROKK 60 Robot — renowned for its ability to operate remotely in the tightest of spaces, was in its element in this extremely confined and difficult working environment.',
+      'In truth, the limited working height within the sewer presented more of an issue to our operators than to the BROKK Robot. This issue was easily resolved by the creative deployment of a scaffolding batten which enabled the operator to work in relative comfort, albeit, whilst sitting down on the job.',
+      'Active Tunnelling Ltd — the main contractors, were so impressed with the Brokk that they bought the machine from our Plant Sales Division for their own use — Another positive step towards the elimination of Hand Arm Vibration Syndrome within the demolition industry workplace.',
+    ],
+  },
+  {
+    slug: 'hydrodemolition-diamond-wire-car-factory',
+    wixSlug: 'hydrodemolition-diamond-wire-sawing-car-factory-floor-refurbishment',
+    title: 'Hydrodemolition and Diamond Wire Sawing for Car Factory Floor Refurbishment',
+    originalTitle: 'Hydrodemolition meets Diamond Wire Sawing on a Car Factory Floor Refurbishment',
+    excerpt:
+      'Aquajet hydrodemolition robots and Hilti wire saws worked in tandem to isolate and refurbish concrete plinths in a North East car factory.',
+    date: '2022-12-30',
+    category: 'Project',
+    heroImage: '/images/blog/hydrodemolition-diamond-wire-car-factory.jpg',
+    heroAlt:
+      'Aquajet hydrodemolition robot and Hilti diamond wire saw working on concrete plinths in a car factory floor',
+    author: 'Nick Turnbull',
+    body: [
+      'This large scale project illustrates how complimentary demolition procedures working together in harmony can achieve great results — in record time.',
+      'Our Hydrodemolition and Diamond Sawing Teams worked in tandem to cut, isolate, remove and refurbish a series of formidable concrete plinths situated in the well of a large North East Car Factory.',
+      'Hilti Diamond Wire Saws were deployed to isolate and remove redundant concrete pillars and pillar sections. The isolated concrete plinths were then able to be removed from the well of the factory floor by cranes.',
+      'Our Aquajet Robots, operating in both vertical and horizontal planes, then removed the defective/surplus concrete from designated floor areas and vertical sections of the remaining Plinths. The procedure left the Reinforcement Bars exposed, cleaned and intact, ready for the installation of additional steel and new concrete.',
+      'Hydrodemolition is not only the most efficient method for protecting and preserving concrete, it\'s also one of the safest, most environmentally friendly methods around. The Blast water produced during the Hydrodemolition operation was collected and processed using our Siltbuster Decontamination Systems, to re-adjust the PH-Balance and minimising contamination.',
+    ],
+  },
+  {
+    slug: 'high-reach-confined-space-husqvarna-dxr140',
+    wixSlug: 'access-all-areas-we-just-love-confined-space-demolition',
+    title: 'High-Reach Confined Space Demolition with Husqvarna DXR140',
+    originalTitle: 'Access All Areas!! - We just love Confined Space Demolition!',
+    excerpt:
+      'A Husqvarna DXR140 fitted with a high-reach boom and hydraulic pecker broke out tall basement ceilings and concrete beams in a restricted-access factory.',
+    date: '2022-12-30',
+    category: 'Method',
+    heroImage: '/images/blog/high-reach-confined-space-husqvarna-dxr140.jpg',
+    heroAlt:
+      'Husqvarna DXR140 robot with high-reach boom breaking out a basement ceiling in a confined space',
+    author: 'Keith Hodgson',
+    body: [
+      'High-Reach Demolition in Confined Spaces — Our niche speciality.',
+      'Our equipment is purpose built for selective demolition in confined spaces and has been adapted over many years to tackle increasingly complex deconstruction projects.',
+      'Small Robot — High Reach.',
+      'The basement areas within this large scale factory refurbishment project had very restricted access issues which precluded the use of our larger machines. To overcome this, we deployed one of our Husqvarna DXR 140\'s — a small yet impressively powerful Demolition Robot which punches well above its weight, delivering outstanding manoeuvrability alongside a formidable power output.',
+      'The ceilings within the basement areas were very high, so, in order to eliminate over-reaching and the risk of debris falling on the machine, we fitted a High-Reach Boom with a Hydraulic Pecker to break out the ceilings and the concrete beams for removal.',
+    ],
+  },
+  {
+    slug: 'ergo-hydrodemolition-biomass-boiler',
+    wixSlug: 'a-safer-alternative-to-traditional-concrete-demolition',
+    title: 'ERGO Hydrodemolition for Biomass Boiler Refractory Removal',
+    originalTitle: 'A Safer Alternative to traditional Concrete Demolition',
+    excerpt:
+      'The Aquajet ERGO system mounts to standard scaffolding to remotely strip refractory inside biomass boilers and kilns four times faster than hand lancing.',
+    date: '2022-12-30',
+    category: 'Method',
+    heroImage: '/images/blog/ergo-hydrodemolition-biomass-boiler.jpg',
+    heroAlt:
+      'Aquajet ERGO hydrodemolition system removing castable refractory inside a biomass boiler furnace',
+    author: 'Nick Turnbull',
+    body: [
+      'Our Aquajet ERGO Hydrodemolition Systems are ideally suited for demanding refractory demolition work within environments too confined to accommodate standard tracked Hydrodemolition Robots.',
+      'We routinely deploy our ERGO Systems in Refractory environments such as Kilns and Boiler Furnaces. The photos here show the System rigged to Remove Castable Refractory inside a Bio-Mass Boiler Furnace.',
+      'Light, flexible and manoeuvrable, the ERGO system is Operated Remotely — it mounts onto standard scaffolding rigs. It delivers 4x times the power of a hand-held Hydro-demolition Lance to quickly and accurately remove redundant Refractory, leaving the Boiler Walls and Spragues cleaned and ready to receive new Refractory.',
+      'Remote Operation delivers additional safety benefits too — Hydro-demolition has clear advantages over ‘traditional’ mechanical procedures such as Jack-hammers. The procedure avoids cracking in the surrounding concrete and damage to the overall structure of the rebar.',
+      'It is also much safer, faster and more effective than hand lancing. Hand Arm Vibration Syndrome is eliminated, and Remote Operation delivers cost-efficient working timescales.',
+    ],
+  },
+  {
+    slug: 'hydroblasting-factory-floor-rebates',
+    wixSlug: 'hydroblasting-rebates-in-a-factory-floor',
+    title: 'Hydroblasting Precision Rebates into a Factory Floor',
+    originalTitle: 'Hydroblasting Rebates in a Factory Floor',
+    excerpt:
+      'Diamond floor sawing and an Aquajet hydrodemolition robot cut 2500m of clean 100mm x 50mm rebates after percussive breakers had failed.',
+    date: '2022-10-28',
+    category: 'Project',
+    heroImage: '/images/blog/hydroblasting-factory-floor-rebates.jpg',
+    heroAlt:
+      'Aquajet hydrodemolition robot chasing precision rebates into a factory concrete floor',
+    author: 'Steve Tempest-Mitchell',
+    body: [
+      'This project required the accurate cutting and chasing in of 2500 metre long by 100mm wide x 50mm deep Rebates into an existing Factory Floor.',
+      'Diamond Floor Sawing and Hydrodemolition in harmony.',
+      'Gnat was called in after a previous contractor unsuccessfully attempted to tackle the problem using Percussive Breakers, resulting in broken, uneven edges unfit for purpose. Gnat\'s solution utilised a combination of Floor Sawing and Hydrodemolition techniques.',
+      'Two parallel cuts were made in the concrete floor, 100mm wide and 50mm deep — This gave a clean working edge for the subsequent rebating/chasing out. A calibrated hydro demolition head was mounted on one of our Aquajet Robots to chase out the redundant concrete accurately — and quickly.',
+    ],
+  },
+  {
+    slug: 'mast-climber-refractory-kiln-debricking',
+    wixSlug: 'refractory-kiln-de-construction',
+    title: 'Mast-Climber Manipulator System for Refractory Kiln De-Bricking',
+    originalTitle: 'Refractory Kiln De-Construction',
+    excerpt:
+      'A bespoke mast-climber rig with a remotely operated hydraulic pecker arm was engineered to safely de-brick a vast refractory vessel from the top down.',
+    date: '2022-10-01',
+    category: 'Method',
+    heroImage: '/images/services/hero-home.jpg',
+    heroAlt:
+      'Mast-climber mounted remote manipulator system de-bricking refractory lining inside a large vessel',
+    author: 'Nick Turnbull',
+    body: [
+      'GNAT UK was tasked to devise an alternative method to Remotely Wreck and Remove Refractory Lining from within a vast vessel. The sheer size of the structure presented Critical Access and Safety Issues, which precluded using traditional — and time-consuming — manual methods.',
+      'Our engineers devised an innovative design and build a solution which involved adapting a Conventional Mast Climber to accommodate a Remotely Operated Manipulator System.',
+      'The adaptions allowed a fully articulated Hydraulic Pecker Arm to be lowered into the vessel from the top down to systematically de-brick the Refractory Lining from the Roof Section, the Walls and the Base from within.',
+      'Gnat\'s solution enabled Efficient, Quick and Cost Effective De-Bricking and demonstrated clear Operator Safety Advantages compared to Conventional De-bricking Methods.',
+    ],
+  },
+  {
+    slug: 'nalta-hydrodemolition-system',
+    wixSlug: 'nalta-concrete-hydro-demolition',
+    title: 'NALTA Remote Hydrodemolition System for Smaller-Scale Jobs',
+    originalTitle: 'NALTA Concrete Hydro-demolition',
+    excerpt:
+      'The NALTA system replaces hand lances with a remote-controlled oscillating lance, working flat or curved surfaces down to a 400mm radius.',
+    date: '2022-08-21',
+    category: 'Method',
+    heroImage: '/images/services/hydrodemolition-hero.jpg',
+    heroAlt: 'NALTA remote-controlled hydrodemolition lance system removing concrete from a structure',
+    author: 'Nick Turnbull',
+    body: [
+      'To compliment our large scale Robotic Hydroblasting Operations, Gnat UK also deploy NALTA Systems — designed to replace hand lances for a large number of smaller scale Hydrodemolition applications. They deliver much greater output than hand lancing, and being Remotely Operated, significantly improve Operator Safety.',
+      'Similar to our ERGO systems, the NALTA\'s deliver much greater output than hand-lancing and being Remotely Operated significantly improves Operator Safety.',
+      'Working parameters are controlled via the intuitive remote panel, and operation is automatic. The NALTA is supplied with high-pressure water from a standard hand-lance pump and can operate on flat and curved surfaces with a radius as small as 400mm.',
+      'It consists of a feed beam with an oscillating lance, a hydraulic unit and a radio remote control box.',
+      'The NALTA is mainly used for the Hydrodemolition of reinforced concrete but is also suitable for other applications, such as surface preparation and descaling of steel.',
+    ],
+  },
+  {
+    slug: 'brokk-800-diesel-foundation-demolition',
+    wixSlug: 'diesel-do-nicely',
+    title: 'Brokk 800 Diesel Tackles Reinforced Foundations Off-Grid',
+    originalTitle: 'Diesel do Nicely!',
+    excerpt:
+      'When 3-phase power isn\'t available, the 11-tonne Brokk 800 Diesel with 10m reach and MB 1200 breaker delivers unmatched off-grid demolition power.',
+    date: '2022-07-27',
+    category: 'Fleet',
+    heroImage: '/images/blog/brokk-800-diesel-foundation-demolition.jpg',
+    heroAlt:
+      'Brokk 800 Diesel demolition robot breaking deep reinforced concrete foundations during a factory refurbishment',
+    author: 'Nick Turnbull',
+    body: [
+      'The bulk of our Robotic Demolition Fleet comprises powerful and versatile 3-Phase Electric BROKK and Husqvarna Demolition Robots.',
+      'However, there are some occasions, where site restrictions, power outages or similar issues, preclude the use of 3-Phase-Power, necessitating the use of Diesel Power.',
+      'For these eventualities, we deploy our mighty BROKK 800 Diesel-powered Robots to fill this gap admirably. Weighing in at a hefty 11 tons, with an arm system with a total reach of 10 meters, equipped with the MB 1200 breaker, it delivers more hitting power than any other remote-controlled demolition robot.',
+      'The Diesel BROKK 800 seen here, was deployed to tackle formidable, deep, reinforced concrete foundations. A task it completed with ease during this factory refurbishment.',
+      'So, if you ever need the power and flexibility of a BROKK — but the electric meter\'s run out — Treat yourself to one of our BROKK 800 DIESELS.',
+    ],
+  },
+  {
+    slug: 'diamond-wire-sawing-glasgow-sewer-flumes',
+    wixSlug: 'the-art-of-diamond-wire-sawing-raw-sewage-flume-pipes',
+    title: 'Diamond Wire Sawing Live Sewer Flume Pipes in Glasgow',
+    originalTitle: 'The Art of Diamond Wire Sawing Raw Sewage Flume Pipes',
+    excerpt:
+      'Hilti WS15 wire saws cold-cut three sections of live 1.6m steel sewage flume in central Glasgow, each isolation completed in just over an hour.',
+    date: '2022-04-27',
+    category: 'Project',
+    heroImage: '/images/blog/diamond-wire-sawing-glasgow-sewer-flumes.jpg',
+    heroAlt:
+      'Hilti WS15 diamond wire saw cold-cutting a live 1.6m diameter steel sewer flume pipe in Glasgow',
+    author: 'Nick Turnbull',
+    body: [
+      'An overhaul of a Major Sewer complex in the heart of Glasgow required the removal of 1.6 meter diameter, 25mm thick steel flumes. Being a vital component of Glasgow City\'s Sewage infrastructure, the pipes were still ‘live’ ...and running with sewage.',
+      'With this in mind, the project had to completed efficiently and in the shortest possible time, and.... as the Flumes were still carrying Sewage, very carefully.',
+      'Gnat\'s Hilti WS15 Wire Saws were deployed to accurately — and quickly, Cold Cut the Flume Pipes to cause the minimum disruption.',
+      '"As the sewage flumes were live and still flowing at 60% capacity with running effluent we chose HILTI Wire Sawing Techniques to quickly Cold Cut and isolate three sections of the steel work. Time was of the essence, so, with a great team working to a strict coordinated plan, each isolation was successfully completed in just over one hour." said Nick Turnbull, Gnat UK\'s Managing Director.',
+      'The images and video here show Gnat\'s deployment of the Hilti WS15 Saws from set-up to the successful removal of the steelwork.',
+    ],
+  },
+  {
+    slug: 'hydroblasting-city-bridge-deck',
+    wixSlug: 'hydro-blasting-on-city-bridge-deck',
+    title: 'Robotic Hydroblasting for City Bridge Deck Renovation',
+    originalTitle: 'Hydro-blasting on City Bridge Deck',
+    excerpt:
+      'Robotic hydrodemolition at up to 36000 psi removed 150mm of damaged concrete from a busy arterial city bridge deck with minimum downtime.',
+    date: '2022-03-27',
+    category: 'Project',
+    heroImage: '/images/blog/hydroblasting-city-bridge-deck.jpg',
+    heroAlt: 'Robotic hydrodemolition equipment removing damaged concrete from a city bridge deck',
+    author: 'Nick Turnbull',
+    body: [
+      'Bridge Road Deck Renovation This project required Surface Preparation on a Bridge Deck. Situated on a busy, major arterial city road, its location necessitated that Down Time had to be kept to an absolute minimum, so the operation demanded critical time-planning to facilitate completion in the shortest time possible.',
+      'The Project involved the selective removal of damaged concrete to a depth of 150mm, to approximately 25mm below the last reinforcement bar, in preparation for reconstructing a new road surface. After due consideration, it was evident that Robotic Hydrodemolition was the precise method of choice.',
+      'The pump units deliver pressure outputs ranging up to 36000 psi, to quickly and safely remove defective concrete from the structure, leaving steel reinforcing and sound concrete intact and ready for refurbishment.',
+      'The Hydrodemolition process proved more accurate than other methods (notably percussive hydraulic power tools) because the operation is vibration-free, accurate and environmentally friendly.',
+      'Hydrodemolition is not only the most efficient method for protecting and preserving concrete but also one of the safest, most environmentally friendly methods. The Blast water produced during the Hydrodemolition operation is collected and processed using Siltbuster Decontamination Systems. These systems restore the PH-Balance and minimise contamination, with little impact on surrounding areas and materials.',
+    ],
+  },
+  {
+    slug: 'hydrodemolition-north-sea-jetty',
+    wixSlug: 'hydrodemolition-on-a-north-sea-jetty',
+    title: 'Conjet Hydrodemolition on a North Sea Coastal Jetty',
+    originalTitle: 'Hydrodemolition on a North Sea Jetty',
+    excerpt:
+      'A Conjet hydrodemolition robot stripped degraded concrete from a working North Sea jetty deck while preserving steel substructures and the marine environment.',
+    date: '2021-12-01',
+    category: 'Project',
+    heroImage: '/images/blog/hydrodemolition-north-sea-jetty.jpg',
+    heroAlt: 'Conjet hydrodemolition robot stripping degraded concrete from a North Sea jetty deck',
+    author: 'Nick Turnbull',
+    body: [
+      'This project, on an exposed North Sea Coast Sea jetty, was successfully completed in what can best be described as "changing and challenging" weather conditions.',
+      'Gnat\'s Robotic Hydrodemolition team deployed a CONJET Hydrodemolition Robot to remove large sections of degraded concrete from the deck structure of this working North Sea Coast Sea jetty.',
+      'Being in an environmentally sensitive area, Safety, Speed, Accuracy and Cost Effectiveness made Robotic Hydrodemolition the clear method of choice to safely and accurately cut and remove degraded concrete whilst leaving the steel substructures and adjacent areas of the structure intact.',
+      'As well as being incredibly effective, the Hydroblasting process is also much gentler on the environment — Waste water is collected and filtered to prevent cross contamination, whilst acoustic impact from High pressure water jetting is much more acceptable than the heavy duty equipment previously used.',
+    ],
+  },
+  {
+    slug: 'farnworth-tunnel-brokk-330-fillie',
+    wixSlug: 'railway-tunnel-reconstruction',
+    title: "Brokk 330 'Fillie' on the Farnworth Tunnel TBM Re-Bore",
+    originalTitle: 'Railway Tunnel Reconstruction',
+    excerpt:
+      'Gnat\'s adapted Brokk 330 ‘Fillie’ worked 24/7 inside Britain\'s largest active TBM, helping remove 30,000 tonnes of material from the Farnworth Tunnel.',
+    date: '2021-05-18',
+    category: 'Project',
+    heroImage: '/images/blog/farnworth-tunnel-brokk-330-fillie.jpg',
+    heroAlt:
+      "Adapted Brokk 330 'Fillie' demolition robot mounted inside a 9 metre diameter TBM at the Farnworth Tunnel",
+    author: 'Nick Turnbull',
+    body: [
+      'Major breakthrough — The Farnworth Tunnel re-boring.',
+      'Northwest Electrification works hit a significant milestone with Britain\'s biggest active tunnel boring machine (TBM) complete with Gnat UK\'s adapted Brokk 330, ‘Fillie’, the 9meter diameter Tunnel Boring Machine (TBM) broke through Farnworth Tunnel.',
+      '"We were proud to assist Murphy Tunnelling on such a prestigious and demanding project. Utilising one of our Brokk 330 machines, we had to separate the undercarriage in order for us to work within the confines of the TBM. The machine\'s upper valve block and boom system were adapted to a modified ring gear on the TBM platform. Time was an essential factor throughout this Project, so the GNAT UK Teams worked 24/7 to assist in the removal of the original 1800 tunnel lining and some 7,500m³ of foam concrete."',
+      'Initially built in the 1800s, the Farnworth Tunnel featured two single-line tunnels that needed to be larger to facilitate the proposed electrification project. To enable the upgrade to Electrification, the larger of the two tunnels had to re-bored in order to accommodate both tracks and the required overhead wires.',
+      'During the re-boring of the tunnel, over 30,000 tonnes of material were removed from the 276-meter-long tunnel.',
+    ],
+  },
+  {
+    slug: 'bank-of-england-vault-grade-1-london',
+    wixSlug: 'sensitive-bank-vault-deconstruction-in-a-grade-1-listed-building',
+    title: 'Diamond-Cutting a Bank of England Vault in a Grade I Listed Building',
+    originalTitle: 'Sensitive Bank Vault Deconstruction- In a Grade 1 listed building!',
+    excerpt:
+      'Track sawing and stitch drilling deconstructed a heavily reinforced Bank of England holding vault inside a 16th-century Grade I listed London building.',
+    date: '2021-05-10',
+    category: 'Project',
+    heroImage: '/images/blog/bank-of-england-vault-grade-1-london.jpg',
+    heroAlt:
+      'Diamond track saw cutting through a heavily reinforced Bank of England vault wall in a Grade I listed London building',
+    author: 'Nick Turnbull',
+    body: [
+      'This project involved the conversion of a Grade I listed building in the centre of London, housing a former Bank of England holding vault in the basement.',
+      'The deconstruction and removal of the heavily reinforced vault posed particular constraints on the work — The walls and roof of the building were built during the 16th and 17th centuries, and the concrete walls and ceilings of the vault were added much later and were tied into the existing structure in the majority of areas.',
+      'The structural engineer in charge of the project insisted that all work carried out on the building should be non-percussive to preserve the structural integrity of the original building – this applied even to fixing holes.',
+      'The only method approved was diamond cutting since this gives the advantages of minimum vibration and noise and reduces dust and debris.',
+      'Gnat was given just six weeks to complete the job using a combination of track sawing and stitch drilling to remove walls, floor and ceiling. The walls and ceilings were 350 mm thick, and the floor was nearer 700 mm thick. All were heavily reinforced, especially the floor, which had in fact, been designed to resist diamond drilling.',
+      'Blocks approximately 1-metre square were cut and removed using a 3-phase electric Brokk remote-controlled robot modified for lifting. These were transported away to another holding area, drilled and hydraulically burst into manageable-sized sections to assist removal from the tight confines of the basement area.',
+      'Hilti Track Saws and Drill Rigs were used for the sawing and drilling. These provided the high power needed for an arduous task such as this. Several suppliers were used for the consumables, but in general, Hertfordshire Diamond provided the 900 mm diameter saw blades and Golz the 107 mm diameter drill bits.',
+      'The job was completed successfully with two days to spare, including a hold up following the discovery of asbestos on site. Gnat\'s operatives are trained in asbestos awareness, and they alerted the main contractor when they came across suspect thermoplastic tiling. Work was suspended for a week for this to be dealt with by a specialist company.',
+      'The main structure was carefully monitored throughout the work, and no movement or damage was caused. The occupant of the office on the other side of the party wall — an ex-Prime Minister, was blissfully unaware of what was occurring only a few metres away.',
+    ],
+  },
+  {
+    slug: 'york-walkway-diamond-sawing-rougier-street',
+    wixSlug: 'york-walkway-diamond-sawing-saves-the-day',
+    title: 'York Rougier Street Walkway Removal by Diamond Sawing',
+    originalTitle: 'York Walkway - Diamond Sawing Saves the Day',
+    excerpt:
+      'Diamond track sawing and stitch drilling removed three reinforced concrete walkways above York\'s Rougier Street, finishing 20 weeks ahead of schedule.',
+    date: '2021-04-09',
+    category: 'Project',
+    heroImage: '/images/blog/york-walkway-diamond-sawing-rougier-street.jpg',
+    heroAlt:
+      "Diamond track saw cutting through a reinforced concrete walkway above York's Rougier Street",
+    author: 'Nick Turnbull',
+    body: [
+      'The conversion of a significant York City Center office block into luxury flats was completed 20 weeks early, thanks to an eleventh-hour switch from conventional Percussive Demolition methods to more environmentally friendly Concrete Sawing, Stitch Drilling and Concrete Cutting techniques.',
+      'Diamond Drilling specialist Gnat UK removed three crucial concrete walkways using relatively noiseless ‘cut and carve’ sawing in a fraction of the time and cost allocated to the original demolition contractor.',
+      '"They proved a competent professional alternative contractor who came up with an innovative solution to our last minute problem, saving us all time and money," says Jason Gill, construction manager for main contractor Wood Mitchell Contracting. "It was a good safe job, and we would definitely look to employ Gnat again, given a similar challenge."',
+      'Rougier Street provides important access to underground parking for insurance company Aviva offices, which line both sides of this narrow back road, but — even more crucially — is the vital service route to a prestigious five-star hotel.',
+      'Above the road, spanning between the office blocks on either side, sat three redundant 6m long, enclosed reinforced concrete walkways — each directly above the other at different heights.',
+      'The challenge was to remove these 2.4m wide walkways leaving the road beneath open, with continuous vehicular access, whilst simultaneously causing minimum disturbance to the 740 office workers at their desks, some just 1.5m from the demolition work.',
+      'The previously appointed demolition contractor had used Percussive Jack Hammers, but office workers complained about excessive vibration and noise shortly after they commenced work. As a result, the percussive demolition operation was halted.',
+      'Gnat UK was brought in and asked to come up with an alternative solution.',
+      'Working alongside scaffolding contractor SAY Scaffolding, plus structural engineer Bland and Swift; GNAT proposed a cutting plan to operate within an engineered three-tier scaffold. Access for road traffic was to be maintained by incorporating a portal frame arch into the scaffolding.',
+      'Each of the three walkways, housed within its own independently supported scaffold and crash deck, was cut up into five sections and lowered by a crane sitting in the road beneath. After each walkway was removed, the scaffold section supporting it was dismantled from the top down, providing access to the walkway beneath and enabling the 50ton crane to lower the isolated blocks — averaging 4.3m in length — to street-based skips.',
+      '"Working from the crash platform immediately beneath each walkway, we used a Hilti LP32 track saw, fitted with inverted blades, to saw upwards into the concrete, forming raking cuts," explains Gnat UK\'s project director. "Cuts were finished with inverted stitch drilling by a Hilti DD750 rig, and 150mm diameter holes cored for lifting frame chains using a Hilti DD350 rig."',
+      'Vibration and noise levels were minimal compared to conventional demolition techniques, and Gnat UK completed its contract four days within the programmed four weeks.',
+      'The original aborted demolition contract had been priced 40% higher and, with potential disturbance forcing a revised weekend-only work schedule, would have taken 26 weeks to complete.',
+      '"It was a win-win solution all-round."',
     ],
   },
 ];
