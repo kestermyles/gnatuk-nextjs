@@ -93,22 +93,35 @@ export default function ContactPage() {
               </h2>
               <ul className="mt-4 space-y-3">
                 {[
-                  'Early Contractor Engagement',
-                  'Method Development',
-                  'RAMS Support',
-                  'Site Trials',
+                  { label: 'Early Contractor Engagement', anchor: 'early-contractor-engagement' },
+                  { label: 'Method Development', anchor: 'method-development' },
+                  { label: 'RAMS Support', anchor: 'rams-support' },
+                  { label: 'Site Trials', anchor: 'site-trials' },
                 ].map((item) => (
                   <li
-                    key={item}
+                    key={item.anchor}
                     className="flex items-start gap-3 border-b border-gnat-concrete pb-3 text-gnat-navy"
                   >
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="mt-0.5 flex-none text-gnat-orange" aria-hidden="true">
                       <path d="M3 9L7 13L15 5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
-                    <span>{item}</span>
+                    <a
+                      href={`/support-services#${item.anchor}`}
+                      className="hover:text-gnat-orange"
+                    >
+                      {item.label}
+                    </a>
                   </li>
                 ))}
               </ul>
+              <p className="mt-4 text-sm text-gnat-steel-dark">
+                <a
+                  href="/support-services"
+                  className="font-semibold text-gnat-navy hover:text-gnat-orange"
+                >
+                  Read about our support services →
+                </a>
+              </p>
             </div>
           </aside>
         </div>
