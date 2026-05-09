@@ -1,5 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { SERVICES, SITE } from '@/lib/constants';
+import { CASE_STUDIES } from '@/lib/case-studies';
+import { INSIGHTS } from '@/lib/insights';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
@@ -10,6 +12,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       priority: 0.9,
       changeFrequency: 'monthly' as const,
+    })),
+    {
+      url: `${SITE.url}/case-studies`,
+      lastModified,
+      priority: 0.8,
+      changeFrequency: 'monthly',
+    },
+    ...CASE_STUDIES.map((cs) => ({
+      url: `${SITE.url}/case-studies/${cs.slug}`,
+      lastModified,
+      priority: 0.7,
+      changeFrequency: 'yearly' as const,
+    })),
+    {
+      url: `${SITE.url}/insights`,
+      lastModified,
+      priority: 0.8,
+      changeFrequency: 'weekly',
+    },
+    ...INSIGHTS.map((p) => ({
+      url: `${SITE.url}/insights/${p.slug}`,
+      lastModified: new Date(p.date),
+      priority: 0.7,
+      changeFrequency: 'yearly' as const,
     })),
     {
       url: `${SITE.url}/contact`,

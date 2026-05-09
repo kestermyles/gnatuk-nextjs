@@ -119,16 +119,63 @@ export function Header() {
           className="hidden min-[1400px]:flex min-[1400px]:flex-1 min-[1400px]:justify-center"
         >
           <ul className="flex items-center">
-            {SERVICES.map((s) => (
-              <li key={s.slug}>
-                <Link
-                  href={`/${s.slug}`}
-                  className="whitespace-nowrap px-5 py-2 text-base font-medium text-gnat-navy transition-colors hover:text-gnat-orange"
+            {/* Services dropdown */}
+            <li className="group relative">
+              <button
+                type="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                className="flex items-center gap-1.5 whitespace-nowrap px-5 py-2 text-base font-medium text-gnat-navy transition-colors hover:text-gnat-orange"
+              >
+                Services
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  aria-hidden="true"
+                  className="transition-transform group-hover:rotate-180"
                 >
-                  {s.shortName}
-                </Link>
-              </li>
-            ))}
+                  <path
+                    d="M3 4.5L6 7.5L9 4.5"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+              <div className="invisible absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                <ul className="min-w-[240px] rounded-lg border border-gnat-concrete bg-white py-2 shadow-lg">
+                  {SERVICES.map((s) => (
+                    <li key={s.slug}>
+                      <Link
+                        href={`/${s.slug}`}
+                        className="block whitespace-nowrap px-5 py-2.5 text-sm text-gnat-navy transition-colors hover:bg-gnat-concrete-light hover:text-gnat-orange"
+                      >
+                        {s.shortName}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+            <li>
+              <Link
+                href="/case-studies"
+                className="whitespace-nowrap px-5 py-2 text-base font-medium text-gnat-navy transition-colors hover:text-gnat-orange"
+              >
+                Case Studies
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/insights"
+                className="whitespace-nowrap px-5 py-2 text-base font-medium text-gnat-navy transition-colors hover:text-gnat-orange"
+              >
+                Insights
+              </Link>
+            </li>
             <li>
               <Link
                 href="/contact"
@@ -169,6 +216,9 @@ export function Header() {
         <div className="min-[1400px]:hidden">
           <nav aria-label="Mobile" className="border-t border-gnat-concrete bg-white">
             <ul className="container-prose space-y-1 py-4">
+              <li className="px-3 pb-1 pt-2 text-xs font-semibold uppercase tracking-wider text-gnat-steel-dark">
+                Services
+              </li>
               {SERVICES.map((s) => (
                 <li key={s.slug}>
                   <Link
@@ -180,6 +230,27 @@ export function Header() {
                   </Link>
                 </li>
               ))}
+              <li className="px-3 pb-1 pt-4 text-xs font-semibold uppercase tracking-wider text-gnat-steel-dark">
+                More
+              </li>
+              <li>
+                <Link
+                  href="/case-studies"
+                  onClick={() => setOpen(false)}
+                  className="block rounded px-3 py-3 text-base text-gnat-navy hover:bg-gnat-concrete-light"
+                >
+                  Case Studies
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/insights"
+                  onClick={() => setOpen(false)}
+                  className="block rounded px-3 py-3 text-base text-gnat-navy hover:bg-gnat-concrete-light"
+                >
+                  Insights
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/contact"
