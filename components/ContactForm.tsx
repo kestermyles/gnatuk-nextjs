@@ -1,9 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { contactFormSchema, type ContactFormValues } from '@/lib/validation';
+import {
+  contactFormSchema,
+  machineHireOptions,
+  methodServiceOptions,
+  type ContactFormValues,
+} from '@/lib/validation';
 import { CTAButton } from './CTAButton';
 import { cn } from '@/lib/utils';
 
@@ -27,6 +32,8 @@ export function ContactForm({ defaultEnquiryType, defaultService }: ContactFormP
     register,
     handleSubmit,
     reset,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -36,6 +43,24 @@ export function ContactForm({ defaultEnquiryType, defaultService }: ContactFormP
       consent: undefined,
     },
   });
+
+  // Cascading dropdown — service options change with enquiry type.
+  const enquiryType = watch('enquiryType');
+  const currentService = watch('service');
+  const serviceChoices =
+    enquiryType === 'machine-hire' ? machineHireOptions : methodServiceOptions;
+  const serviceLabel =
+    enquiryType === 'machine-hire' ? 'Machine (if known)' : 'Service (if known)';
+  const servicePlaceholder =
+    enquiryType === 'machine-hire' ? 'Select a Brokk model' : 'Select if known';
+
+  // When the enquiry type changes, clear the service if it's no longer in the list.
+  useEffect(() => {
+    if (currentService && !serviceChoices.includes(currentService as never)) {
+      setValue('service', undefined);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [enquiryType]);
 
   const onSubmit = async (values: ContactFormValues) => {
     setStatus('submitting');
@@ -114,7 +139,7 @@ export function ContactForm({ defaultEnquiryType, defaultService }: ContactFormP
 
       <div>
         <label htmlFor="service" className="mb-1.5 block text-sm font-semibold text-gnat-navy">
-          Service (if known)
+          {serviceLabel}
         </label>
         <select
           id="service"
@@ -122,13 +147,12 @@ export function ContactForm({ defaultEnquiryType, defaultService }: ContactFormP
           className={cn(inputBase, 'appearance-none')}
           defaultValue=""
         >
-          <option value="">Select if known</option>
-          <option>Robotic Demolition</option>
-          <option>Hydrodemolition</option>
-          <option>Diamond Drilling</option>
-          <option>Cold Cutting</option>
-          <option>Machine Hire</option>
-          <option>Not sure</option>
+          <option value="">{servicePlaceholder}</option>
+          {serviceChoices.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
         </select>
       </div>
 

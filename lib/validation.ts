@@ -1,13 +1,42 @@
 import { z } from 'zod';
 
 export const enquiryTypes = ['method-proposal', 'machine-hire', 'guidance'] as const;
-export const serviceOptions = [
+
+// Service options shown when enquiry type is method-proposal or guidance.
+export const methodServiceOptions = [
+  'Not sure — need advice',
   'Robotic Demolition',
   'Hydrodemolition',
-  'Diamond Drilling',
-  'Cold Cutting',
-  'Machine Hire',
-  'Not sure',
+  'Diamond Drilling & Sawing',
+  'Abrasive Cold Cutting',
+] as const;
+
+// Service options shown when enquiry type is machine-hire (Brokk fleet).
+export const machineHireOptions = [
+  'Brokk 70',
+  'Brokk 110',
+  'Brokk 170',
+  'Brokk 200',
+  'Brokk 300',
+  'Brokk 500',
+  'Brokk 800',
+  'Not sure — need advice',
+] as const;
+
+// Combined option set for server-side validation (deduped).
+export const serviceOptions = [
+  'Not sure — need advice',
+  'Robotic Demolition',
+  'Hydrodemolition',
+  'Diamond Drilling & Sawing',
+  'Abrasive Cold Cutting',
+  'Brokk 70',
+  'Brokk 110',
+  'Brokk 170',
+  'Brokk 200',
+  'Brokk 300',
+  'Brokk 500',
+  'Brokk 800',
 ] as const;
 
 export const contactFormSchema = z.object({
