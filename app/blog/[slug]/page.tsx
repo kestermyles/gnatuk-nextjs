@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CTABlock } from '@/components/CTABlock';
+import { ArticleSchema } from '@/components/Schema';
+import { autoLinkText } from '@/lib/auto-link';
 import { BLOG, getBlogPostBySlug } from '@/lib/blog';
 import { SITE } from '@/lib/constants';
 
@@ -67,6 +69,16 @@ export default function BlogPostPage({ params }: { params: Params }) {
 
   return (
     <>
+      <ArticleSchema
+        headline={post.title}
+        description={post.excerpt}
+        imageUrl={post.heroImage}
+        imageAlt={post.heroAlt}
+        datePublished={post.date}
+        authorName={post.author}
+        url={`${SITE.url}/blog/${post.slug}`}
+        category={post.category}
+      />
       <Breadcrumbs
         items={[
           { name: surfaceMeta.label, href: surfaceMeta.href },
@@ -104,7 +116,7 @@ export default function BlogPostPage({ params }: { params: Params }) {
             <div className="mx-auto max-w-3xl space-y-5">
               {post.body.map((para, i) => (
                 <p key={i} className="text-lg leading-relaxed text-gnat-navy">
-                  {para}
+                  {autoLinkText(para)}
                 </p>
               ))}
             </div>

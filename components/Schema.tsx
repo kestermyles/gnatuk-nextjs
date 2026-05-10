@@ -85,6 +85,90 @@ export function FAQPageSchema({
   return <JsonLd data={data} />;
 }
 
+export function ArticleSchema({
+  headline,
+  description,
+  imageUrl,
+  imageAlt,
+  datePublished,
+  authorName,
+  url,
+  category,
+}: {
+  headline: string;
+  description: string;
+  imageUrl: string;
+  imageAlt?: string;
+  datePublished: string;
+  authorName: string;
+  url: string;
+  category?: string;
+}) {
+  const absoluteImage = imageUrl.startsWith('http') ? imageUrl : `${SITE.url}${imageUrl}`;
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline,
+    description,
+    image: {
+      '@type': 'ImageObject',
+      url: absoluteImage,
+      caption: imageAlt,
+    },
+    datePublished,
+    dateModified: datePublished,
+    author: {
+      '@type': 'Person',
+      name: authorName,
+      worksFor: {
+        '@type': 'Organization',
+        name: SITE.legalName,
+        url: SITE.url,
+      },
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE.legalName,
+      url: SITE.url,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE.url}/images/logo.png`,
+      },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    ...(category ? { articleSection: category } : {}),
+  };
+  return <JsonLd data={data} />;
+}
+
+export function ImageGallerySchema({
+  name,
+  description,
+  url,
+  imageCount,
+}: {
+  name: string;
+  description: string;
+  url: string;
+  imageCount: number;
+}) {
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'ImageGallery',
+    name,
+    description,
+    url,
+    numberOfItems: imageCount,
+    isPartOf: { '@type': 'WebSite', name: SITE.name, url: SITE.url },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE.legalName,
+      url: SITE.url,
+    },
+  };
+  return <JsonLd data={data} />;
+}
+
 export function BreadcrumbSchema({
   items,
 }: {

@@ -36,6 +36,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
       changeFrequency: 'yearly',
     },
+    {
+      url: `${SITE.url}/gallery`,
+      lastModified,
+      priority: 0.7,
+      changeFrequency: 'monthly',
+    },
     // Canonical detail URL for every post is /blog/[slug] (regardless of which
     // listing surfaces it). /case-studies and /insights are curated views.
     ...BLOG.map((p) => ({
