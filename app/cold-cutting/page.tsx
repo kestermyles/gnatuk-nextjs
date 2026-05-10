@@ -5,6 +5,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CTABlock } from '@/components/CTABlock';
 import { FAQAccordion } from '@/components/FAQAccordion';
 import { RelatedServices } from '@/components/RelatedServices';
+import { GalleryCallout } from '@/components/GalleryCallout';
 import { ServiceSchema, FAQPageSchema } from '@/components/Schema';
 import { SITE } from '@/lib/constants';
 
@@ -152,6 +153,8 @@ export default function ColdCuttingPage() {
           ]}
         />
       </ContentSection>
+
+      <GalleryCallout tag="Cold Cutting" />
 
       <ContentSection eyebrow="FAQ" heading="Cold cutting — common questions.">
         <FAQAccordion faqs={faqs} />

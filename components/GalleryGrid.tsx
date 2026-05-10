@@ -14,6 +14,17 @@ export function GalleryGrid({ images, tags }: GalleryGridProps) {
   const [activeTag, setActiveTag] = useState<GalleryTag | 'All'>('All');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
+  // Pre-select tag from URL hash on mount (e.g. /gallery#hydrodemolition).
+  // Used by service-page deep links so a click on "See it in the gallery"
+  // lands the user on a pre-filtered view.
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '').toLowerCase();
+    if (!hash) return;
+    const match = tags.find((t) => t.toLowerCase().replace(/\s+/g, '-') === hash);
+    if (match) setActiveTag(match);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const filtered =
     activeTag === 'All'
       ? images

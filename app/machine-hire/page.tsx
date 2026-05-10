@@ -8,6 +8,7 @@ import { CTAButton } from '@/components/CTAButton';
 import { CTABlock } from '@/components/CTABlock';
 import { FAQAccordion } from '@/components/FAQAccordion';
 import { RelatedServices } from '@/components/RelatedServices';
+import { GalleryCallout } from '@/components/GalleryCallout';
 import { ServiceSchema, FAQPageSchema } from '@/components/Schema';
 import { SITE } from '@/lib/constants';
 
@@ -225,6 +226,8 @@ export default function MachineHirePage() {
           </CTAButton>
         </div>
       </ContentSection>
+
+      <GalleryCallout tag="Machine Hire" />
 
       <ContentSection eyebrow="FAQ" heading="Machine hire — common questions.">
         <FAQAccordion faqs={faqs} />
