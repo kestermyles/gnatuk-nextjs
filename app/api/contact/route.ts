@@ -42,6 +42,42 @@ export async function POST(request: Request) {
     request.headers.get('x-real-ip') ||
     'unknown';
 
+  // Cloudflare Turnstile verification — only enforced if the secret is set.
+  const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
+  if (turnstileSecret) {
+    if (!parsed.data.turnstileToken) {
+      return NextResponse.json(
+        { error: 'Verification challenge not completed.' },
+        { status: 400 },
+      );
+    }
+    try {
+      const verifyRes = await fetch(
+        'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({
+            secret: turnstileSecret,
+            response: parsed.data.turnstileToken,
+            remoteip: ip,
+          }).toString(),
+        },
+      );
+      const verifyData = (await verifyRes.json()) as { success: boolean };
+      if (!verifyData.success) {
+        return NextResponse.json(
+          { error: 'Verification failed. Please refresh and try again.' },
+          { status: 400 },
+        );
+      }
+    } catch (err) {
+      console.error('Turnstile verify threw:', err);
+      // Fail open — we'd rather accept a possibly-spam enquiry than reject a real
+      // one because Cloudflare had a hiccup. Honeypot + rate limit still apply.
+    }
+  }
+
   const limit = rateLimit(`contact:${ip}`, 5, 60 * 60 * 1000);
   if (!limit.ok) {
     return NextResponse.json(

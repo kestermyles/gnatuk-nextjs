@@ -67,6 +67,8 @@ export const contactFormSchema = z.object({
   }),
   // Honeypot — must remain empty
   website: z.string().max(0).optional().or(z.literal('')),
+  // Cloudflare Turnstile token — only validated server-side if TURNSTILE_SECRET_KEY is set.
+  turnstileToken: z.string().optional(),
 });
 
 export type ContactFormValues = z.infer<typeof contactFormSchema>;

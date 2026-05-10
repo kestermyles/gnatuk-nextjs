@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { CTAButton } from './CTAButton';
 import { SERVICES, SITE } from '@/lib/constants';
+import { track } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
 
 export function Header() {
@@ -43,6 +44,7 @@ export function Header() {
         <div className="container-prose flex h-10 items-center justify-between text-sm">
           <a
             href={`tel:${SITE.phoneE164}`}
+            onClick={() => track({ event: 'phone_click', phone_location: 'utility_bar' })}
             className="flex items-center gap-2 text-gnat-navy transition-colors hover:text-gnat-orange"
           >
             <svg
@@ -69,6 +71,9 @@ export function Header() {
               aria-label="Follow GNAT UK on Instagram"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() =>
+                track({ event: 'social_outbound', social_network: 'instagram', social_location: 'utility_bar' })
+              }
               className="flex h-7 w-7 items-center justify-center rounded-full transition hover:bg-white"
             >
               <Image
@@ -84,6 +89,9 @@ export function Header() {
               aria-label="Follow GNAT UK on Facebook"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() =>
+                track({ event: 'social_outbound', social_network: 'facebook', social_location: 'utility_bar' })
+              }
               className="flex h-7 w-7 items-center justify-center rounded-full transition hover:bg-white"
             >
               <Image

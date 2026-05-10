@@ -12,14 +12,23 @@ export function JsonLd({ data }: JsonLdProps) {
 }
 
 export function OrganizationSchema() {
+  // Promoted from Organization to LocalBusiness — better signal for "demolition
+  // contractor near me" / sector queries. Includes the three offices, the area
+  // served, and an hours block. Accreditations array is empty until the company
+  // confirms which credentials it currently holds.
   const data = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
+    '@type': 'GeneralContractor',
+    '@id': `${SITE.url}/#organization`,
     name: SITE.name,
     legalName: SITE.legalName,
     url: SITE.url,
-    logo: `${SITE.url}/logo.png`,
+    logo: `${SITE.url}/images/logo.png`,
+    image: `${SITE.url}/images/services/hero-home.jpg`,
     description: SITE.description,
+    telephone: SITE.phoneE164,
+    email: SITE.email,
+    priceRange: '££££',
     address: {
       '@type': 'PostalAddress',
       streetAddress: SITE.address.streetAddress,
@@ -28,14 +37,75 @@ export function OrganizationSchema() {
       postalCode: SITE.address.postalCode,
       addressCountry: SITE.address.country,
     },
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: SITE.phoneE164,
-      email: SITE.email,
-      contactType: 'Customer Service',
-      areaServed: 'GB',
-      availableLanguage: 'English',
+    location: [
+      {
+        '@type': 'Place',
+        name: 'GNAT UK Head Office — Richmond',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Unit 5, Jackson Court, Olympic Way',
+          addressLocality: 'Richmond',
+          addressRegion: 'North Yorkshire',
+          postalCode: 'DL10 4FD',
+          addressCountry: 'GB',
+        },
+      },
+      {
+        '@type': 'Place',
+        name: 'GNAT UK Midlands Office — Derby',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Unit 7, Riverside Park, East Service Road, Raynesway, Spondon',
+          addressLocality: 'Derby',
+          postalCode: 'DE21 7RW',
+          addressCountry: 'GB',
+        },
+      },
+      {
+        '@type': 'Place',
+        name: 'GNAT UK Stevenage Office',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'The Old Lordship Farm, Walkern Road, Bennington',
+          addressLocality: 'Hertfordshire',
+          postalCode: 'SG2 7LL',
+          addressCountry: 'GB',
+        },
+      },
+    ],
+    areaServed: { '@type': 'Country', name: 'United Kingdom' },
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        telephone: SITE.phoneE164,
+        email: SITE.email,
+        contactType: 'sales',
+        areaServed: 'GB',
+        availableLanguage: 'English',
+      },
+    ],
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '08:00',
+      closes: '17:00',
     },
+    knowsAbout: [
+      'Robotic Demolition',
+      'Hydrodemolition',
+      'Diamond Drilling',
+      'Diamond Sawing',
+      'Wire Sawing',
+      'Stitch Drilling',
+      'Abrasive Cold Cutting',
+      'Top-Down Demolition',
+      'Refractory Demolition',
+      'Confined Space Demolition',
+      'Structural Concrete Removal',
+      'Brokk Robotic Demolition',
+      'Husqvarna Robotic Demolition',
+      'Aquajet Hydrodemolition',
+    ],
     sameAs: [SITE.social.instagram, SITE.social.facebook],
   };
   return <JsonLd data={data} />;

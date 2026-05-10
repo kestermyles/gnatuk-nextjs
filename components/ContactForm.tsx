@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import Script from 'next/script';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -11,6 +12,8 @@ import {
 } from '@/lib/validation';
 import { CTAButton } from './CTAButton';
 import { cn } from '@/lib/utils';
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -62,14 +65,30 @@ export function ContactForm({ defaultEnquiryType, defaultService }: ContactFormP
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enquiryType]);
 
+  const formRef = useRef<HTMLFormElement>(null);
+
   const onSubmit = async (values: ContactFormValues) => {
     setStatus('submitting');
     setErrorMessage(null);
     try {
+      // Pull the Turnstile token if the widget is enabled.
+      let turnstileToken: string | undefined;
+      if (TURNSTILE_SITE_KEY) {
+        const tokenInput = formRef.current?.querySelector<HTMLInputElement>(
+          '[name="cf-turnstile-response"]',
+        );
+        turnstileToken = tokenInput?.value;
+        if (!turnstileToken) {
+          setStatus('error');
+          setErrorMessage('Please complete the verification challenge above the submit button.');
+          return;
+        }
+      }
+
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, turnstileToken }),
       });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
@@ -103,7 +122,7 @@ export function ContactForm({ defaultEnquiryType, defaultService }: ContactFormP
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-6">
+    <form ref={formRef} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-6">
       {/* Honeypot */}
       <div className="hidden" aria-hidden="true">
         <label>
@@ -246,6 +265,22 @@ export function ContactForm({ defaultEnquiryType, defaultService }: ContactFormP
         </span>
       </label>
       {errors.consent && <p className={errorClass}>{errors.consent.message}</p>}
+
+      {TURNSTILE_SITE_KEY && (
+        <>
+          <Script
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+            strategy="afterInteractive"
+            async
+            defer
+          />
+          <div
+            className="cf-turnstile"
+            data-sitekey={TURNSTILE_SITE_KEY}
+            data-theme="light"
+          />
+        </>
+      )}
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
         <CTAButton size="lg" variant="primary" {...({ type: 'submit' } as any)}>

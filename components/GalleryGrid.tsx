@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { GalleryImage, GalleryTag } from '@/lib/gallery';
+import { track } from '@/lib/analytics';
 
 type GalleryGridProps = {
   images: GalleryImage[];
@@ -69,7 +70,10 @@ export function GalleryGrid({ images, tags }: GalleryGridProps) {
             <button
               key={tag}
               type="button"
-              onClick={() => setActiveTag(tag as GalleryTag | 'All')}
+              onClick={() => {
+                setActiveTag(tag as GalleryTag | 'All');
+                track({ event: 'gallery_filter_change', gallery_tag: tag });
+              }}
               className={
                 'rounded-full px-4 py-2 text-sm font-semibold transition ' +
                 (active
@@ -91,7 +95,14 @@ export function GalleryGrid({ images, tags }: GalleryGridProps) {
           <li key={`${img.src}-${idx}`}>
             <button
               type="button"
-              onClick={() => setLightboxIndex(idx)}
+              onClick={() => {
+                setLightboxIndex(idx);
+                track({
+                  event: 'gallery_image_open',
+                  gallery_tag: img.tags[0] ?? 'untagged',
+                  gallery_image_index: idx,
+                });
+              }}
               className="group relative block aspect-square w-full overflow-hidden rounded-lg bg-gnat-concrete-light"
               aria-label={`View image: ${img.caption ?? img.alt}`}
             >

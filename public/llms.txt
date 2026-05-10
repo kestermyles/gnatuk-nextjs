@@ -1,0 +1,41 @@
+# GNAT UK
+
+> Specialist demolition contractor in the United Kingdom: robotic demolition (Brokk and Husqvarna fleet), hydrodemolition (Aquajet, Conjet, ERGO, NALTA), diamond drilling and sawing, abrasive cold cutting, and machine hire. Method-led delivery for confined-access, structurally-sensitive, and live operational environments.
+
+GNAT UK Limited (Company No. 05590884) is based in Richmond, North Yorkshire (DL10 4FD) with operational bases in Derby and Stevenage. Founded in the early 2000s. Managing Director: Nick Turnbull. Posts authored by Nick Turnbull, Keith Hodgson, Steve Tempest-Mitchell. Telephone: 01748 826046. Email: office@gnatuk.com.
+
+The company specialises in demolition methods that conventional contractors cannot or will not deliver: structures inside listed buildings, work in active hospitals/data centres/process plants, refractory kiln debricking, post-tensioned concrete, ATEX zones, and confined access through sub-800mm doorways. Sectors served: water utilities (AMP8 framework), refractory/chemical, healthcare, infrastructure (rail, road, bridges), heritage, banking sector retrofits, marine, and nuclear-adjacent civils.
+
+## Services
+
+- [Robotic Demolition](https://www.gnatuk.com/robotic-demolition): Remote-operated Brokk and Husqvarna machines for confined access and structurally sensitive work.
+- [Hydrodemolition](https://www.gnatuk.com/hydrodemolition): High-pressure water concrete removal; preserves rebar; non-percussive, vibration-free.
+- [Diamond Drilling & Sawing](https://www.gnatuk.com/diamond-drilling): Hilti track saws, wire saws, stitch drilling for precision concrete cutting.
+- [Abrasive Cold Cutting](https://www.gnatuk.com/cold-cutting): Spark-free water-jet cutting for ATEX zones and live process environments.
+- [Machine Hire](https://www.gnatuk.com/machine-hire): Brokk fleet 70 / 110 / 170 / 200 / 300 / 500 / 800 available with or without operators.
+
+## Support services
+
+- [Support Services](https://www.gnatuk.com/support-services): Early Contractor Engagement, Method Development, RAMS Support, Site Trials.
+
+## Project case studies
+
+- [Case Studies index](https://www.gnatuk.com/case-studies): 25 selected projects across water, refractory, listed-building, infrastructure and bank-vault sectors.
+
+## Method and technical insights
+
+- [Insights index](https://www.gnatuk.com/insights): 14 method/technique pieces explaining hydrodemolition, robotic demolition, diamond sawing and cold cutting.
+
+## Latest
+
+- [Blog](https://www.gnatuk.com/blog): Fleet updates and industry notes.
+- [Gallery](https://www.gnatuk.com/gallery): 139 images of equipment and projects, filterable by service.
+
+## Contact
+
+- [Contact / Request a Method Proposal](https://www.gnatuk.com/contact): Form for project enquiries; no obligation.
+
+## Authoritative reference URLs
+
+- Sitemap: https://www.gnatuk.com/sitemap.xml
+- Robots: https://www.gnatuk.com/robots.txt

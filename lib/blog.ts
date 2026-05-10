@@ -81,6 +81,8 @@ export const BLOG: BlogPost[] = [
     body: [
       'Following HILTI wire sawing, the bulk concrete sections are progressively craned out and removed from site.',
       'Progress in decommissioning this Turbine Hall is proceeding smoothly, thanks to the expertise of GnatUK\'s skilled HILTI concrete wire-sawing team. Their precision and efficiency in utilising this advanced method are driving the project forward, yielding outstanding results.',
+      'Diamond wire sawing is the method of choice for cutting bulk reinforced concrete sections that are too large or too heavily reinforced for track sawing. A diamond-impregnated wire is run through pre-drilled access holes and tensioned around the section to be cut. The wire is driven at high speed by a hydraulic drive unit; a small pulley system guides it cleanly through the cut.',
+      'For turbine hall decommissioning specifically, wire sawing is well-suited to the heavy reinforced foundations, plinth blocks and pedestals that supported the original turbine generators. The method produces clean cuts through metre-thick reinforced sections, generates very little dust and no vibration, and the resulting blocks can be craned out intact for off-site break-up — keeping the working environment clear for follow-on trades.',
     ],
   },
   {
@@ -99,6 +101,8 @@ export const BLOG: BlogPost[] = [
     body: [
       'One of our BROKK 500 units, fully loaded and ready to start a long work assignment in London.',
       'This powerhouse is set to impress, boasting 40% more demolition power than its predecessor, the BROKK 400. It\'s fair to say our clients love our BROKKs.',
+      'The Brokk 500 sits in the upper-mid section of the Brokk fleet — around 5 tonnes operating weight with a 30 kW three-phase electric power pack. It\'s an industrial workhorse: enough hammer power to take on substantial primary breaking, but compact enough to access through standard yard openings and operate inside warehouse and basement spaces.',
+      'For London deployments specifically, the size class is well-suited to the constraints of urban sites: tight access, vibration-sensitive neighbours, weight limits on temporary works platforms, and the indoor work that often comes with city-centre redevelopment. Three-phase electric operation keeps it fume-free for indoor environments where diesel plant would be excluded.',
     ],
   },
   {
@@ -734,6 +738,8 @@ export const BLOG: BlogPost[] = [
     author: 'Nick Turnbull',
     body: [
       'A pair of GnatUK\'s Brokk 800s with Atlas Copco hydraulic peckers, tackling heavily reinforced concrete foundations — like a knife through butter.',
+      'The Brokk 800 is the heaviest unit in the Brokk range — around 11 tonnes operating weight, with a 55 kW three-phase electric or diesel power pack and an arm reach close to 10 metres. Paired with Atlas Copco\'s heavy hydraulic breakers, it delivers more impact energy than any other remote-controlled demolition robot on the market.',
+      'Twin deployments of this class are uncommon and reserved for the heaviest reinforced foundations. Working two units in parallel halves the programme on bulk concrete removal where access allows side-by-side operation. As with all our heavy fleet work, the operators control the machines remotely from a safe distance — eliminating the hand-arm vibration and noise exposure associated with manual breakers.',
     ],
   },
   {
@@ -767,6 +773,8 @@ export const BLOG: BlogPost[] = [
     body: [
       'Great to catch up with colleagues and clients at the Institute of Demolition Engineers Seminar at Leeds Armouries on Friday.',
       'Pictured: Nick and Mark, with Andy Novak from Hardwick Demolition and Paul Burnett of CLS Demolition.',
+      'The Institute of Demolition Engineers is the UK professional body for the demolition sector. It sets qualification standards for demolition operatives and engineers, publishes industry guidance, and runs technical conferences and CPD events through the year. Membership cuts across contractors, consultants, plant manufacturers, and asset owners.',
+      'Industry events are how the specialist demolition community keeps current with method developments, equipment launches, regulatory changes, and sector pipeline. For a contractor like GNAT UK, they\'re also where Tier-1 contractors and asset owners meet supply-chain partners — relationships started at events feed directly into pre-qualification and tender lists.',
     ],
   },
   {
@@ -782,6 +790,8 @@ export const BLOG: BlogPost[] = [
     author: 'Nick Turnbull',
     body: [
       'A sad farewell today, to an iconic industrial heritage landmark. Let\'s hope for a better future with new technology and sunlit uplands ahead.',
+      'Landmark industrial decommissioning is a recurring part of the UK demolition sector. Sites that defined a region for decades — steelworks, refractory plants, power stations, chemical works — eventually reach the end of their operational life and the structures come down to make way for what comes next.',
+      'For specialist demolition contractors, this work calls for careful method planning rather than wrecking-ball reduction. Selective deconstruction allows materials to be segregated for recycling or re-use, hazardous material handling can be controlled, and surrounding infrastructure can be protected. The end of one industrial chapter is also the beginning of a regeneration project for the same site — and method choices made at demolition shape what that regeneration can build on.',
     ],
   },
   {
@@ -797,6 +807,8 @@ export const BLOG: BlogPost[] = [
     author: 'Nick Turnbull',
     body: [
       'Isolating and removing a 2600mm × 2600mm × 575mm reinforced concrete slab in just one shift with Gnat UK\'s HILTI Diamond Sawing Team.',
+      'Removing a single intact slab of this size is a track-saw exercise. The cuts are made with a diamond track saw running on a guide rail anchored to the slab. For a slab of this depth, the saw makes opposing cuts to free the perimeter, then the block is rigged for crane removal in one piece.',
+      'Compared with breaking the same slab into rubble, the cut-and-lift approach is faster on programme, generates effectively no dust, eliminates vibration in adjacent structure, and produces a clean substrate edge for the rebuild crew. The trade-off is the rigging arrangement: a multi-tonne block needs a planned lift path and an appropriate crane.',
     ],
   },
   {
@@ -829,6 +841,8 @@ export const BLOG: BlogPost[] = [
     author: 'Nick Turnbull',
     body: [
       'Example of stitch drilling procedure to isolate and remove formidable reinforced concrete foundations in a confined area. After cutting into manageable sizes, the isolated blocks were lifted out on an A-Frame prior to removal.',
+      'Stitch drilling is the technique of drilling a row of overlapping diamond-cored holes to form a continuous slot through reinforced concrete. Where saw cuts are blocked by existing structure, services, or restricted access geometry, stitch drilling cuts a perimeter that a saw could not reach. The bit diameter and overlap are sized to the depth of cut and the stiffness of the rebar layout.',
+      'The method is slower than direct sawing but it works almost anywhere — including under, around, and behind retained features. Once the perimeter is cored, the isolated block is lifted clear; in confined spaces an A-Frame gantry is the usual rigging arrangement because it can be assembled inside the work area without external crane access.',
     ],
   },
   {
@@ -861,6 +875,8 @@ export const BLOG: BlogPost[] = [
     body: [
       'Some nice archive pics of one of our BROKK 330\'s fitted with Atlas Copco Steel Shears selectively removing a spaghetti junction of steel pipework from the roof of a factory complex.',
       'Extended reach and powerful cutting forces eliminated the need for scaffolding towers — enabling safe, remote operation, and quick removal of the pipework.',
+      'Atlas Copco hydraulic shear attachments are a fast, controlled way to cut and crop steel girders, pipework, conduit and structural sections. Mounted on a Brokk arm with hydraulic flow tuned to the shear\'s spec, they produce a clean cut with no spark, no flame, and no thermal damage to surrounding material — which matters when the structure being cut sits next to other plant that has to stay in place.',
+      'Working at height inside a factory roof void traditionally means scaffold towers, MEWPs, or rope-access teams. Deploying a Brokk with extended arm reach often eliminates that requirement entirely — the operator stays at floor level, the machine reaches up to the work, and the cuts are made remotely. Programme savings come from the avoided scaffold mobilisation as much as from the cutting speed itself.',
     ],
   },
   {
@@ -894,6 +910,8 @@ export const BLOG: BlogPost[] = [
     body: [
       'Refurbishment of a Leeds factory saw our HILTI track saws used to cut cleanly through selective areas of the concrete floors prior to our Husqvarna and Brokk demolition robots pecking out and removing the bulk concrete, in preparation for new concrete and rebar.',
       'These powerful remotely operated 3-Phase electric robots punch well above their weight.',
+      'Combining track sawing with robotic demolition is the standard approach for selective floor-slab removal in a factory refurbishment. The track saw cuts the perimeter of each section to be removed, isolating it cleanly from the floor that\'s staying in place. The robot then breaks out the isolated bay — without any risk of cracking propagating into the retained floor.',
+      'For an electric Brokk or Husqvarna fleet specifically, indoor operation is straightforward: no exhaust, no diesel particulate, and noise levels low enough that the surrounding factory can often stay partly operational. The combined-method approach also gives the rebuild crew a clean substrate edge to work to — important when the new concrete needs to bond to the retained slab.',
     ],
   },
   {
@@ -909,6 +927,8 @@ export const BLOG: BlogPost[] = [
     author: 'Nick Turnbull',
     body: [
       'One of Gnat UK\'s Aquajet Hydrodemolition Robots deconstructing a motorway bridge parapet prior to refurbishment.',
+      'Hydrodemolition is the standard method for parapet refurbishment on motorway and arterial bridges. Working at high pressure, the Aquajet selectively removes degraded concrete from around the rebar without damaging the steel — leaving a sound, key-roughened substrate ready for the recast. Mechanical breaking would damage the rebar and impart micro-cracking into the substrate that would have to be removed before the new concrete bonded properly.',
+      'Parapet work on a live carriageway adds traffic management on top of the method itself. Lane closures define the working window; the work is sequenced so that each parapet section is removed and recast within that window. The Aquajet is remotely operated, which keeps the team out of the immediate hazard zone of the high-pressure water and the live carriageway alike.',
     ],
   },
 ];

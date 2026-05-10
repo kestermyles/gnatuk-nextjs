@@ -1,6 +1,9 @@
+'use client';
+
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { track } from '@/lib/analytics';
+import type { ComponentPropsWithoutRef, MouseEvent, ReactNode } from 'react';
 
 type Variant = 'primary' | 'secondary' | 'ghost';
 type Size = 'sm' | 'md' | 'lg';
@@ -28,6 +31,8 @@ type CTAButtonProps = {
   size?: Size;
   className?: string;
   children: ReactNode;
+  /** Optional GTM tracking — passed to dataLayer on click. */
+  trackingLocation?: string;
 } & Omit<ComponentPropsWithoutRef<'a'>, 'href' | 'className' | 'children'>;
 
 export function CTAButton({
@@ -36,13 +41,38 @@ export function CTAButton({
   size = 'md',
   className,
   children,
+  trackingLocation,
   ...rest
 }: CTAButtonProps) {
   const classes = cn(baseStyles, variantStyles[variant], sizeStyles[size], className);
 
+  function onClickHandler(e: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) {
+    if (!href) return;
+    const label = typeof children === 'string' ? children : 'CTA';
+    if (href.startsWith('tel:')) {
+      track({ event: 'phone_click', phone_location: trackingLocation ?? 'cta_button' });
+    } else {
+      track({
+        event: 'cta_click',
+        cta_label: label,
+        cta_destination: href,
+        cta_location: trackingLocation ?? 'unknown',
+      });
+    }
+    // Forward to any onClick the consumer passed
+    const consumerOnClick = (rest as { onClick?: (e: MouseEvent<HTMLElement>) => void })
+      .onClick;
+    if (consumerOnClick) consumerOnClick(e as MouseEvent<HTMLElement>);
+  }
+
   if (!href) {
     return (
-      <button type="button" className={classes} {...(rest as ComponentPropsWithoutRef<'button'>)}>
+      <button
+        type="button"
+        className={classes}
+        onClick={onClickHandler}
+        {...(rest as ComponentPropsWithoutRef<'button'>)}
+      >
         {children}
       </button>
     );
@@ -52,14 +82,14 @@ export function CTAButton({
 
   if (isExternal) {
     return (
-      <a href={href} className={classes} {...rest}>
+      <a href={href} className={classes} onClick={onClickHandler} {...rest}>
         {children}
       </a>
     );
   }
 
   return (
-    <Link href={href} className={classes}>
+    <Link href={href} className={classes} onClick={onClickHandler}>
       {children}
     </Link>
   );
