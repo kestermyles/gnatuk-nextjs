@@ -1,10 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { SERVICES, SITE } from '@/lib/constants';
-import { getAccreditations } from '@/lib/sanity-queries';
 
-export async function Footer() {
-  const ACCREDITATIONS = await getAccreditations();
+export function Footer() {
   return (
     <footer className="bg-gnat-navy-deep text-gnat-concrete">
       <div className="container-prose grid gap-10 py-14 md:grid-cols-4">
@@ -156,33 +154,22 @@ export async function Footer() {
         </div>
       </div>
 
-      {/* Accreditations row — logos where available, text labels for the rest */}
+      {/* Accreditations banner — alt text + /accreditations page + LocalBusiness
+          schema (hasCredential[]) carry the organic visibility for the 11 schemes. */}
       <div className="border-t border-white/10 bg-white">
         <div className="container-prose py-6">
           <Link href="/accreditations" className="block">
             <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-gnat-steel-dark">
               Accredited &amp; audited
             </p>
-            <ul className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-3">
-              {ACCREDITATIONS.map((a) => (
-                <li key={a.name} className="flex items-center">
-                  {a.logo ? (
-                    <Image
-                      src={a.logo}
-                      alt={`${a.name} logo`}
-                      width={a.logoWidth ?? 200}
-                      height={a.logoHeight ?? 80}
-                      className="h-8 w-auto object-contain opacity-80 transition hover:opacity-100"
-                    />
-                  ) : (
-                    <span className="rounded border border-gnat-concrete px-2 py-1 text-[11px] font-bold uppercase tracking-wider text-gnat-steel-dark">
-                      {a.name}
-                      {a.level ? ` · ${a.level}` : ''}
-                    </span>
-                  )}
-                </li>
-              ))}
-            </ul>
+            <Image
+              src="/images/accreditations/banner.jpg"
+              alt="GNAT UK accreditations: Builder's Profile, Water Jetting Association (WJA) Audited Member, SSIP Acclaim Accreditation, Achilles BuildingConfidence Audited, Drilling and Sawing Association (DSA), CHAS Accredited Contractor, RISQS Verified, Constructionline Gold Member, Common Assessment Standard, RoSPA Member, NFDC National Federation of Demolition Contractors Industry Service Provider"
+              width={6780}
+              height={681}
+              sizes="(min-width: 768px) 768px, 100vw"
+              className="mt-3 h-auto w-full"
+            />
           </Link>
         </div>
       </div>
