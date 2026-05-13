@@ -17,7 +17,7 @@ export const AUTHORS: Record<string, AuthorBio> = {
     name: 'Nick Turnbull',
     role: 'Managing Director, GNAT UK Limited',
     blurb:
-      'Nick is the Managing Director of GNAT UK and the primary author of the company\'s technical content. He leads method development on confined-access, structurally sensitive and live-environment schemes across the UK.',
+      'Nick is the Managing Director and founder of GNAT UK Limited, the specialist remote demolition and contracting firm operating across Great Britain and Ireland. With more than 30 years\' experience in the sector, he leads the company\'s work across robotic demolition (Brokk and Husqvarna fleet), diamond wire cutting, hydrodemolition and plant hire — typically on confined-access, structurally sensitive or live-environment schemes. His project portfolio spans COMAH-regulated industrial sites, oil &amp; gas, water infrastructure (AMP8), highways, offshore decommissioning and refractory environments.',
   },
   'Keith Hodgson': {
     name: 'Keith Hodgson',

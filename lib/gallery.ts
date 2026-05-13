@@ -29,35 +29,19 @@ export type GalleryImage = {
   date?: string;
 };
 
-// Auto-tag a post based on its title + body keywords. Returns 1+ tags.
-function tagsForPost(p: (typeof BLOG)[number]): GalleryTag[] {
-  const haystack = `${p.title} ${p.body.join(' ')}`.toLowerCase();
-  const tags = new Set<GalleryTag>();
-
-  // Hydrodemolition family
-  if (/hydrodemolition|hydroblasting|hydro[-\s]?demo|aquajet|conjet|ergo|nalta|hand[-\s]?lancing/.test(haystack)) {
-    tags.add('Hydrodemolition');
-  }
-  // Diamond / sawing / drilling
-  if (/diamond|wire saw|stitch drilling|track saw|hilti|core drilling/.test(haystack)) {
-    tags.add('Diamond Drilling');
-  }
-  // Cold cutting
-  if (/cold[-\s]?cutting|abrasive (?:water[-\s]?jet|cold)|atex/.test(haystack)) {
-    tags.add('Cold Cutting');
-  }
-  // Robotic demolition (Brokk, Husqvarna)
-  if (/brokk|husqvarna|robotic demolition/.test(haystack)) {
-    tags.add('Robotic Demolition');
-  }
-  // Machine hire — fleet-flavoured posts
-  if (p.category === 'Fleet' || /machine hire|fleet|brokk \d+ (?:diesel|electric)/.test(haystack)) {
-    tags.add('Machine Hire');
-  }
-  // Fallback: if no tag matched (rare), default to Robotic Demolition
-  if (tags.size === 0) tags.add('Robotic Demolition');
-  return Array.from(tags);
+// Tags for a post. The explicit `galleryTags` field on the post is the source
+// of truth — set to [] to exclude the post from the gallery, or a list of tags
+// to include it under those filters. If `galleryTags` is undefined (legacy
+// posts), the function returns null so the caller can skip the entry.
+function tagsForPost(p: (typeof BLOG)[number]): GalleryTag[] | null {
+  if (p.galleryTags === undefined) return null;
+  if (p.galleryTags.length === 0) return null;
+  return p.galleryTags as GalleryTag[];
 }
+
+// How many carousel/extra images we surface in the gallery for a single post.
+// Without a cap, a project with 14 carousel images would dominate the view.
+const MAX_EXTRAS_PER_POST = 3;
 
 // Standalone images that don't have a parent blog post — equipment fleet shots
 // and additional project photos kept under /public/images/.
@@ -114,7 +98,8 @@ const STANDALONE_IMAGES: GalleryImage[] = [
 
 // Read carousel/extra images harvested from the original Wix posts.
 // Files are named `<slug>-extra-N.jpg` in /public/images/blog-extras/.
-// Each extra image inherits its tags from the parent blog post.
+// Each extra image inherits its tags from the parent blog post. Skipped if the
+// parent post has no galleryTags or is explicitly excluded ([]). Capped per-post.
 function getExtraImages(): GalleryImage[] {
   const dir = path.join(process.cwd(), 'public/images/blog-extras');
   let files: string[] = [];
@@ -123,34 +108,51 @@ function getExtraImages(): GalleryImage[] {
   } catch {
     return [];
   }
-  const extras: GalleryImage[] = [];
+  // Group by parent slug so we can apply the cap per-post.
+  const bySlug: Record<string, string[]> = {};
   for (const file of files) {
     if (!/^[a-z0-9-]+-extra-\d+\.[a-z]+$/i.test(file)) continue;
     const slug = file.replace(/-extra-\d+\.[a-z]+$/i, '');
-    const parent = BLOG.find((p) => p.slug === slug);
-    if (!parent) continue; // Skip orphans
-    extras.push({
-      src: `/images/blog-extras/${file}`,
-      alt: `${parent.heroAlt} (additional view)`,
-      tags: tagsForPost(parent),
-      href: `/blog/${parent.slug}`,
-      caption: parent.title,
-      date: parent.date,
-    });
+    (bySlug[slug] ??= []).push(file);
   }
-  // Stable order
+
+  const extras: GalleryImage[] = [];
+  for (const [slug, slugFiles] of Object.entries(bySlug)) {
+    const parent = BLOG.find((p) => p.slug === slug);
+    if (!parent) continue;
+    const tags = tagsForPost(parent);
+    if (!tags) continue; // Parent excluded from gallery
+    // Stable order, cap at MAX_EXTRAS_PER_POST so no project dominates.
+    const ordered = [...slugFiles].sort();
+    for (const file of ordered.slice(0, MAX_EXTRAS_PER_POST)) {
+      extras.push({
+        src: `/images/blog-extras/${file}`,
+        alt: `${parent.heroAlt} (additional view)`,
+        tags,
+        href: `/blog/${parent.slug}`,
+        caption: parent.title,
+        date: parent.date,
+      });
+    }
+  }
   return extras.sort((a, b) => a.src.localeCompare(b.src));
 }
 
-// Manifest derived from BLOG hero images + carousel extras + standalone images.
+// Manifest derived from BLOG hero images (only for posts with galleryTags set)
+// + capped carousel extras + standalone fleet/project images.
 export function getGalleryImages(): GalleryImage[] {
-  const blogImages: GalleryImage[] = BLOG.map((p) => ({
-    src: p.heroImage,
-    alt: p.heroAlt,
-    tags: tagsForPost(p),
-    href: `/blog/${p.slug}`,
-    caption: p.title,
-    date: p.date,
-  }));
+  const blogImages: GalleryImage[] = [];
+  for (const p of BLOG) {
+    const tags = tagsForPost(p);
+    if (!tags) continue; // Post excluded from gallery
+    blogImages.push({
+      src: p.heroImage,
+      alt: p.heroAlt,
+      tags,
+      href: `/blog/${p.slug}`,
+      caption: p.title,
+      date: p.date,
+    });
+  }
   return [...blogImages, ...getExtraImages(), ...STANDALONE_IMAGES];
 }

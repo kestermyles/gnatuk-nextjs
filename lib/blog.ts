@@ -6,6 +6,14 @@
 /** Where this post is surfaced. A post can appear in multiple curated listings. */
 export type Surface = 'blog' | 'case-study' | 'insight';
 
+/** Gallery service filter tags. Imported from lib/gallery in the consumer. */
+export type GalleryServiceTag =
+  | 'Robotic Demolition'
+  | 'Hydrodemolition'
+  | 'Diamond Drilling'
+  | 'Cold Cutting'
+  | 'Machine Hire';
+
 export type BlogPost = {
   slug: string;
   /** The slug used on the original Wix site (gnatuk.com/post/[wixSlug]). Used for 301 redirects. Optional for posts ported from sources other than the Wix blog. */
@@ -19,6 +27,12 @@ export type BlogPost = {
   category: 'Project' | 'Fleet' | 'Team' | 'Industry' | 'Award' | 'Method';
   /** Which curated listings show this post. Detail URL is always /blog/[slug]. */
   surfaces: Surface[];
+  /**
+   * Explicit gallery service tags for this post. Drives gallery filter behaviour.
+   * Use [] (empty) to exclude the post from the gallery entirely (e.g. industry-event
+   * posts with no service-specific imagery).
+   */
+  galleryTags?: GalleryServiceTag[];
   heroImage: string;
   heroAlt: string;
   author: string;
@@ -36,6 +50,7 @@ export const BLOG: BlogPost[] = [
     date: '2025-10-01',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Cold Cutting', 'Robotic Demolition'],
     heroImage: '/images/blog/refractory-vessel-cold-cut.jpg',
     heroAlt: 'Brokk robotic demolition machine debricking a large refractory vessel',
     author: 'Nick Turnbull',
@@ -56,6 +71,7 @@ export const BLOG: BlogPost[] = [
     date: '2025-07-11',
     category: 'Method',
     surfaces: ['insight'],
+    galleryTags: ['Hydrodemolition'],
     heroImage: '/images/blog/hand-lancing-hydrodemolition.jpg',
     heroAlt: 'Operative carrying out controlled hand lancing hydrodemolition',
     author: 'Nick Turnbull',
@@ -75,6 +91,7 @@ export const BLOG: BlogPost[] = [
     date: '2024-12-02',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Diamond Drilling'],
     heroImage: '/images/blog/turbine-hall-wire-saw.jpg',
     heroAlt: 'HILTI wire sawing equipment cutting bulk concrete sections in a turbine hall',
     author: 'Nick Turnbull',
@@ -95,6 +112,7 @@ export const BLOG: BlogPost[] = [
     date: '2024-08-01',
     category: 'Fleet',
     surfaces: ['blog'],
+    galleryTags: ['Robotic Demolition', 'Machine Hire'],
     heroImage: '/images/blog/brokk-500-london.jpg',
     heroAlt: 'Brokk 500 robotic demolition unit loaded onto a transport ready for site',
     author: 'Nick Turnbull',
@@ -115,6 +133,7 @@ export const BLOG: BlogPost[] = [
     date: '2024-07-01',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Robotic Demolition'],
     heroImage: '/images/blog/chromium-kiln-debricking-elementis.jpg',
     heroAlt:
       'Brokk demolition robot debricking a contaminated chromium kiln at an Elementis chemical plant',
@@ -142,6 +161,7 @@ export const BLOG: BlogPost[] = [
     date: '2024-04-26',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Robotic Demolition'],
     heroImage: '/images/blog/brokk-60-refractory-kiln-strip.jpg',
     heroAlt: 'Brokk 60 robot de-bricking the refractory lining inside a kiln vessel',
     author: 'Nick Turnbull',
@@ -161,6 +181,7 @@ export const BLOG: BlogPost[] = [
     date: '2023-11-08',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Robotic Demolition', 'Diamond Drilling'],
     heroImage: '/images/blog/railway-arch-pedestrian-walkway-shotcrete.jpg',
     heroAlt:
       'Brokk robot deconstructing concrete infill inside a sealed Beeching-era railway arch',
@@ -185,6 +206,7 @@ export const BLOG: BlogPost[] = [
     date: '2023-10-19',
     category: 'Method',
     surfaces: ['insight'],
+    galleryTags: ['Robotic Demolition'],
     heroImage: '/images/blog/robotic-pile-deconstruction-brokk-60.jpeg',
     heroAlt:
       'Brokk 60 robot pecking concrete from a pile head to expose the rebar inside a foundation pit',
@@ -206,6 +228,7 @@ export const BLOG: BlogPost[] = [
     date: '2023-08-02',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Robotic Demolition'],
     heroImage: '/images/blog/shropshire-flax-mill-silo-deconstruction.jpg',
     heroAlt:
       'Husqvarna DXR140 robot deconstructing the reinforced concrete silo at Shropshire\'s Ditherington flax mill',
@@ -233,6 +256,7 @@ export const BLOG: BlogPost[] = [
     date: '2023-07-31',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Robotic Demolition'],
     heroImage: '/images/blog/twin-brokk-800-foundation-demolition.jpeg',
     heroAlt:
       'Two Brokk 800 demolition robots breaking out reinforced concrete foundations in a basement',
@@ -254,6 +278,7 @@ export const BLOG: BlogPost[] = [
     date: '2023-07-20',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Robotic Demolition'],
     heroImage: '/images/blog/top-down-robotic-demolition-leeds-tower.jpg',
     heroAlt:
       'Brokk and Husqvarna robots performing top-down demolition on a 19 storey Leeds city centre tower',
@@ -277,6 +302,7 @@ export const BLOG: BlogPost[] = [
     date: '2023-06-23',
     category: 'Method',
     surfaces: ['insight'],
+    galleryTags: ['Robotic Demolition'],
     heroImage: '/images/blog/large-facade-retention-scheme.jpg',
     heroAlt:
       'Facade retention scheme with original building elevation preserved as the interior is deconstructed',
@@ -305,6 +331,7 @@ export const BLOG: BlogPost[] = [
     date: '2023-06-12',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Cold Cutting', 'Robotic Demolition'],
     heroImage: '/images/blog/cold-cutting-brokk-800-oil-sludge-tank.jpeg',
     heroAlt:
       'Brokk 800 Diesel robot removing solidified oil sludge from an oil storage tank after abrasive cold cutting access',
@@ -328,6 +355,7 @@ export const BLOG: BlogPost[] = [
     date: '2023-02-16',
     category: 'Method',
     surfaces: ['insight'],
+    galleryTags: ['Cold Cutting'],
     heroImage: '/images/blog/abrasive-cold-cutting-pressure-vessels.jpg',
     heroAlt:
       'Track-based abrasive cold-cutting manipulator dismantling a volatile chemical pressure vessel',
@@ -351,6 +379,7 @@ export const BLOG: BlogPost[] = [
     date: '2023-01-19',
     category: 'Method',
     surfaces: ['insight'],
+    galleryTags: ['Robotic Demolition'],
     heroImage: '/images/blog/bank-vault-demolition-brokk-husqvarna.jpg',
     heroAlt: 'Brokk demolition robot breaking into a high-security reinforced concrete bank vault',
     author: 'Keith Hodgson',
@@ -374,6 +403,7 @@ export const BLOG: BlogPost[] = [
     date: '2023-01-01',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Robotic Demolition'],
     heroImage: '/images/blog/husqvarna-140-archimedes-screw-trough.jpg',
     heroAlt:
       'Husqvarna DXR140 robot removing concrete screed inside a steeply inclined Archimedes screw trough',
@@ -397,6 +427,7 @@ export const BLOG: BlogPost[] = [
     date: '2022-12-31',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Robotic Demolition'],
     heroImage: '/images/blog/tunnel-benching-brokk-60-sewer.jpg',
     heroAlt: 'Brokk 60 robot breaking out tunnel benching inside a 1.5 metre diameter sewer pipe',
     author: 'Nick Turnbull',
@@ -419,6 +450,7 @@ export const BLOG: BlogPost[] = [
     date: '2022-12-30',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Hydrodemolition', 'Diamond Drilling'],
     heroImage: '/images/blog/hydrodemolition-diamond-wire-car-factory.jpg',
     heroAlt:
       'Aquajet hydrodemolition robot and Hilti diamond wire saw working on concrete plinths in a car factory floor',
@@ -441,6 +473,7 @@ export const BLOG: BlogPost[] = [
     date: '2022-12-30',
     category: 'Method',
     surfaces: ['insight'],
+    galleryTags: ['Robotic Demolition'],
     heroImage: '/images/blog/high-reach-confined-space-husqvarna-dxr140.jpg',
     heroAlt:
       'Husqvarna DXR140 robot with high-reach boom breaking out a basement ceiling in a confined space',
@@ -463,6 +496,7 @@ export const BLOG: BlogPost[] = [
     date: '2022-12-30',
     category: 'Method',
     surfaces: ['insight'],
+    galleryTags: ['Hydrodemolition'],
     heroImage: '/images/blog/ergo-hydrodemolition-biomass-boiler.jpg',
     heroAlt:
       'Aquajet ERGO hydrodemolition system removing castable refractory inside a biomass boiler furnace',
@@ -485,6 +519,7 @@ export const BLOG: BlogPost[] = [
     date: '2022-10-28',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Hydrodemolition', 'Diamond Drilling'],
     heroImage: '/images/blog/hydroblasting-factory-floor-rebates.jpg',
     heroAlt:
       'Aquajet hydrodemolition robot chasing precision rebates into a factory concrete floor',
@@ -506,6 +541,7 @@ export const BLOG: BlogPost[] = [
     date: '2022-10-01',
     category: 'Method',
     surfaces: ['insight'],
+    galleryTags: ['Robotic Demolition'],
     heroImage: '/images/services/hero-home.jpg',
     heroAlt:
       'Mast-climber mounted remote manipulator system de-bricking refractory lining inside a large vessel',
@@ -527,6 +563,7 @@ export const BLOG: BlogPost[] = [
     date: '2022-08-21',
     category: 'Method',
     surfaces: ['insight'],
+    galleryTags: ['Hydrodemolition'],
     heroImage: '/images/services/hydrodemolition-hero.jpg',
     heroAlt: 'NALTA remote-controlled hydrodemolition lance system removing concrete from a structure',
     author: 'Nick Turnbull',
@@ -548,6 +585,7 @@ export const BLOG: BlogPost[] = [
     date: '2022-07-27',
     category: 'Fleet',
     surfaces: ['blog'],
+    galleryTags: ['Robotic Demolition', 'Machine Hire'],
     heroImage: '/images/blog/brokk-800-diesel-foundation-demolition.jpg',
     heroAlt:
       'Brokk 800 Diesel demolition robot breaking deep reinforced concrete foundations during a factory refurbishment',
@@ -570,6 +608,7 @@ export const BLOG: BlogPost[] = [
     date: '2022-04-27',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Diamond Drilling'],
     heroImage: '/images/blog/diamond-wire-sawing-glasgow-sewer-flumes.jpg',
     heroAlt:
       'Hilti WS15 diamond wire saw cold-cutting a live 1.6m diameter steel sewer flume pipe in Glasgow',
@@ -592,6 +631,7 @@ export const BLOG: BlogPost[] = [
     date: '2022-03-27',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Hydrodemolition'],
     heroImage: '/images/blog/hydroblasting-city-bridge-deck.jpg',
     heroAlt: 'Robotic hydrodemolition equipment removing damaged concrete from a city bridge deck',
     author: 'Nick Turnbull',
@@ -613,6 +653,7 @@ export const BLOG: BlogPost[] = [
     date: '2021-12-01',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Hydrodemolition'],
     heroImage: '/images/blog/hydrodemolition-north-sea-jetty.jpg',
     heroAlt: 'Conjet hydrodemolition robot stripping degraded concrete from a North Sea jetty deck',
     author: 'Nick Turnbull',
@@ -633,6 +674,7 @@ export const BLOG: BlogPost[] = [
     date: '2021-05-18',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Robotic Demolition'],
     heroImage: '/images/blog/farnworth-tunnel-brokk-330-fillie.jpg',
     heroAlt:
       "Adapted Brokk 330 'Fillie' demolition robot mounted inside a 9 metre diameter TBM at the Farnworth Tunnel",
@@ -655,6 +697,7 @@ export const BLOG: BlogPost[] = [
     date: '2021-05-10',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Diamond Drilling'],
     heroImage: '/images/blog/bank-of-england-vault-grade-1-london.jpg',
     heroAlt:
       'Diamond track saw cutting through a heavily reinforced Bank of England vault wall in a Grade I listed London building',
@@ -681,6 +724,7 @@ export const BLOG: BlogPost[] = [
     date: '2021-04-09',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Diamond Drilling'],
     heroImage: '/images/blog/york-walkway-diamond-sawing-rougier-street.jpg',
     heroAlt:
       "Diamond track saw cutting through a reinforced concrete walkway above York's Rougier Street",
@@ -710,6 +754,7 @@ export const BLOG: BlogPost[] = [
     date: '2025-04-30',
     category: 'Method',
     surfaces: ['insight'],
+    galleryTags: ['Robotic Demolition'],
     heroImage: '/images/blog/smarter-demolition-real-results.jpg',
     heroAlt: 'Robotic demolition in action — targeted, low-emission, low-disruption work',
     author: 'Nick Turnbull',
@@ -733,6 +778,7 @@ export const BLOG: BlogPost[] = [
     date: '2024-04-26',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Robotic Demolition'],
     heroImage: '/images/blog/twin-brokk-800-foundations-2024.jpg',
     heroAlt: 'Pair of Brokk 800 demolition robots with Atlas Copco hydraulic peckers tackling reinforced concrete foundations',
     author: 'Nick Turnbull',
@@ -750,6 +796,7 @@ export const BLOG: BlogPost[] = [
     date: '2024-03-28',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Robotic Demolition', 'Diamond Drilling'],
     heroImage: '/images/blog/mezzanine-floor-deconstruction-warehouse.jpg',
     heroAlt: 'Electric floor saw and Husqvarna robot deconstructing a mezzanine floor inside a warehouse',
     author: 'Nick Turnbull',
@@ -767,6 +814,7 @@ export const BLOG: BlogPost[] = [
     date: '2023-02-26',
     category: 'Industry',
     surfaces: ['blog'],
+    galleryTags: [],
     heroImage: '/images/blog/ide-seminar-leeds-2023.jpg',
     heroAlt: 'GNAT UK team at the Institute of Demolition Engineers Seminar at Leeds Armouries',
     author: 'Nick Turnbull',
@@ -785,6 +833,7 @@ export const BLOG: BlogPost[] = [
     date: '2022-11-23',
     category: 'Industry',
     surfaces: ['blog'],
+    galleryTags: [],
     heroImage: '/images/blog/industrial-heritage-landmark-farewell.jpg',
     heroAlt: 'An iconic British industrial heritage landmark, photographed before demolition',
     author: 'Nick Turnbull',
@@ -802,6 +851,7 @@ export const BLOG: BlogPost[] = [
     date: '2022-03-23',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Diamond Drilling'],
     heroImage: '/images/blog/large-slab-removal-diamond-sawing.jpg',
     heroAlt: 'GNAT UK HILTI diamond sawing team isolating a large reinforced concrete slab',
     author: 'Nick Turnbull',
@@ -819,6 +869,7 @@ export const BLOG: BlogPost[] = [
     date: '2022-03-07',
     category: 'Method',
     surfaces: ['insight'],
+    galleryTags: ['Hydrodemolition', 'Diamond Drilling', 'Cold Cutting', 'Robotic Demolition'],
     heroImage: '/images/blog/uk-highway-renovation-projects.jpg',
     heroAlt: 'GNAT UK robotic demolition equipment on a UK highway renovation project',
     author: 'Nick Turnbull',
@@ -836,6 +887,7 @@ export const BLOG: BlogPost[] = [
     date: '2022-03-05',
     category: 'Method',
     surfaces: ['insight'],
+    galleryTags: ['Diamond Drilling'],
     heroImage: '/images/blog/stitch-drilling-confined-space-foundations.jpg',
     heroAlt: 'Hilti stitch drilling rig isolating reinforced concrete foundations in a confined space',
     author: 'Nick Turnbull',
@@ -853,6 +905,7 @@ export const BLOG: BlogPost[] = [
     date: '2022-03-05',
     category: 'Method',
     surfaces: ['insight'],
+    galleryTags: ['Robotic Demolition'],
     heroImage: '/images/blog/brokk-800-steel-shears-girder-removal.jpg',
     heroAlt: 'Brokk 800 robot with Atlas Copco steel shear attachment cutting steel girders',
     author: 'Nick Turnbull',
@@ -869,6 +922,7 @@ export const BLOG: BlogPost[] = [
     date: '2022-02-28',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Robotic Demolition'],
     heroImage: '/images/blog/brokk-330-steel-shears-spaghetti-junction.jpg',
     heroAlt: 'Brokk 330 robot with Atlas Copco steel shears removing pipework from a factory roof',
     author: 'Nick Turnbull',
@@ -887,6 +941,7 @@ export const BLOG: BlogPost[] = [
     date: '2022-02-28',
     category: 'Method',
     surfaces: ['insight'],
+    galleryTags: ['Hydrodemolition'],
     heroImage: '/images/blog/bulk-hydrodemolition-coastal-jetties.jpg',
     heroAlt: 'Aquajet hydrodemolition robot with boom extension removing concrete from a coastal jetty deck',
     author: 'Nick Turnbull',
@@ -904,6 +959,7 @@ export const BLOG: BlogPost[] = [
     date: '2022-02-25',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Diamond Drilling', 'Robotic Demolition'],
     heroImage: '/images/blog/leeds-factory-floor-cutting-track-saws.jpg',
     heroAlt: 'HILTI track saw cutting through reinforced concrete floor in a Leeds factory refurbishment',
     author: 'Nick Turnbull',
@@ -922,6 +978,7 @@ export const BLOG: BlogPost[] = [
     date: '2021-12-06',
     category: 'Project',
     surfaces: ['case-study'],
+    galleryTags: ['Hydrodemolition'],
     heroImage: '/images/blog/aquajet-motorway-bridge-parapet.jpg',
     heroAlt: 'Aquajet hydrodemolition robot deconstructing a motorway bridge parapet',
     author: 'Nick Turnbull',
