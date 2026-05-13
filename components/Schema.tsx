@@ -1,4 +1,5 @@
 import { SITE } from '@/lib/constants';
+import { ACCREDITATIONS } from '@/lib/accreditations';
 
 type JsonLdProps = { data: Record<string, unknown> | Record<string, unknown>[] };
 
@@ -106,6 +107,16 @@ export function OrganizationSchema() {
       'Husqvarna Robotic Demolition',
       'Aquajet Hydrodemolition',
     ],
+    hasCredential: ACCREDITATIONS.map((a) => ({
+      '@type': 'EducationalOccupationalCredential',
+      name: a.level ? `${a.name} — ${a.level}` : a.name,
+      credentialCategory: 'membership',
+      recognizedBy: {
+        '@type': 'Organization',
+        name: a.name,
+        url: a.schemeUrl,
+      },
+    })),
     sameAs: [SITE.social.instagram, SITE.social.facebook],
   };
   return <JsonLd data={data} />;

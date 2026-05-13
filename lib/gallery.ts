@@ -40,20 +40,16 @@ function tagsForPost(p: (typeof BLOG)[number]): GalleryTag[] | null {
 }
 
 // How many carousel/extra images we surface in the gallery for a single post.
-// Without a cap, a project with 14 carousel images would dominate the view.
-const MAX_EXTRAS_PER_POST = 3;
+// Lowered from 3 to 2 per business preference ("less is more") — keeps the
+// gallery visually varied rather than letting one project dominate a filter.
+const MAX_EXTRAS_PER_POST = 2;
 
-// Standalone images that don't have a parent blog post — equipment fleet shots
-// and additional project photos kept under /public/images/.
+// Standalone images that don't have a parent blog post — project shots and
+// service-page heroes that work as gallery imagery. The 7 Brokk fleet thumbnails
+// (/images/machines/brokk{70,110,...,800}.jpg) used to be here but they're
+// product-catalogue shots, not project photos, so they're scoped to the
+// /machine-hire page only and excluded from the gallery.
 const STANDALONE_IMAGES: GalleryImage[] = [
-  // Brokk fleet — each tagged Robotic Demolition + Machine Hire
-  { src: '/images/machines/brokk70.jpg', alt: 'Brokk 70 robotic demolition machine — ultra-compact, 600mm access', tags: ['Robotic Demolition', 'Machine Hire'], caption: 'Brokk 70', href: '/machine-hire' },
-  { src: '/images/machines/brokk110.jpg', alt: 'Brokk 110 robotic demolition machine — compact, doorway access', tags: ['Robotic Demolition', 'Machine Hire'], caption: 'Brokk 110', href: '/machine-hire' },
-  { src: '/images/machines/brokk170.jpg', alt: 'Brokk 170 robotic demolition machine — compact power, internal structural work', tags: ['Robotic Demolition', 'Machine Hire'], caption: 'Brokk 170', href: '/machine-hire' },
-  { src: '/images/machines/brokk200.jpg', alt: 'Brokk 200 robotic demolition machine — high output, structural demolition', tags: ['Robotic Demolition', 'Machine Hire'], caption: 'Brokk 200', href: '/machine-hire' },
-  { src: '/images/machines/brokk300.jpg', alt: 'Brokk 300 robotic demolition machine — heavy duty, extended reach', tags: ['Robotic Demolition', 'Machine Hire'], caption: 'Brokk 300', href: '/machine-hire' },
-  { src: '/images/machines/brokk500.jpg', alt: 'Brokk 500 robotic demolition machine — high impact, large-scale work', tags: ['Robotic Demolition', 'Machine Hire'], caption: 'Brokk 500', href: '/machine-hire' },
-  { src: '/images/machines/brokk800.jpg', alt: 'Brokk 800 robotic demolition machine — maximum power, extreme duty', tags: ['Robotic Demolition', 'Machine Hire'], caption: 'Brokk 800', href: '/machine-hire' },
   // Project photos
   {
     src: '/images/projects/brokk-800-bank-vault.jpg',

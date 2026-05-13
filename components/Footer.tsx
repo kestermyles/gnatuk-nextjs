@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { SERVICES, SITE } from '@/lib/constants';
+import { ACCREDITATIONS } from '@/lib/accreditations';
 
 export function Footer() {
   return (
@@ -71,6 +72,11 @@ export function Footer() {
             <li>
               <Link href="/support-services" className="text-sm text-gnat-steel hover:text-gnat-orange">
                 Support Services
+              </Link>
+            </li>
+            <li>
+              <Link href="/accreditations" className="text-sm text-gnat-steel hover:text-gnat-orange">
+                Accreditations
               </Link>
             </li>
             <li>
@@ -146,6 +152,28 @@ export function Footer() {
               />
             </a>
           </div>
+        </div>
+      </div>
+
+      {/* Accreditations row — text-only badges for now (logo SVGs to be added) */}
+      <div className="border-t border-white/10 bg-gnat-navy">
+        <div className="container-prose py-5">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-gnat-steel">
+            Accredited &amp; audited
+          </p>
+          <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
+            {ACCREDITATIONS.map((a) => (
+              <li key={a.name}>
+                <Link
+                  href="/accreditations"
+                  className="text-xs font-semibold text-white/85 transition hover:text-gnat-orange"
+                >
+                  {a.name}
+                  {a.level ? ` · ${a.level}` : ''}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 

@@ -37,6 +37,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
     },
     {
+      url: `${SITE.url}/accreditations`,
+      lastModified,
+      priority: 0.7,
+      changeFrequency: 'yearly',
+    },
+    {
       url: `${SITE.url}/gallery`,
       lastModified,
       priority: 0.7,

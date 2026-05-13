@@ -81,6 +81,15 @@ export async function GET() {
     },
     {
       type: 'page',
+      title: 'Accreditations',
+      excerpt:
+        'CHAS, Constructionline Gold, RISQS, Achilles BuildingConfidence, NFDC, WJA, SSIP, RoSPA, Builder\'s Profile, DSA, Common Assessment Standard.',
+      body:
+        'accreditations chas constructionline gold risqs achilles building confidence nfdc wja water jetting ssip acclaim rospa builders profile dsa drilling sawing common assessment standard',
+      href: '/accreditations',
+    },
+    {
+      type: 'page',
       title: 'Contact',
       excerpt: 'Request a method proposal or speak to a specialist.',
       body: 'contact request method proposal phone email',
