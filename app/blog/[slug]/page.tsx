@@ -2,9 +2,11 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { AuthorBio } from '@/components/AuthorBio';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CTABlock } from '@/components/CTABlock';
 import { ArticleSchema } from '@/components/Schema';
+import { ShareButtons } from '@/components/ShareButtons';
 import { autoLinkText } from '@/lib/auto-link';
 import { BLOG, getBlogPostBySlug } from '@/lib/blog';
 import { SITE } from '@/lib/constants';
@@ -119,6 +121,13 @@ export default function BlogPostPage({ params }: { params: Params }) {
                   {autoLinkText(para)}
                 </p>
               ))}
+
+              <ShareButtons
+                url={`${SITE.url}/blog/${post.slug}`}
+                title={post.title}
+              />
+
+              <AuthorBio authorName={post.author} />
             </div>
           </div>
         </section>

@@ -4,12 +4,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { CTAButton } from './CTAButton';
+import { SearchModal } from './SearchModal';
 import { SERVICES, SITE } from '@/lib/constants';
 import { track } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -17,6 +19,18 @@ export function Header() {
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // ⌘K / Ctrl+K opens the search modal — standard pattern.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setSearchOpen((s) => !s);
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
   }, []);
 
   useEffect(() => {
@@ -203,10 +217,23 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="hidden shrink-0 min-[1400px]:block">
-          <CTAButton href="/contact" size="sm" variant="primary">
-            Request Method Proposal
-          </CTAButton>
+        <div className="flex shrink-0 items-center gap-2">
+          <button
+            type="button"
+            aria-label="Search the site"
+            onClick={() => setSearchOpen(true)}
+            className="flex h-11 w-11 items-center justify-center rounded text-gnat-navy transition-colors hover:bg-gnat-concrete-light hover:text-gnat-orange"
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="2" />
+              <path d="M14 14L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+          </button>
+          <div className="hidden min-[1400px]:block">
+            <CTAButton href="/contact" size="sm" variant="primary" trackingLocation="header">
+              Request Method Proposal
+            </CTAButton>
+          </div>
         </div>
 
         <button
@@ -294,6 +321,8 @@ export function Header() {
           </nav>
         </div>
       )}
+
+      <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 }
