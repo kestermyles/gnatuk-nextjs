@@ -1,5 +1,3 @@
-import fs from 'fs';
-import path from 'path';
 import { getAllPosts } from './sanity-queries';
 import type { BlogPost } from './blog';
 
@@ -40,11 +38,6 @@ function tagsForPost(p: BlogPost): GalleryTag[] | null {
   if (p.galleryTags.length === 0) return null;
   return p.galleryTags as GalleryTag[];
 }
-
-// How many carousel/extra images we surface in the gallery for a single post.
-// Lowered from 3 to 2 per business preference ("less is more") — keeps the
-// gallery visually varied rather than letting one project dominate a filter.
-const MAX_EXTRAS_PER_POST = 2;
 
 // Standalone images that don't have a parent blog post — project shots and
 // service-page heroes that work as gallery imagery. The 7 Brokk fleet thumbnails
@@ -94,50 +87,11 @@ const STANDALONE_IMAGES: GalleryImage[] = [
   },
 ];
 
-// Read carousel/extra images harvested from the original Wix posts.
-// Files are named `<slug>-extra-N.jpg` in /public/images/blog-extras/.
-// Each extra image inherits its tags from the parent blog post. Skipped if the
-// parent post has no galleryTags or is explicitly excluded ([]). Capped per-post.
-function getExtraImages(posts: BlogPost[]): GalleryImage[] {
-  const dir = path.join(process.cwd(), 'public/images/blog-extras');
-  let files: string[] = [];
-  try {
-    files = fs.readdirSync(dir);
-  } catch {
-    return [];
-  }
-  // Group by parent slug so we can apply the cap per-post.
-  const bySlug: Record<string, string[]> = {};
-  for (const file of files) {
-    if (!/^[a-z0-9-]+-extra-\d+\.[a-z]+$/i.test(file)) continue;
-    const slug = file.replace(/-extra-\d+\.[a-z]+$/i, '');
-    (bySlug[slug] ??= []).push(file);
-  }
-
-  const extras: GalleryImage[] = [];
-  for (const [slug, slugFiles] of Object.entries(bySlug)) {
-    const parent = posts.find((p) => p.slug === slug);
-    if (!parent) continue;
-    const tags = tagsForPost(parent);
-    if (!tags) continue; // Parent excluded from gallery
-    // Stable order, cap at MAX_EXTRAS_PER_POST so no project dominates.
-    const ordered = [...slugFiles].sort();
-    for (const file of ordered.slice(0, MAX_EXTRAS_PER_POST)) {
-      extras.push({
-        src: `/images/blog-extras/${file}`,
-        alt: `${parent.heroAlt} (additional view)`,
-        tags,
-        href: `/blog/${parent.slug}`,
-        caption: parent.title,
-        date: parent.date,
-      });
-    }
-  }
-  return extras.sort((a, b) => a.src.localeCompare(b.src));
-}
-
-// Manifest derived from CMS hero images (only for posts with galleryTags set)
-// + capped carousel extras + standalone fleet/project images.
+// Manifest is hero-only: one tile per post. Per-post carousel extras used to
+// be piped in here but they all linked back to the same /blog/[slug], which
+// made filters feel like a loop ("Read more →" kept landing on the same
+// handful of pages). The blog-extras/ files are kept on disk for a possible
+// future per-post carousel on /blog/[slug].
 export async function getGalleryImages(): Promise<GalleryImage[]> {
   const posts = await getAllPosts();
   const blogImages: GalleryImage[] = [];
@@ -153,5 +107,5 @@ export async function getGalleryImages(): Promise<GalleryImage[]> {
       date: p.date,
     });
   }
-  return [...blogImages, ...getExtraImages(posts), ...STANDALONE_IMAGES];
+  return [...blogImages, ...STANDALONE_IMAGES];
 }
