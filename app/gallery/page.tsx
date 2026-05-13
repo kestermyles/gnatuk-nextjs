@@ -6,6 +6,8 @@ import { ImageGallerySchema } from '@/components/Schema';
 import { GALLERY_TAGS, getGalleryImages } from '@/lib/gallery';
 import { SITE } from '@/lib/constants';
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: 'Gallery — Robotic Demolition, Hydrodemolition & Specialist Equipment in Action',
   description:
@@ -19,8 +21,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function GalleryPage() {
-  const images = getGalleryImages();
+export default async function GalleryPage() {
+  const images = await getGalleryImages();
 
   return (
     <>

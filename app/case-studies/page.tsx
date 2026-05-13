@@ -3,8 +3,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CTABlock } from '@/components/CTABlock';
-import { BLOG } from '@/lib/blog';
+import { getAllPosts } from '@/lib/sanity-queries';
 import { SITE } from '@/lib/constants';
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'Case Studies — Specialist Demolition Projects',
@@ -27,10 +29,11 @@ function formatDate(iso: string): string {
   });
 }
 
-export default function CaseStudiesPage() {
-  const caseStudies = BLOG.filter((p) => p.surfaces.includes('case-study')).sort(
-    (a, b) => (a.date < b.date ? 1 : -1),
-  );
+export default async function CaseStudiesPage() {
+  const all = await getAllPosts();
+  const caseStudies = all
+    .filter((p) => p.surfaces.includes('case-study'))
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
 
   return (
     <>

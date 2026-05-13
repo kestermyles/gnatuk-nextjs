@@ -48,21 +48,39 @@ const client = createClient({
 const idify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
 // Upload a local image (path under /public) as a Sanity asset.
-// Returns the asset _id. Caches by path so each image is only uploaded once.
+// Returns the asset _id. Caches by path so each image is only uploaded once
+// per run. Includes throttling + retry to handle Sanity's 25 req/sec rate limit
+// and occasional upstream 502s.
 const assetCache = new Map<string, string>();
-async function uploadAsset(publicPath: string): Promise<string | null> {
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+async function uploadAsset(publicPath: string, attempt = 1): Promise<string | null> {
   if (assetCache.has(publicPath)) return assetCache.get(publicPath)!;
   const file = path.join(PROJECT_ROOT, 'public', publicPath.replace(/^\//, ''));
   if (!fs.existsSync(file)) {
     console.warn(`  skip (file missing): ${publicPath}`);
     return null;
   }
+  // Throttle: 80ms between uploads = ~12 req/sec, well under the 25/sec limit.
+  await sleep(80);
   const buf = fs.readFileSync(file);
-  const asset = await client.assets.upload('image', buf, {
-    filename: path.basename(file),
-  });
-  assetCache.set(publicPath, asset._id);
-  return asset._id;
+  try {
+    const asset = await client.assets.upload('image', buf, {
+      filename: path.basename(file),
+    });
+    assetCache.set(publicPath, asset._id);
+    return asset._id;
+  } catch (err: unknown) {
+    const e = err as { statusCode?: number; message?: string };
+    const code = e.statusCode ?? 0;
+    // Retry once on 5xx / network errors with exponential backoff.
+    if (attempt <= 3 && (code >= 500 || code === 0)) {
+      const wait = 1000 * attempt;
+      console.warn(`  retry ${attempt}/3 after ${wait}ms: ${publicPath} (${code})`);
+      await sleep(wait);
+      return uploadAsset(publicPath, attempt + 1);
+    }
+    throw err;
+  }
 }
 
 async function migrateAuthors() {

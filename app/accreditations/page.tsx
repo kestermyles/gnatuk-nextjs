@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CTABlock } from '@/components/CTABlock';
-import { ACCREDITATIONS } from '@/lib/accreditations';
+import { getAccreditations } from '@/lib/sanity-queries';
 import { SITE } from '@/lib/constants';
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'Accreditations — CHAS, NFDC, Constructionline Gold, RISQS, Achilles & more',
@@ -18,7 +20,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AccreditationsPage() {
+export default async function AccreditationsPage() {
+  const ACCREDITATIONS = await getAccreditations();
   return (
     <>
       <Breadcrumbs items={[{ name: 'Accreditations', href: '/accreditations' }]} />

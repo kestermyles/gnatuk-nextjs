@@ -3,8 +3,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CTABlock } from '@/components/CTABlock';
-import { BLOG } from '@/lib/blog';
+import { getAllPosts } from '@/lib/sanity-queries';
 import { SITE } from '@/lib/constants';
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'Insights — Method, Equipment & Sector Notes',
@@ -27,10 +29,11 @@ function formatDate(iso: string): string {
   });
 }
 
-export default function InsightsPage() {
-  const insights = BLOG.filter((p) => p.surfaces.includes('insight')).sort(
-    (a, b) => (a.date < b.date ? 1 : -1),
-  );
+export default async function InsightsPage() {
+  const all = await getAllPosts();
+  const insights = all
+    .filter((p) => p.surfaces.includes('insight'))
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
   const [featured, ...rest] = insights;
 
   return (

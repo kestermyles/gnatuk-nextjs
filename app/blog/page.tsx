@@ -3,8 +3,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CTABlock } from '@/components/CTABlock';
-import { BLOG } from '@/lib/blog';
+import { getAllPosts } from '@/lib/sanity-queries';
 import { SITE } from '@/lib/constants';
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'Blog — Project Updates, Fleet & Industry',
@@ -27,10 +29,11 @@ function formatDate(iso: string): string {
   });
 }
 
-export default function BlogPage() {
-  const sorted = BLOG.filter((p) => p.surfaces.includes('blog')).sort((a, b) =>
-    a.date < b.date ? 1 : -1,
-  );
+export default async function BlogPage() {
+  const all = await getAllPosts();
+  const sorted = all
+    .filter((p) => p.surfaces.includes('blog'))
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
 
   return (
     <>

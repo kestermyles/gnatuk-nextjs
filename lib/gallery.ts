@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import { BLOG } from './blog';
+import { getAllPosts } from './sanity-queries';
+import type { BlogPost } from './blog';
 
 export type GalleryTag =
   | 'Robotic Demolition'
@@ -33,7 +34,7 @@ export type GalleryImage = {
 // of truth — set to [] to exclude the post from the gallery, or a list of tags
 // to include it under those filters. If `galleryTags` is undefined (legacy
 // posts), the function returns null so the caller can skip the entry.
-function tagsForPost(p: (typeof BLOG)[number]): GalleryTag[] | null {
+function tagsForPost(p: BlogPost): GalleryTag[] | null {
   if (p.galleryTags === undefined) return null;
   if (p.galleryTags.length === 0) return null;
   return p.galleryTags as GalleryTag[];
@@ -96,7 +97,7 @@ const STANDALONE_IMAGES: GalleryImage[] = [
 // Files are named `<slug>-extra-N.jpg` in /public/images/blog-extras/.
 // Each extra image inherits its tags from the parent blog post. Skipped if the
 // parent post has no galleryTags or is explicitly excluded ([]). Capped per-post.
-function getExtraImages(): GalleryImage[] {
+function getExtraImages(posts: BlogPost[]): GalleryImage[] {
   const dir = path.join(process.cwd(), 'public/images/blog-extras');
   let files: string[] = [];
   try {
@@ -114,7 +115,7 @@ function getExtraImages(): GalleryImage[] {
 
   const extras: GalleryImage[] = [];
   for (const [slug, slugFiles] of Object.entries(bySlug)) {
-    const parent = BLOG.find((p) => p.slug === slug);
+    const parent = posts.find((p) => p.slug === slug);
     if (!parent) continue;
     const tags = tagsForPost(parent);
     if (!tags) continue; // Parent excluded from gallery
@@ -134,13 +135,14 @@ function getExtraImages(): GalleryImage[] {
   return extras.sort((a, b) => a.src.localeCompare(b.src));
 }
 
-// Manifest derived from BLOG hero images (only for posts with galleryTags set)
+// Manifest derived from CMS hero images (only for posts with galleryTags set)
 // + capped carousel extras + standalone fleet/project images.
-export function getGalleryImages(): GalleryImage[] {
+export async function getGalleryImages(): Promise<GalleryImage[]> {
+  const posts = await getAllPosts();
   const blogImages: GalleryImage[] = [];
-  for (const p of BLOG) {
+  for (const p of posts) {
     const tags = tagsForPost(p);
-    if (!tags) continue; // Post excluded from gallery
+    if (!tags) continue;
     blogImages.push({
       src: p.heroImage,
       alt: p.heroAlt,
@@ -150,5 +152,5 @@ export function getGalleryImages(): GalleryImage[] {
       date: p.date,
     });
   }
-  return [...blogImages, ...getExtraImages(), ...STANDALONE_IMAGES];
+  return [...blogImages, ...getExtraImages(posts), ...STANDALONE_IMAGES];
 }

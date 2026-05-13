@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { SERVICES, SITE } from '@/lib/constants';
-import { ACCREDITATIONS } from '@/lib/accreditations';
+import { getAccreditations } from '@/lib/sanity-queries';
 
-export function Footer() {
+export async function Footer() {
+  const ACCREDITATIONS = await getAccreditations();
   return (
     <footer className="bg-gnat-navy-deep text-gnat-concrete">
       <div className="container-prose grid gap-10 py-14 md:grid-cols-4">

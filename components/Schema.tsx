@@ -1,5 +1,5 @@
 import { SITE } from '@/lib/constants';
-import { ACCREDITATIONS } from '@/lib/accreditations';
+import { getAccreditations } from '@/lib/sanity-queries';
 
 type JsonLdProps = { data: Record<string, unknown> | Record<string, unknown>[] };
 
@@ -12,7 +12,8 @@ export function JsonLd({ data }: JsonLdProps) {
   );
 }
 
-export function OrganizationSchema() {
+export async function OrganizationSchema() {
+  const ACCREDITATIONS = await getAccreditations();
   // Promoted from Organization to LocalBusiness — better signal for "demolition
   // contractor near me" / sector queries. Includes the three offices, the area
   // served, and an hours block. Accreditations array is empty until the company

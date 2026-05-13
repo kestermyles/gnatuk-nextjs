@@ -8,17 +8,22 @@ import { CTABlock } from '@/components/CTABlock';
 import { ArticleSchema } from '@/components/Schema';
 import { ShareButtons } from '@/components/ShareButtons';
 import { autoLinkText } from '@/lib/auto-link';
-import { BLOG, getBlogPostBySlug } from '@/lib/blog';
+import { getAllPosts, getPostBySlug } from '@/lib/sanity-queries';
 import { SITE } from '@/lib/constants';
+
+// Revalidate cached pages every minute so CMS edits go live within ~60s
+// without a redeploy. Webhook-driven on-demand revalidation can be added later.
+export const revalidate = 60;
 
 type Params = { slug: string };
 
-export function generateStaticParams(): Params[] {
-  return BLOG.map((p) => ({ slug: p.slug }));
+export async function generateStaticParams(): Promise<Params[]> {
+  const posts = await getAllPosts();
+  return posts.map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata({ params }: { params: Params }): Metadata {
-  const post = getBlogPostBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const post = await getPostBySlug(params.slug);
   if (!post) return { title: 'Post Not Found' };
   return {
     title: post.title,
@@ -50,8 +55,8 @@ function formatDate(iso: string): string {
   });
 }
 
-export default function BlogPostPage({ params }: { params: Params }) {
-  const post = getBlogPostBySlug(params.slug);
+export default async function BlogPostPage({ params }: { params: Params }) {
+  const post = await getPostBySlug(params.slug);
   if (!post) notFound();
 
   // Breadcrumb + "more from..." use the post's primary surface so context matches
@@ -63,9 +68,9 @@ export default function BlogPostPage({ params }: { params: Params }) {
     blog: { label: 'Blog', href: '/blog', moreLabel: 'More from the blog' },
   }[primarySurface];
 
-  const others = BLOG.filter(
-    (p) => p.slug !== post.slug && p.surfaces.includes(primarySurface),
-  )
+  const allPosts = await getAllPosts();
+  const others = allPosts
+    .filter((p) => p.slug !== post.slug && p.surfaces.includes(primarySurface))
     .sort((a, b) => (a.date < b.date ? 1 : -1))
     .slice(0, 3);
 

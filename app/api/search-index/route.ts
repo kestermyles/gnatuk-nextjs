@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
-import { BLOG } from '@/lib/blog';
+import { getAllPosts } from '@/lib/sanity-queries';
 import { SERVICES } from '@/lib/constants';
 
-// Statically generated at build time. Served from the CDN.
-export const dynamic = 'force-static';
+// Revalidated every minute so CMS additions show up in search promptly.
+export const revalidate = 60;
 
 export type SearchEntry = {
   title: string;
@@ -17,6 +17,7 @@ export type SearchEntry = {
 
 export async function GET() {
   const entries: SearchEntry[] = [];
+  const BLOG = await getAllPosts();
 
   for (const s of SERVICES) {
     entries.push({

@@ -1,8 +1,11 @@
 import type { MetadataRoute } from 'next';
 import { SERVICES, SITE } from '@/lib/constants';
-import { BLOG } from '@/lib/blog';
+import { getAllPosts } from '@/lib/sanity-queries';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 60;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const BLOG = await getAllPosts();
   const lastModified = new Date();
   return [
     { url: SITE.url, lastModified, priority: 1.0, changeFrequency: 'monthly' },
