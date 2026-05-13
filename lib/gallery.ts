@@ -35,7 +35,8 @@ export type GalleryImage = {
 // to include it under those filters. If `galleryTags` is undefined (legacy
 // posts), the function returns null so the caller can skip the entry.
 function tagsForPost(p: BlogPost): GalleryTag[] | null {
-  if (p.galleryTags === undefined) return null;
+  // Treat null (Sanity unset value) and undefined (static fallback) the same.
+  if (p.galleryTags == null) return null;
   if (p.galleryTags.length === 0) return null;
   return p.galleryTags as GalleryTag[];
 }

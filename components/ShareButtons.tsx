@@ -1,10 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { track } from '@/lib/analytics';
 
 type ShareButtonsProps = {
-  /** Full absolute URL of the page to share. */
+  /**
+   * Fallback URL used during server rendering and for the initial paint.
+   * At click time we always prefer window.location.href so the share goes to
+   * whichever hostname the visitor is actually on — important before the
+   * DNS cutover (gnatuk-nextjs.vercel.app) and after (www.gnatuk.com).
+   */
   url: string;
   /** Headline of the piece — used as the share title and email subject. */
   title: string;
@@ -13,27 +18,37 @@ type ShareButtonsProps = {
 const buttonClass =
   'inline-flex items-center gap-2 rounded border border-gnat-concrete bg-white px-3 py-2 text-sm font-semibold text-gnat-navy transition hover:border-gnat-orange/50 hover:text-gnat-orange';
 
-export function ShareButtons({ url, title }: ShareButtonsProps) {
+export function ShareButtons({ url: fallbackUrl, title }: ShareButtonsProps) {
   const [copied, setCopied] = useState(false);
+  // Set on mount to the real URL the visitor is on; SSR uses the fallback.
+  const [liveUrl, setLiveUrl] = useState(fallbackUrl);
+  useEffect(() => {
+    setLiveUrl(window.location.href);
+  }, []);
 
-  const encodedUrl = encodeURIComponent(url);
-  const encodedTitle = encodeURIComponent(title);
-  const emailSubject = encodeURIComponent(`Worth a read: ${title}`);
-  const emailBody = encodeURIComponent(`Thought you might find this useful — ${title}\n\n${url}`);
+  const { emailHref, linkedinHref, twitterHref } = useMemo(() => {
+    const eu = encodeURIComponent(liveUrl);
+    const et = encodeURIComponent(title);
+    return {
+      emailHref: `mailto:?subject=${encodeURIComponent(`Worth a read: ${title}`)}&body=${encodeURIComponent(`Thought you might find this useful — ${title}\n\n${liveUrl}`)}`,
+      linkedinHref: `https://www.linkedin.com/sharing/share-offsite/?url=${eu}`,
+      twitterHref: `https://x.com/intent/tweet?text=${et}&url=${eu}`,
+    };
+  }, [liveUrl, title]);
 
   function shareNative() {
-    track({ event: 'cta_click', cta_label: 'share_native', cta_destination: url, cta_location: 'share_buttons' });
+    track({ event: 'cta_click', cta_label: 'share_native', cta_destination: liveUrl, cta_location: 'share_buttons' });
     if (typeof navigator !== 'undefined' && navigator.share) {
-      void navigator.share({ title, url }).catch(() => {
+      void navigator.share({ title, url: liveUrl }).catch(() => {
         /* user cancelled — no action */
       });
     }
   }
 
   function copyLink() {
-    track({ event: 'cta_click', cta_label: 'share_copy_link', cta_destination: url, cta_location: 'share_buttons' });
+    track({ event: 'cta_click', cta_label: 'share_copy_link', cta_destination: liveUrl, cta_location: 'share_buttons' });
     if (typeof navigator === 'undefined' || !navigator.clipboard) return;
-    void navigator.clipboard.writeText(url).then(() => {
+    void navigator.clipboard.writeText(liveUrl).then(() => {
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2000);
     });
@@ -57,7 +72,7 @@ export function ShareButtons({ url, title }: ShareButtonsProps) {
           </button>
         )}
         <a
-          href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
+          href={linkedinHref}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => logShare('linkedin')}
@@ -67,7 +82,7 @@ export function ShareButtons({ url, title }: ShareButtonsProps) {
           LinkedIn
         </a>
         <a
-          href={`https://x.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`}
+          href={twitterHref}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => logShare('twitter')}
@@ -77,7 +92,7 @@ export function ShareButtons({ url, title }: ShareButtonsProps) {
           X / Twitter
         </a>
         <a
-          href={`mailto:?subject=${emailSubject}&body=${emailBody}`}
+          href={emailHref}
           onClick={() => logShare('email')}
           className={buttonClass}
           aria-label="Share by email"
