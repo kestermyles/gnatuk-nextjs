@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CTABlock } from '@/components/CTABlock';
 import { ACCREDITATIONS } from '@/lib/accreditations';
@@ -46,30 +47,49 @@ export default function AccreditationsPage() {
                 key={a.name}
                 className="flex flex-col rounded-lg border border-gnat-concrete bg-white p-6 shadow-sm"
               >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="min-w-0">
-                    <h2 className="text-base font-bold leading-snug text-gnat-navy">
-                      {a.name}
-                    </h2>
-                    {a.level && (
-                      <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-gnat-orange">
-                        {a.level}
-                      </p>
-                    )}
+                <div className="flex items-start gap-4">
+                  {a.logo ? (
+                    <div className="flex h-14 w-28 flex-none items-center justify-center">
+                      <Image
+                        src={a.logo}
+                        alt={`${a.name} logo`}
+                        width={a.logoWidth ?? 200}
+                        height={a.logoHeight ?? 80}
+                        className="max-h-14 w-auto object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex h-14 w-28 flex-none items-center justify-center rounded border border-gnat-concrete bg-gnat-concrete-light px-2 text-center text-[10px] font-bold uppercase tracking-wider text-gnat-steel-dark">
+                      {a.name.split(' ')[0]}
+                    </div>
+                  )}
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <h2 className="text-base font-bold leading-snug text-gnat-navy">
+                          {a.name}
+                        </h2>
+                        {a.level && (
+                          <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-gnat-orange">
+                            {a.level}
+                          </p>
+                        )}
+                      </div>
+                      <a
+                        href={a.schemeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-none text-xs font-semibold text-gnat-steel-dark hover:text-gnat-orange"
+                        aria-label={`Visit the ${a.name} scheme website`}
+                      >
+                        Scheme ↗
+                      </a>
+                    </div>
+                    <p className="mt-3 text-sm leading-relaxed text-gnat-steel-dark">
+                      {a.blurb}
+                    </p>
                   </div>
-                  <a
-                    href={a.schemeUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-none text-xs font-semibold text-gnat-steel-dark hover:text-gnat-orange"
-                    aria-label={`Visit the ${a.name} scheme website`}
-                  >
-                    Scheme ↗
-                  </a>
                 </div>
-                <p className="mt-3 text-sm leading-relaxed text-gnat-steel-dark">
-                  {a.blurb}
-                </p>
               </li>
             ))}
           </ul>

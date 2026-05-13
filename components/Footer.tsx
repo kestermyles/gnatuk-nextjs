@@ -155,25 +155,34 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Accreditations row — text-only badges for now (logo SVGs to be added) */}
-      <div className="border-t border-white/10 bg-gnat-navy">
-        <div className="container-prose py-5">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-gnat-steel">
-            Accredited &amp; audited
-          </p>
-          <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
-            {ACCREDITATIONS.map((a) => (
-              <li key={a.name}>
-                <Link
-                  href="/accreditations"
-                  className="text-xs font-semibold text-white/85 transition hover:text-gnat-orange"
-                >
-                  {a.name}
-                  {a.level ? ` · ${a.level}` : ''}
-                </Link>
-              </li>
-            ))}
-          </ul>
+      {/* Accreditations row — logos where available, text labels for the rest */}
+      <div className="border-t border-white/10 bg-white">
+        <div className="container-prose py-6">
+          <Link href="/accreditations" className="block">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-gnat-steel-dark">
+              Accredited &amp; audited
+            </p>
+            <ul className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-3">
+              {ACCREDITATIONS.map((a) => (
+                <li key={a.name} className="flex items-center">
+                  {a.logo ? (
+                    <Image
+                      src={a.logo}
+                      alt={`${a.name} logo`}
+                      width={a.logoWidth ?? 200}
+                      height={a.logoHeight ?? 80}
+                      className="h-8 w-auto object-contain opacity-80 transition hover:opacity-100"
+                    />
+                  ) : (
+                    <span className="rounded border border-gnat-concrete px-2 py-1 text-[11px] font-bold uppercase tracking-wider text-gnat-steel-dark">
+                      {a.name}
+                      {a.level ? ` · ${a.level}` : ''}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </Link>
         </div>
       </div>
 

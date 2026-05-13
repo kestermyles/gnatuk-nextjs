@@ -10,6 +10,11 @@ export type Accreditation = {
   blurb: string;
   /** Official scheme website — verifies the scheme exists. */
   schemeUrl: string;
+  /** Path under /public/images/accreditations/ — omit to render a text badge. */
+  logo?: string;
+  /** Aspect-aware width in px the logo prefers (max — we constrain by height). */
+  logoWidth?: number;
+  logoHeight?: number;
 };
 
 export const ACCREDITATIONS: Accreditation[] = [
@@ -25,6 +30,9 @@ export const ACCREDITATIONS: Accreditation[] = [
     blurb:
       "The UK trade body for high-pressure water jetting. Membership requires audited compliance with the WJA Code of Practice for hydrodemolition and water-jetting operations.",
     schemeUrl: 'https://www.waterjetting.org.uk',
+    logo: '/images/accreditations/wja.svg',
+    logoWidth: 200,
+    logoHeight: 80,
   },
   {
     name: 'SSIP — Acclaim Accreditation',
@@ -45,6 +53,9 @@ export const ACCREDITATIONS: Accreditation[] = [
     blurb:
       "The UK trade body for concrete cutting, drilling and sawing contractors. Membership signals adherence to DSA technical standards and safe-working practice.",
     schemeUrl: 'https://www.drillandsaw.org.uk',
+    logo: '/images/accreditations/dsa.png',
+    logoWidth: 200,
+    logoHeight: 80,
   },
   {
     name: 'CHAS',
@@ -59,6 +70,9 @@ export const ACCREDITATIONS: Accreditation[] = [
     blurb:
       "Railway Industry Supplier Qualification Scheme — the standard pre-qualification system for the UK rail sector. RISQS verification is required for work on Network Rail and its supply chain.",
     schemeUrl: 'https://www.risqs.org',
+    logo: '/images/accreditations/risqs.png',
+    logoWidth: 200,
+    logoHeight: 80,
   },
   {
     name: 'Constructionline',
@@ -79,6 +93,9 @@ export const ACCREDITATIONS: Accreditation[] = [
     blurb:
       'Royal Society for the Prevention of Accidents — UK occupational health-and-safety membership demonstrating ongoing investment in safe-working culture.',
     schemeUrl: 'https://www.rospa.com',
+    logo: '/images/accreditations/rospa.png',
+    logoWidth: 200,
+    logoHeight: 80,
   },
   {
     name: 'NFDC',
@@ -86,5 +103,8 @@ export const ACCREDITATIONS: Accreditation[] = [
     blurb:
       "The National Federation of Demolition Contractors is the UK demolition industry's voice and standard-setter. NFDC membership signals adherence to the federation's Demolition Code of Practice and operative-competence schemes (CCDO).",
     schemeUrl: 'https://www.demolition-nfdc.com',
+    logo: '/images/accreditations/nfdc.png',
+    logoWidth: 200,
+    logoHeight: 80,
   },
 ];
