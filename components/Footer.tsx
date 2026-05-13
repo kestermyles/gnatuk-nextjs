@@ -167,7 +167,8 @@ export function Footer() {
               alt="GNAT UK accreditations: Builder's Profile, Water Jetting Association (WJA) Audited Member, SSIP Acclaim Accreditation, Achilles BuildingConfidence Audited, Drilling and Sawing Association (DSA), CHAS Accredited Contractor, RISQS Verified, Constructionline Gold Member, Common Assessment Standard, RoSPA Member, NFDC National Federation of Demolition Contractors Industry Service Provider"
               width={6780}
               height={681}
-              sizes="(min-width: 768px) 768px, 100vw"
+              sizes="(min-width: 1400px) 1336px, 100vw"
+              quality={90}
               className="mt-3 h-auto w-full"
             />
           </Link>
