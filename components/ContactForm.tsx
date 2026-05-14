@@ -258,10 +258,15 @@ export function ContactForm({ defaultEnquiryType, defaultService }: ContactFormP
         />
         <span>
           I agree to GNAT UK contacting me about this enquiry. See our{' '}
-          <a href="/privacy-policy" className="font-semibold text-gnat-navy underline hover:text-gnat-orange">
+          <a
+            href="/privacy-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-gnat-navy underline hover:text-gnat-orange"
+          >
             Privacy Policy
           </a>
-          .
+          {' '}(opens in a new tab).
         </span>
       </label>
       {errors.consent && <p className={errorClass}>{errors.consent.message}</p>}
