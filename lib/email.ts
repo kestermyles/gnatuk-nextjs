@@ -22,8 +22,14 @@ function parseList(value: string | undefined): string[] | undefined {
 const enquiryTypeLabel: Record<ContactFormValues['enquiryType'], string> = {
   'method-proposal': 'Method Proposal',
   'machine-hire': 'Machine Hire / Availability',
-  guidance: 'Not sure — needs guidance',
+  guidance: 'Not sure — need guidance',
 };
+
+// "Service" or "Machine" row label depends on what the enquiry is for — machine
+// hire surfaces a Brokk model, everything else surfaces a service line.
+function serviceRowLabel(type: ContactFormValues['enquiryType']): string {
+  return type === 'machine-hire' ? 'Machine' : 'Service';
+}
 
 // Format a timestamp for UK readers (e.g. "9 May 2026, 10:42 BST").
 function formatUKTimestamp(d: Date): string {
@@ -50,6 +56,8 @@ export async function sendContactEmail(data: ContactFormValues) {
 
   const submitted = formatUKTimestamp(new Date());
 
+  const svcLabel = serviceRowLabel(data.enquiryType);
+
   const text = `New enquiry from gnatuk.com
 
 AT A GLANCE
@@ -60,11 +68,12 @@ Reply directly to ${data.email}${data.phone ? ` or call ${data.phone}` : ''}.
 
 — DETAIL —
 Enquiry type:  ${enquiryTypeLabel[data.enquiryType]}
-Service:       ${data.service || '—'}
+${svcLabel}:${' '.repeat(Math.max(1, 14 - svcLabel.length - 1))}${data.service || '—'}
 Name:          ${data.name}
 Company:       ${data.company || '—'}
 Email:         ${data.email}
 Phone:         ${data.phone || '—'}
+Consent:       Granted (Privacy Policy)
 
 Their message:
 ${data.message}
@@ -97,11 +106,12 @@ Hit Reply on this email to respond directly to ${data.name.split(' ')[0] || data
     <h3 style="color: #1a2332; margin: 0 0 12px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; color: #5a6470;">Detail</h3>
     <table style="width: 100%; border-collapse: collapse; margin: 0 0 24px;">
       <tr><td style="padding: 6px 0; color: #5a6470; width: 140px;">Enquiry type</td><td style="padding: 6px 0; font-weight: 600;">${enquiryTypeLabel[data.enquiryType]}</td></tr>
-      <tr><td style="padding: 6px 0; color: #5a6470;">Service</td><td style="padding: 6px 0;">${escapeHtml(data.service || '—')}</td></tr>
+      <tr><td style="padding: 6px 0; color: #5a6470;">${svcLabel}</td><td style="padding: 6px 0;">${escapeHtml(data.service || '—')}</td></tr>
       <tr><td style="padding: 6px 0; color: #5a6470;">Name</td><td style="padding: 6px 0;">${escapeHtml(data.name)}</td></tr>
       <tr><td style="padding: 6px 0; color: #5a6470;">Company</td><td style="padding: 6px 0;">${escapeHtml(data.company || '—')}</td></tr>
       <tr><td style="padding: 6px 0; color: #5a6470;">Email</td><td style="padding: 6px 0;"><a href="mailto:${escapeHtml(data.email)}" style="color: #1a2332;">${escapeHtml(data.email)}</a></td></tr>
       <tr><td style="padding: 6px 0; color: #5a6470;">Phone</td><td style="padding: 6px 0;">${data.phone ? `<a href="tel:${escapeHtml(data.phone)}" style="color: #1a2332;">${escapeHtml(data.phone)}</a>` : '—'}</td></tr>
+      <tr><td style="padding: 6px 0; color: #5a6470;">Consent</td><td style="padding: 6px 0;">Granted (<a href="${SITE.url}/privacy-policy" style="color: #1a2332;">Privacy Policy</a>)</td></tr>
     </table>
 
     <h3 style="color: #1a2332; margin: 0 0 12px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; color: #5a6470;">Their message</h3>
@@ -140,13 +150,15 @@ export async function sendAutoReply(data: ContactFormValues) {
       ? `${data.message.slice(0, echoLimit).trimEnd()}…`
       : data.message;
 
+  const autoSvcLabel = serviceRowLabel(data.enquiryType);
+
   const text = `Hi ${firstName},
 
 Thanks for getting in touch with ${SITE.name}.
 
 A quick summary of what you sent us:
   Enquiry type:    ${enquiryTypeLabel[data.enquiryType]}
-  Service:         ${data.service || '—'}
+  ${autoSvcLabel}:${' '.repeat(Math.max(1, 16 - autoSvcLabel.length - 1))}${data.service || '—'}
   Your message:    ${echoedMessage.split('\n').join('\n                   ')}
 
 A member of our team will review the detail and come back to you within 24 hours. If you need to speak to someone urgently, call us on ${SITE.phoneDisplay}.
@@ -173,7 +185,7 @@ ${SITE.url}
           <td style="padding: 4px 0; color: #1a2332;">${enquiryTypeLabel[data.enquiryType]}</td>
         </tr>
         <tr>
-          <td style="padding: 4px 12px 4px 0; color: #5a6470; vertical-align: top;">Service</td>
+          <td style="padding: 4px 12px 4px 0; color: #5a6470; vertical-align: top;">${autoSvcLabel}</td>
           <td style="padding: 4px 0; color: #1a2332;">${escapeHtml(data.service || '—')}</td>
         </tr>
         <tr>
