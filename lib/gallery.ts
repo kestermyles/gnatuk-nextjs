@@ -51,7 +51,9 @@ const STANDALONE_IMAGES: GalleryImage[] = [
     alt: 'Brokk 800 robotic demolition machine breaking into a high-security reinforced concrete bank vault',
     tags: ['Robotic Demolition'],
     caption: 'Brokk 800 — bank vault demolition',
-    href: '/blog/bank-vault-demolition-brokk-husqvarna',
+    // bank-vault-demolition-brokk-husqvarna was merged into the BoE case study
+    // (15 May 2026 dedup). Pointing directly at the canonical avoids a redirect hop.
+    href: '/blog/bank-of-england-vault-grade-1-london',
   },
   {
     src: '/images/projects/confined-space.jpg',

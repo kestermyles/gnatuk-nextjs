@@ -150,27 +150,9 @@ export const BLOG: BlogPost[] = [
       'Whilst Kiln Stripping procedures may not have changed significantly since 2012, Gnat\'s continued investment in State of the Art Robotic Technology enables us to confidently tackle the toughest, most demanding refractory wrecking work that the industry can throw at us — More Efficiently, More Safely — And Quicker.',
     ],
   },
-  {
-    slug: 'brokk-60-refractory-kiln-strip',
-    wixSlug: 'as-easy-as-1-2-3-one-of-gnatuk-s-brokk-60-s-punching-well-above',
-    title: 'Brokk 60 Refractory Kiln Strip in a Confined Vessel',
-    originalTitle:
-      "As Easy as 1, 2, 3! One of GnatUK's Brokk 60's, punching well above its weight during a Refractory Kiln-Strip!",
-    excerpt:
-      'A compact Brokk 60 was craned through a cut in the kiln wall to safely de-brick the refractory lining inside a tight, confined vessel.',
-    date: '2024-04-26',
-    category: 'Project',
-    surfaces: ['case-study'],
-    galleryTags: ['Robotic Demolition'],
-    heroImage: '/images/blog/brokk-60-refractory-kiln-strip.jpg',
-    heroAlt: 'Brokk 60 robot de-bricking the refractory lining inside a kiln vessel',
-    author: 'Nick Turnbull',
-    body: [
-      'Gnat UK — simplifying KILN DeBricking with remarkable ease.',
-      'Access to this large Vessel was achieved by cutting through the kiln refractory wall, enabling our Compact Brokk 60 Robot to be craned into the well of the Kiln.',
-      'The Brokk 60\'s small footprint, compact power and excellent manoeuvrability enabled it to systematically and safely de-brick the refractory linings.',
-    ],
-  },
+  // brokk-60-refractory-kiln-strip merged into chromium-kiln-debricking-elementis
+  // (15 May 2026 dedup pass — same Elementis project, different equipment angle).
+  // Body content lives on the canonical post; old slug 308-redirects.
   {
     slug: 'railway-arch-pedestrian-walkway-shotcrete',
     wixSlug: 'tunnel-vision-see-how-pedestrian-safety-concerns-trump-a-constipated-railway-arch',
@@ -369,30 +351,9 @@ export const BLOG: BlogPost[] = [
       'Gnat UK delivers a Nationwide Cold Cutting Service. Get in touch to find out more.',
     ],
   },
-  {
-    slug: 'bank-vault-demolition-brokk-husqvarna',
-    wixSlug: 'breaking-into-a-high-security-reinforced-concrete-bank-vaults-legally',
-    title: 'Demolishing High-Security Reinforced Bank Vaults',
-    originalTitle: 'Breaking into High Security Reinforced Concrete Bank Vaults - Legally!',
-    excerpt:
-      'Compact Brokk 250 and Husqvarna DXR 250 robots, plus the larger Brokk 800, deconstruct redundant high street bank vaults for landlord redevelopments.',
-    date: '2023-01-19',
-    category: 'Method',
-    surfaces: ['insight'],
-    galleryTags: ['Robotic Demolition'],
-    heroImage: '/images/blog/bank-vault-demolition-brokk-husqvarna.jpg',
-    heroAlt: 'Brokk demolition robot breaking into a high-security reinforced concrete bank vault',
-    author: 'Keith Hodgson',
-    body: [
-      'We Do Love Confined Space Demolition.',
-      'Ongoing changes within the banking sector and closure of numerous high street banks is resulting in an ever increasing number of premises being redeveloped by landlords. The conversion process typically involves changing the vacant premises back into Retail Units or Private Dwellings. However removing the High Security Reinforced Concrete and Steel Vaults is proving a huge headache for the Developers. Bank Vault Demolition Solutions — It\'s not supposed to be easy.',
-      'Gnat UK have a proven track record in Demolishing Bank Vaults and over the last 30 years have developed a range of Specialist Skills and Methods to Deconstruct and Remove them Safely and Quickly. Site conditions will dictate the optimum method deployed with available access invariably determining the size and type of Robot that can be deployed.',
-      'On sites with Restricted Access, compact robots are the preferred choice, for example the Rubber tracked BROKK 250, or the versatile, powerful Husqvarna DXR 250\'s are extremely manoeuvrable and able to access premises through doorways and then climb the stairs. Equally, when access is less of an issue, we can deploy larger Robots, including the mighty Brokk 800, which packs a mighty punch that makes light work of even the most formidable high security Concrete Constructions.',
-      'Recent deployments include a Brokk 800 3-Phase Electric Robot deconstructing a large bank vault in Hull.',
-      'Gnat UK has the largest fleet of 3 Phase Electric BROKK and HUSQVARNA robotic demolition machines in Europe, designed to operate in areas of demolition where Restricted Access or Environmental Hazard make conventional methods impractical.',
-      'We supply the full range and size of Robots and Attachments to suit every task. These are available for Contract Hire, with or without Operators.',
-    ],
-  },
+  // bank-vault-demolition-brokk-husqvarna merged into bank-of-england-vault-grade-1-london
+  // (15 May 2026 dedup pass — same vault project, equipment-focused angle).
+  // Body content lives on the canonical post; old slug 308-redirects.
   {
     slug: 'husqvarna-140-archimedes-screw-trough',
     wixSlug: 'gravity-defying-concrete-removal-on-a-40-degree-slope',
