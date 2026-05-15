@@ -7,6 +7,7 @@ import { FAQAccordion } from '@/components/FAQAccordion';
 import { RelatedServices } from '@/components/RelatedServices';
 import { GalleryCallout } from '@/components/GalleryCallout';
 import { CoverageNote } from '@/components/CoverageNote';
+import { IndustriesServed } from '@/components/IndustriesServed';
 import { ServiceSchema, FAQPageSchema } from '@/components/Schema';
 import { SITE } from '@/lib/constants';
 
@@ -158,6 +159,8 @@ export default function ColdCuttingPage() {
       <GalleryCallout tag="Cold Cutting" />
 
       <CoverageNote service="cold-cutting" />
+
+      <IndustriesServed service="cold-cutting" />
 
       <ContentSection eyebrow="FAQ" heading="Cold cutting — common questions.">
         <FAQAccordion faqs={faqs} />

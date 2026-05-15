@@ -10,6 +10,7 @@ import { FAQAccordion } from '@/components/FAQAccordion';
 import { RelatedServices } from '@/components/RelatedServices';
 import { GalleryCallout } from '@/components/GalleryCallout';
 import { CoverageNote } from '@/components/CoverageNote';
+import { IndustriesServed } from '@/components/IndustriesServed';
 import { ServiceSchema, FAQPageSchema } from '@/components/Schema';
 import { SITE } from '@/lib/constants';
 
@@ -231,6 +232,8 @@ export default function MachineHirePage() {
       <GalleryCallout tag="Machine Hire" />
 
       <CoverageNote service="machine-hire" />
+
+      <IndustriesServed service="machine-hire" />
 
       <ContentSection eyebrow="FAQ" heading="Machine hire — common questions.">
         <FAQAccordion faqs={faqs} />

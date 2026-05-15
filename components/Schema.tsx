@@ -334,6 +334,80 @@ export function WebSiteSchema() {
   return <JsonLd data={data} />;
 }
 
+// LocalBusiness schema — emitted once per /locations/[slug] page so each of
+// the three offices is a distinct entity Google can rank for local queries
+// ("demolition contractor Derby"). parentOrganization points back to the
+// top-level GeneralContractor (@id: SITE.url + /#organization) declared in
+// the root layout's OrganizationSchema.
+export function LocalBusinessSchema({
+  name,
+  description,
+  url,
+  address,
+  geo,
+  telephone,
+  email,
+  areaServed,
+}: {
+  name: string;
+  description: string;
+  url: string;
+  address: {
+    streetAddress: string;
+    locality: string;
+    region: string;
+    postalCode: string;
+    country: string;
+  };
+  geo: { latitude: number; longitude: number };
+  telephone: string;
+  email: string;
+  areaServed: string[];
+}) {
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': ['LocalBusiness', 'GeneralContractor'],
+    '@id': `${url}#localbusiness`,
+    name,
+    description,
+    url,
+    telephone,
+    email,
+    image: `${SITE.url}/images/og/default.jpg`,
+    parentOrganization: { '@id': `${SITE.url}/#organization` },
+    priceRange: '££££',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: address.streetAddress,
+      addressLocality: address.locality,
+      addressRegion: address.region,
+      postalCode: address.postalCode,
+      addressCountry: address.country,
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: geo.latitude,
+      longitude: geo.longitude,
+    },
+    areaServed: areaServed.map((a) => ({ '@type': 'Place', name: a })),
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '08:00',
+        closes: '17:00',
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Saturday', 'Sunday'],
+        opens: '00:00',
+        closes: '00:00',
+      },
+    ],
+  };
+  return <JsonLd data={data} />;
+}
+
 // Person schema — drives the E-E-A-T signal for authored content. Emitted on
 // /authors/[slug] and on every /blog/[slug] page (per-post Article schema
 // names the author, this schema gives Google the structured identity to link

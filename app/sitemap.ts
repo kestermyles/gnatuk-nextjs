@@ -1,5 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { SERVICES, SITE } from '@/lib/constants';
+import { INDUSTRY_LIST } from '@/lib/industries';
+import { LOCATION_LIST } from '@/lib/locations';
 import { getAllAuthors, getAllPosts } from '@/lib/sanity-queries';
 
 export const revalidate = 60;
@@ -39,6 +41,33 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
       changeFrequency: 'yearly',
     },
+    // Industry content hubs — high-leverage SEO surfaces (procurement teams
+    // source demolition by sector context, not by tool name).
+    {
+      url: `${SITE.url}/industries`,
+      lastModified,
+      priority: 0.8,
+      changeFrequency: 'monthly',
+    },
+    ...INDUSTRY_LIST.map((ind) => ({
+      url: `${SITE.url}/industries/${ind.slug}`,
+      lastModified,
+      priority: 0.8,
+      changeFrequency: 'monthly' as const,
+    })),
+    // Location pages — distinct LocalBusiness entities for local search.
+    {
+      url: `${SITE.url}/locations`,
+      lastModified,
+      priority: 0.7,
+      changeFrequency: 'yearly',
+    },
+    ...LOCATION_LIST.map((loc) => ({
+      url: `${SITE.url}/locations/${loc.slug}`,
+      lastModified,
+      priority: 0.7,
+      changeFrequency: 'yearly' as const,
+    })),
     {
       url: `${SITE.url}/support-services`,
       lastModified,

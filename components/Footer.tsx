@@ -59,6 +59,16 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/industries" className="text-sm text-gnat-steel hover:text-gnat-orange">
+                Industries
+              </Link>
+            </li>
+            <li>
+              <Link href="/locations" className="text-sm text-gnat-steel hover:text-gnat-orange">
+                Locations
+              </Link>
+            </li>
+            <li>
               <Link href="/case-studies" className="text-sm text-gnat-steel hover:text-gnat-orange">
                 Case Studies
               </Link>
