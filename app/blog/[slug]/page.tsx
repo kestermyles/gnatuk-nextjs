@@ -105,6 +105,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           description={authorRecord.blurb}
           imageUrl={authorRecord.image}
           url={`${SITE.url}/authors/${authorRecord.slug ?? authorSlug(authorRecord.name)}`}
+          sameAs={authorRecord.linkedin ? [authorRecord.linkedin] : undefined}
         />
       )}
       <PostImageGallerySchema

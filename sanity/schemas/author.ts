@@ -32,6 +32,13 @@ export const author = defineType({
       type: 'image',
       options: { hotspot: true },
     }),
+    defineField({
+      name: 'linkedin',
+      title: 'LinkedIn URL',
+      description:
+        'Public LinkedIn profile. Surfaced as a visible icon on the author page and emitted in the Person schema sameAs[] for cross-site identity linking — strong E-E-A-T signal for Google.',
+      type: 'url',
+    }),
   ],
   preview: { select: { title: 'name', subtitle: 'role', media: 'image' } },
 });

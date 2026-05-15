@@ -105,6 +105,7 @@ const AUTHOR_PROJECTION = groq`{
   name,
   role,
   blurb,
+  linkedin,
   "image": image.asset->url,
 }`;
 

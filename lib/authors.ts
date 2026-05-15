@@ -14,6 +14,8 @@ export type AuthorBio = {
   slug?: string;
   /** CDN URL of the author photo (Sanity) or static path. */
   image?: string;
+  /** Public LinkedIn URL — visible icon on the bio page + sameAs[] in Person schema. */
+  linkedin?: string;
 };
 
 /** Stable slug derived from author name — `Nick Turnbull` → `nick-turnbull`. */
