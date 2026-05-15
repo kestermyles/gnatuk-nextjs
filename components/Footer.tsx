@@ -4,8 +4,28 @@ import { SERVICES, SITE } from '@/lib/constants';
 
 export function Footer() {
   return (
-    <footer className="bg-gnat-navy-deep text-gnat-concrete">
-      <div className="container-prose grid gap-10 py-14 md:grid-cols-4">
+    <footer className="relative isolate overflow-hidden bg-gnat-navy-deep text-gnat-concrete">
+      {/* Aquajet hydrodemolition rig as a textural backdrop. Heavy overlay
+          keeps small footer text crisply readable while the brand imagery
+          shows through enough to feel like a hero, not a flat block. */}
+      <Image
+        src="/images/services/hydrodemolition-hero.jpg"
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover object-center opacity-50"
+        aria-hidden="true"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gnat-navy-deep/80"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-b from-gnat-navy-deep/40 via-gnat-navy-deep/70 to-gnat-navy-deep/95"
+      />
+
+      <div className="container-prose relative grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-1">
           <Link href="/" className="inline-block" aria-label="GNAT UK Home">
             <Image
@@ -171,7 +191,7 @@ export function Footer() {
 
       {/* Accreditations banner — alt text + /accreditations page + LocalBusiness
           schema (hasCredential[]) carry the organic visibility for the 11 schemes. */}
-      <div className="border-t border-white/10 bg-white">
+      <div className="relative border-t border-white/10 bg-white">
         <div className="container-prose py-6">
           <Link href="/accreditations" className="block">
             <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-gnat-steel-dark">
@@ -190,7 +210,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10">
+      <div className="relative border-t border-white/10">
         <div className="container-prose flex flex-col items-start justify-between gap-2 py-6 text-xs text-gnat-steel sm:flex-row sm:items-center">
           <p>
             © {new Date().getFullYear()} {SITE.legalName} · Registered in England &amp; Wales · Company No: {SITE.companyNumber}
