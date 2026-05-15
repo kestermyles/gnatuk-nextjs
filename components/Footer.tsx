@@ -5,24 +5,25 @@ import { SERVICES, SITE } from '@/lib/constants';
 export function Footer() {
   return (
     <footer className="relative isolate overflow-hidden bg-gnat-navy-deep text-gnat-concrete">
-      {/* Aquajet hydrodemolition rig as a textural backdrop. Heavy overlay
-          keeps small footer text crisply readable while the brand imagery
-          shows through enough to feel like a hero, not a flat block. */}
+      {/* Aquajet hydrodemolition rig as a textural backdrop. Lighter overlay
+          (45%) lets the brand imagery dominate; vertical gradient anchors
+          the copyright row at the bottom to near-solid navy so the small
+          legal text stays readable. */}
       <Image
         src="/images/services/hydrodemolition-hero.jpg"
         alt=""
         fill
         sizes="100vw"
-        className="object-cover object-center opacity-50"
+        className="object-cover object-center"
         aria-hidden="true"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gnat-navy-deep/80"
+        className="absolute inset-0 bg-gnat-navy-deep/45"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-b from-gnat-navy-deep/40 via-gnat-navy-deep/70 to-gnat-navy-deep/95"
+        className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gnat-navy-deep/85"
       />
 
       <div className="container-prose relative grid gap-10 py-14 md:grid-cols-4">
