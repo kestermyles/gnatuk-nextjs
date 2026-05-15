@@ -23,6 +23,9 @@ export const ACCREDITATIONS: Accreditation[] = [
     blurb:
       "Pre-qualification information system used across the UK construction sector — verified company, insurance and competence data.",
     schemeUrl: 'https://www.builders-profile.co.uk',
+    logo: '/images/accreditations/builders-profile.png',
+    logoWidth: 280,
+    logoHeight: 88,
   },
   {
     name: 'Water Jetting Association (WJA)',
@@ -35,10 +38,14 @@ export const ACCREDITATIONS: Accreditation[] = [
     logoHeight: 80,
   },
   {
-    name: 'SSIP — Acclaim Accreditation',
+    name: 'SSIP — Acclaim / Once For All',
+    level: 'SSIP Recognised',
     blurb:
-      "Safety Schemes in Procurement accreditation, recognised across UK construction and infrastructure procurement. Confirms audited health-and-safety competence.",
-    schemeUrl: 'https://www.acclaim-accreditation.com',
+      "Safety Schemes in Procurement (SSIP) recognised — Acclaim Accreditation, now operating as Once For All Health & Safety SSIP. Recognised across UK construction and infrastructure procurement; confirms audited health-and-safety competence.",
+    schemeUrl: 'https://ssip.org.uk',
+    logo: '/images/accreditations/ssip.png',
+    logoWidth: 140,
+    logoHeight: 88,
   },
   {
     name: 'Achilles BuildingConfidence',
@@ -46,6 +53,9 @@ export const ACCREDITATIONS: Accreditation[] = [
     blurb:
       'Independent supply-chain audit programme used by major UK construction clients. Audited compliance with industry standards on safety, quality, environment and ethics.',
     schemeUrl: 'https://www.achilles.com',
+    logo: '/images/accreditations/achilles.svg',
+    logoWidth: 88,
+    logoHeight: 88,
   },
   {
     name: 'Drilling & Sawing Association (DSA)',
@@ -63,6 +73,9 @@ export const ACCREDITATIONS: Accreditation[] = [
     blurb:
       "Contractors Health & Safety Assessment Scheme — the founding member of SSIP. CHAS accreditation is a procurement requirement on the majority of UK infrastructure frameworks.",
     schemeUrl: 'https://www.chas.co.uk',
+    logo: '/images/accreditations/chas.png',
+    logoWidth: 220,
+    logoHeight: 88,
   },
   {
     name: 'RISQS',
@@ -80,12 +93,18 @@ export const ACCREDITATIONS: Accreditation[] = [
     blurb:
       "The UK's largest pre-qualification certification body for the construction sector. Gold-level membership confirms enhanced financial, H&S, environmental and CSR verification.",
     schemeUrl: 'https://www.constructionline.co.uk',
+    logo: '/images/accreditations/constructionline.png',
+    logoWidth: 360,
+    logoHeight: 88,
   },
   {
     name: 'Common Assessment Standard',
     blurb:
       "Industry-wide PQ standard developed by Build UK and CECA to streamline supply-chain assessment. Accredited via Constructionline.",
     schemeUrl: 'https://builduk.org/commonassessmentstandard',
+    logo: '/images/accreditations/cas.png',
+    logoWidth: 200,
+    logoHeight: 88,
   },
   {
     name: 'RoSPA',
