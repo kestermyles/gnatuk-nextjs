@@ -33,9 +33,18 @@ export function ServiceHero({
             sizes="100vw"
             className="object-cover object-center"
           />
+          {/* Two-layer overlay for reliable text contrast across any hero image:
+              the horizontal gradient anchors the left side where text sits,
+              and a global navy wash keeps the right side cohesive even when
+              the underlying photo is very light (e.g. diamond-drilling-hero).
+              Together: WCAG-safe white-on-navy contrast everywhere the H1 sits. */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-r from-gnat-navy/40 via-gnat-navy/30 to-transparent"
+            className="absolute inset-0 bg-gnat-navy/30"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-r from-gnat-navy/70 via-gnat-navy/45 to-gnat-navy/10"
           />
         </>
       )}
