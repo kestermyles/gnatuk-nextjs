@@ -6,6 +6,7 @@ import { CTABlock } from '@/components/CTABlock';
 import { FAQAccordion } from '@/components/FAQAccordion';
 import { RelatedServices } from '@/components/RelatedServices';
 import { GalleryCallout } from '@/components/GalleryCallout';
+import { CoverageNote } from '@/components/CoverageNote';
 import { ServiceSchema, FAQPageSchema } from '@/components/Schema';
 import { SITE } from '@/lib/constants';
 
@@ -166,6 +167,8 @@ export default function HydrodemolitionPage() {
       </ContentSection>
 
       <GalleryCallout tag="Hydrodemolition" />
+
+      <CoverageNote service="hydrodemolition" />
 
       <ContentSection eyebrow="FAQ" heading="Hydrodemolition — common questions.">
         <FAQAccordion faqs={faqs} />

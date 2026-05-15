@@ -53,6 +53,24 @@ export default async function CaseStudiesPage() {
               specialist civils — where the method was the difference between a workable
               programme and a stalled one.
             </p>
+            <p className="mt-5 text-base leading-relaxed text-gnat-steel-dark">
+              Each case study below describes a scheme where the brief demanded more than a
+              generic demolition approach: confined access, structurally sensitive
+              surroundings, COMAH-regulated or live operations, Grade-listed building
+              constraints, or programmes tight enough that the wrong method would have lost
+              the client weeks. The projects span GNAT UK&apos;s full discipline range —
+              Robotic Demolition with the Brokk and Husqvarna fleet, Hydrodemolition with
+              Aquajet equipment, Diamond Wire Cutting and Concrete Sawing, and Abrasive
+              Cold Cutting in volatile environments. Sectors covered include
+              COMAH-regulated industrial sites, water infrastructure (including current
+              AMP8 delivery), highways and bridge structures, refractory and process-
+              industry vessels, listed buildings, and offshore decommissioning.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-gnat-steel-dark">
+              Use this as the technical record. If your scheme has any of the same
+              constraints, the methods that worked on these projects will tell you what a
+              workable approach looks like — and which approaches to rule out.
+            </p>
           </div>
 
           <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">

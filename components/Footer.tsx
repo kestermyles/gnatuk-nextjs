@@ -54,6 +54,11 @@ export function Footer() {
           </h2>
           <ul className="mt-4 space-y-2.5">
             <li>
+              <Link href="/our-process" className="text-sm text-gnat-steel hover:text-gnat-orange">
+                Our Process
+              </Link>
+            </li>
+            <li>
               <Link href="/case-studies" className="text-sm text-gnat-steel hover:text-gnat-orange">
                 Case Studies
               </Link>

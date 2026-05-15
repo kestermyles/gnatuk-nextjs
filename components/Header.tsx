@@ -184,6 +184,14 @@ export function Header() {
             </li>
             <li>
               <Link
+                href="/our-process"
+                className="whitespace-nowrap px-5 py-2 text-base font-medium text-gnat-navy transition-colors hover:text-gnat-orange"
+              >
+                Our Process
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/case-studies"
                 className="whitespace-nowrap px-5 py-2 text-base font-medium text-gnat-navy transition-colors hover:text-gnat-orange"
               >
@@ -275,6 +283,15 @@ export function Header() {
               ))}
               <li className="px-3 pb-1 pt-4 text-xs font-semibold uppercase tracking-wider text-gnat-steel-dark">
                 More
+              </li>
+              <li>
+                <Link
+                  href="/our-process"
+                  onClick={() => setOpen(false)}
+                  className="block rounded px-3 py-3 text-base text-gnat-navy hover:bg-gnat-concrete-light"
+                >
+                  Our Process
+                </Link>
               </li>
               <li>
                 <Link

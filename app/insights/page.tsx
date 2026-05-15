@@ -54,6 +54,20 @@ export default async function InsightsPage() {
               demolition. Method explanations, equipment notes and the kind of detail that
               doesn&apos;t fit on a service page.
             </p>
+            <p className="mt-5 text-base leading-relaxed text-gnat-steel-dark">
+              The insights below are the working notes behind GNAT UK&apos;s delivery —
+              comparisons between methods (hand lancing vs. robotic hydrodemolition,
+              wire sawing vs. mechanical breaking), equipment selection across the Brokk
+              and Husqvarna ranges, environmental controls for COMAH and ATEX-zoned
+              sites, and the structural reasoning behind top-down deconstruction. Each
+              piece is written by a member of the GNAT UK team who delivers this work on
+              site, not by a marketing department reading specs.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-gnat-steel-dark">
+              Use them as briefing material — when you&apos;re shaping a method statement,
+              defending a method choice in a design review, or trying to work out whether
+              a given technique is worth pursuing for your scheme.
+            </p>
           </div>
 
           {featured && (
