@@ -37,10 +37,10 @@ export function Footer() {
               className="h-12 w-auto"
             />
           </Link>
-          <p className="mt-4 text-sm text-gnat-steel">
+          <p className="mt-4 text-sm text-gnat-concrete">
             {SITE.tagline}
           </p>
-          <p className="mt-6 text-sm text-gnat-steel">
+          <p className="mt-6 text-sm text-gnat-concrete">
             {SITE.legalName}
             <br />
             {SITE.address.streetAddress}
@@ -60,7 +60,7 @@ export function Footer() {
               <li key={s.slug}>
                 <Link
                   href={`/${s.slug}`}
-                  className="text-sm text-gnat-steel hover:text-gnat-orange"
+                  className="text-sm text-gnat-concrete hover:text-gnat-orange"
                 >
                   {s.shortName}
                 </Link>
@@ -75,57 +75,57 @@ export function Footer() {
           </h2>
           <ul className="mt-4 space-y-2.5">
             <li>
-              <Link href="/our-process" className="text-sm text-gnat-steel hover:text-gnat-orange">
+              <Link href="/our-process" className="text-sm text-gnat-concrete hover:text-gnat-orange">
                 Our Process
               </Link>
             </li>
             <li>
-              <Link href="/industries" className="text-sm text-gnat-steel hover:text-gnat-orange">
+              <Link href="/industries" className="text-sm text-gnat-concrete hover:text-gnat-orange">
                 Industries
               </Link>
             </li>
             <li>
-              <Link href="/locations" className="text-sm text-gnat-steel hover:text-gnat-orange">
+              <Link href="/locations" className="text-sm text-gnat-concrete hover:text-gnat-orange">
                 Locations
               </Link>
             </li>
             <li>
-              <Link href="/case-studies" className="text-sm text-gnat-steel hover:text-gnat-orange">
+              <Link href="/case-studies" className="text-sm text-gnat-concrete hover:text-gnat-orange">
                 Case Studies
               </Link>
             </li>
             <li>
-              <Link href="/insights" className="text-sm text-gnat-steel hover:text-gnat-orange">
+              <Link href="/insights" className="text-sm text-gnat-concrete hover:text-gnat-orange">
                 Insights
               </Link>
             </li>
             <li>
-              <Link href="/blog" className="text-sm text-gnat-steel hover:text-gnat-orange">
+              <Link href="/blog" className="text-sm text-gnat-concrete hover:text-gnat-orange">
                 Blog
               </Link>
             </li>
             <li>
-              <Link href="/support-services" className="text-sm text-gnat-steel hover:text-gnat-orange">
+              <Link href="/support-services" className="text-sm text-gnat-concrete hover:text-gnat-orange">
                 Support Services
               </Link>
             </li>
             <li>
-              <Link href="/accreditations" className="text-sm text-gnat-steel hover:text-gnat-orange">
+              <Link href="/accreditations" className="text-sm text-gnat-concrete hover:text-gnat-orange">
                 Accreditations
               </Link>
             </li>
             <li>
-              <Link href="/gallery" className="text-sm text-gnat-steel hover:text-gnat-orange">
+              <Link href="/gallery" className="text-sm text-gnat-concrete hover:text-gnat-orange">
                 Gallery
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="text-sm text-gnat-steel hover:text-gnat-orange">
+              <Link href="/contact" className="text-sm text-gnat-concrete hover:text-gnat-orange">
                 Contact
               </Link>
             </li>
             <li>
-              <Link href="/privacy-policy" className="text-sm text-gnat-steel hover:text-gnat-orange">
+              <Link href="/privacy-policy" className="text-sm text-gnat-concrete hover:text-gnat-orange">
                 Privacy Policy
               </Link>
             </li>
@@ -136,7 +136,7 @@ export function Footer() {
           <h2 className="text-sm font-semibold uppercase tracking-wider text-white">
             Get in touch
           </h2>
-          <p className="mt-4 text-sm text-gnat-steel">
+          <p className="mt-4 text-sm text-gnat-concrete">
             Prefer to talk it through? Speak directly with a specialist.
           </p>
           <div className="mt-4 space-y-2 text-sm">
@@ -144,14 +144,14 @@ export function Footer() {
               href={`tel:${SITE.phoneE164}`}
               className="flex items-center gap-2 text-white hover:text-gnat-orange"
             >
-              <span className="text-gnat-steel">T</span>
+              <span className="text-gnat-concrete">T</span>
               <span className="font-semibold">{SITE.phoneDisplay}</span>
             </a>
             <a
               href={`mailto:${SITE.email}`}
               className="flex items-center gap-2 text-white hover:text-gnat-orange"
             >
-              <span className="text-gnat-steel">E</span>
+              <span className="text-gnat-concrete">E</span>
               <span className="font-semibold">{SITE.email}</span>
             </a>
           </div>
@@ -212,7 +212,7 @@ export function Footer() {
       </div>
 
       <div className="relative border-t border-white/10">
-        <div className="container-prose flex flex-col items-start justify-between gap-2 py-6 text-xs text-gnat-steel sm:flex-row sm:items-center">
+        <div className="container-prose flex flex-col items-start justify-between gap-2 py-6 text-xs text-gnat-concrete sm:flex-row sm:items-center">
           <p>
             © {new Date().getFullYear()} {SITE.legalName} · Registered in England &amp; Wales · Company No: {SITE.companyNumber}
           </p>
