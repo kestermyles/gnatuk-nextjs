@@ -5,9 +5,11 @@ import { notFound } from 'next/navigation';
 import { AuthorBio } from '@/components/AuthorBio';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CTABlock } from '@/components/CTABlock';
+import { PostCarousel } from '@/components/PostCarousel';
 import { ArticleSchema } from '@/components/Schema';
 import { ShareButtons } from '@/components/ShareButtons';
 import { autoLinkText } from '@/lib/auto-link';
+import { getPostExtras } from '@/lib/post-extras';
 import { getAllPosts, getPostBySlug } from '@/lib/sanity-queries';
 import { SITE } from '@/lib/constants';
 
@@ -74,6 +76,10 @@ export default async function BlogPostPage({ params }: { params: Params }) {
     .sort((a, b) => (a.date < b.date ? 1 : -1))
     .slice(0, 3);
 
+  // Per-post photo carousel — reads /public/images/blog-extras/<slug>-extra-*.
+  // Empty array means no extras → component renders nothing.
+  const extras = getPostExtras(post.slug, post.heroAlt, post.title);
+
   return (
     <>
       <ArticleSchema
@@ -126,6 +132,8 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                   {autoLinkText(para)}
                 </p>
               ))}
+
+              <PostCarousel extras={extras} postSlug={post.slug} />
 
               <ShareButtons
                 url={`${SITE.url}/blog/${post.slug}`}

@@ -23,7 +23,8 @@ const nextConfig = {
       ['turbine-hall-bulk-concrete-cutting-undertaken-by-our-wire-sawing-team', 'turbine-hall-wire-sawing'],
       ['one-of-our-brokk-500s-embarking-on-an-extended-project-in-london', 'brokk-500-london-deployment'],
       ['de-bricking-a-contaminated-chromium-kiln-circa-2012', 'chromium-kiln-debricking-elementis'],
-      ['as-easy-as-1-2-3-one-of-gnatuk-s-brokk-60-s-punching-well-above', 'brokk-60-refractory-kiln-strip'],
+      // brokk-60-refractory-kiln-strip merged into chromium-kiln-debricking-elementis (15 May dedup).
+      ['as-easy-as-1-2-3-one-of-gnatuk-s-brokk-60-s-punching-well-above', 'chromium-kiln-debricking-elementis'],
       ['tunnel-vision-see-how-pedestrian-safety-concerns-trump-a-constipated-railway-arch', 'railway-arch-pedestrian-walkway-shotcrete'],
       ['troublesome-piles', 'robotic-pile-deconstruction-brokk-60'],
       ['shropshire-flax-mill-deconstruction', 'shropshire-flax-mill-silo-deconstruction'],
@@ -32,7 +33,8 @@ const nextConfig = {
       ['one-of-the-biggest-facade-retention-schemes-outside-london', 'large-facade-retention-scheme'],
       ['abrasive-cold-cutting-in-tandem-with-brokk-800-saves-the-day', 'cold-cutting-brokk-800-oil-sludge-tank'],
       ['abrasive-cold-cutting', 'abrasive-cold-cutting-pressure-vessels'],
-      ['breaking-into-a-high-security-reinforced-concrete-bank-vaults-legally', 'bank-vault-demolition-brokk-husqvarna'],
+      // bank-vault-demolition-brokk-husqvarna merged into bank-of-england-vault-grade-1-london (15 May dedup).
+      ['breaking-into-a-high-security-reinforced-concrete-bank-vaults-legally', 'bank-of-england-vault-grade-1-london'],
       ['gravity-defying-concrete-removal-on-a-40-degree-slope', 'husqvarna-140-archimedes-screw-trough'],
       ['gnat-uk-sitting-down-on-the-job', 'tunnel-benching-brokk-60-sewer'],
       ['hydrodemolition-diamond-wire-sawing-car-factory-floor-refurbishment', 'hydrodemolition-diamond-wire-car-factory'],
@@ -48,6 +50,16 @@ const nextConfig = {
       ['railway-tunnel-reconstruction', 'farnworth-tunnel-brokk-330-fillie'],
       ['sensitive-bank-vault-deconstruction-in-a-grade-1-listed-building', 'bank-of-england-vault-grade-1-london'],
       ['york-walkway-diamond-sawing-saves-the-day', 'york-walkway-diamond-sawing-rougier-street'],
+    ];
+    // Post-merge redirects (15 May 2026 dedup pass).
+    // These slugs were deleted from Sanity; their content lives on under the
+    // canonical post. Permanent 301 so any LinkedIn / direct-link traffic
+    // (and Google's cached index) flows through to the consolidated page.
+    const mergedPosts = [
+      ['/blog/top-down-refractory-vessel-demolition-linkedin', '/blog/refractory-vessel-cold-cut-brokk-debricking'],
+      ['/blog/breaking-into-bank-vaults-legally-linkedin', '/blog/bank-of-england-vault-grade-1-london'],
+      ['/blog/bank-vault-demolition-brokk-husqvarna', '/blog/bank-of-england-vault-grade-1-london'],
+      ['/blog/brokk-60-refractory-kiln-strip', '/blog/chromium-kiln-debricking-elementis'],
     ];
     // Old fabricated case-study and insight detail slugs (briefly live before being
     // replaced by the curated views). Redirect to the index pages.
@@ -73,6 +85,11 @@ const nextConfig = {
       ...wixToBlog.map(([wix, blog]) => ({
         source: `/post/${wix}`,
         destination: `/blog/${blog}`,
+        permanent: true,
+      })),
+      ...mergedPosts.map(([source, destination]) => ({
+        source,
+        destination,
         permanent: true,
       })),
       ...retiredFabricated.map(([source, destination]) => ({

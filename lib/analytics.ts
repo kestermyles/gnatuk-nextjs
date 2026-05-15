@@ -9,6 +9,7 @@ export type AnalyticsEvent =
   | { event: 'phone_click'; phone_location: string }
   | { event: 'gallery_image_open'; gallery_tag: string; gallery_image_index: number }
   | { event: 'gallery_filter_change'; gallery_tag: string }
+  | { event: 'post_carousel_open'; post_slug: string; carousel_image_index: number }
   | { event: 'social_outbound'; social_network: string; social_location: string }
   | { event: 'form_submission'; form_type: string; service?: string };
 
