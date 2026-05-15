@@ -1,11 +1,11 @@
 import type { MetadataRoute } from 'next';
 import { SERVICES, SITE } from '@/lib/constants';
-import { getAllPosts } from '@/lib/sanity-queries';
+import { getAllAuthors, getAllPosts } from '@/lib/sanity-queries';
 
 export const revalidate = 60;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const BLOG = await getAllPosts();
+  const [BLOG, AUTHORS] = await Promise.all([getAllPosts(), getAllAuthors()]);
   const lastModified = new Date();
   return [
     { url: SITE.url, lastModified, priority: 1.0, changeFrequency: 'monthly' },
@@ -57,6 +57,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${SITE.url}/blog/${p.slug}`,
       lastModified: new Date(p.date),
       priority: p.surfaces.includes('case-study') ? 0.7 : 0.6,
+      changeFrequency: 'yearly' as const,
+    })),
+    // Author profile pages — E-E-A-T anchors that link out to authored content.
+    {
+      url: `${SITE.url}/authors`,
+      lastModified,
+      priority: 0.5,
+      changeFrequency: 'yearly',
+    },
+    ...AUTHORS.filter((a) => a.slug && a.name.includes(' ')).map((a) => ({
+      url: `${SITE.url}/authors/${a.slug}`,
+      lastModified,
+      priority: 0.5,
       changeFrequency: 'yearly' as const,
     })),
     {

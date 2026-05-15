@@ -10,7 +10,19 @@ export type AuthorBio = {
   name: string;
   role: string;
   blurb: string;
+  /** Stable URL slug for /authors/[slug] — derived from name when missing. */
+  slug?: string;
+  /** CDN URL of the author photo (Sanity) or static path. */
+  image?: string;
 };
+
+/** Stable slug derived from author name — `Nick Turnbull` → `nick-turnbull`. */
+export function authorSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
 
 export const AUTHORS: Record<string, AuthorBio> = {
   'Nick Turnbull': {

@@ -16,6 +16,8 @@ import { BLOG as STATIC_BLOG } from './blog';
 import type { BlogPost as StaticBlogPost } from './blog';
 import { ACCREDITATIONS as STATIC_ACCREDS } from './accreditations';
 import type { Accreditation as StaticAccred } from './accreditations';
+import { AUTHORS as STATIC_AUTHORS, authorSlug } from './authors';
+import type { AuthorBio } from './authors';
 
 // ----- Portable-text normalisation -----
 
@@ -91,4 +93,43 @@ export type SanityAccreditation = StaticAccred;
 export async function getAccreditations(): Promise<SanityAccreditation[]> {
   if (!sanityConfigured) return STATIC_ACCREDS;
   return await sanityClient.fetch<SanityAccreditation[]>(ACCREDS_QUERY);
+}
+
+// ----- Authors -----
+//
+// Authors live in Sanity as documents (`author-<slug>`) once the CMS is up, with
+// a fallback to the static AUTHORS map in lib/authors.ts. The static fallback
+// keeps `/authors/[slug]` pages working in dev / broken-env scenarios.
+
+const AUTHOR_PROJECTION = groq`{
+  name,
+  role,
+  blurb,
+  "image": image.asset->url,
+}`;
+
+const AUTHORS_QUERY = groq`*[_type == "author"] | order(name asc) ${AUTHOR_PROJECTION}`;
+
+function attachSlug(a: Omit<AuthorBio, 'slug'>): AuthorBio {
+  return { ...a, slug: authorSlug(a.name) };
+}
+
+export async function getAllAuthors(): Promise<AuthorBio[]> {
+  if (!sanityConfigured) return Object.values(STATIC_AUTHORS).map(attachSlug);
+  const raw = await sanityClient.fetch<Omit<AuthorBio, 'slug'>[]>(AUTHORS_QUERY);
+  return raw.map(attachSlug);
+}
+
+export async function getAuthorBySlug(slug: string): Promise<AuthorBio | null> {
+  const all = await getAllAuthors();
+  return all.find((a) => a.slug === slug) ?? null;
+}
+
+export async function getAuthorByName(name: string): Promise<AuthorBio | null> {
+  const all = await getAllAuthors();
+  return (
+    all.find((a) => a.name === name) ??
+    all.find((a) => a.name.toLowerCase() === name.toLowerCase()) ??
+    null
+  );
 }

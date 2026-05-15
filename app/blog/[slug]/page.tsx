@@ -6,11 +6,12 @@ import { AuthorBio } from '@/components/AuthorBio';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CTABlock } from '@/components/CTABlock';
 import { PostCarousel } from '@/components/PostCarousel';
-import { ArticleSchema } from '@/components/Schema';
+import { ArticleSchema, PersonSchema, PostImageGallerySchema } from '@/components/Schema';
 import { ShareButtons } from '@/components/ShareButtons';
+import { authorSlug } from '@/lib/authors';
 import { autoLinkText } from '@/lib/auto-link';
 import { getPostExtras } from '@/lib/post-extras';
-import { getAllPosts, getPostBySlug } from '@/lib/sanity-queries';
+import { getAllPosts, getAuthorByName, getPostBySlug } from '@/lib/sanity-queries';
 import { SITE } from '@/lib/constants';
 
 // Revalidate cached pages every minute so CMS edits go live within ~60s
@@ -80,6 +81,11 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   // Empty array means no extras → component renders nothing.
   const extras = getPostExtras(post.slug, post.heroAlt, post.title);
 
+  // Author record for the PersonSchema + AuthorBio. The query falls back to
+  // the static AUTHORS map when Sanity isn't configured.
+  const authorRecord = await getAuthorByName(post.author);
+  const postUrl = `${SITE.url}/blog/${post.slug}`;
+
   return (
     <>
       <ArticleSchema
@@ -89,8 +95,22 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         imageAlt={post.heroAlt}
         datePublished={post.date}
         authorName={post.author}
-        url={`${SITE.url}/blog/${post.slug}`}
+        url={postUrl}
         category={post.category}
+      />
+      {authorRecord && (
+        <PersonSchema
+          name={authorRecord.name}
+          jobTitle={authorRecord.role}
+          description={authorRecord.blurb}
+          imageUrl={authorRecord.image}
+          url={`${SITE.url}/authors/${authorRecord.slug ?? authorSlug(authorRecord.name)}`}
+        />
+      )}
+      <PostImageGallerySchema
+        postTitle={post.title}
+        postUrl={postUrl}
+        images={extras}
       />
       <Breadcrumbs
         items={[

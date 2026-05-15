@@ -2,8 +2,56 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CTABlock } from '@/components/CTABlock';
+import { FAQAccordion } from '@/components/FAQAccordion';
+import { FAQPageSchema } from '@/components/Schema';
 import { getAccreditations } from '@/lib/sanity-queries';
 import { SITE } from '@/lib/constants';
+
+// FAQ aimed at the high-intent queries a procurement/PQQ person types when
+// vetting a contractor: "what is CHAS accredited?", "is X RISQS verified?".
+// Triggers the FAQ rich result in SERPs and gives clear, indexable answers.
+const accreditationFAQs = [
+  {
+    question: 'What does CHAS Accredited Contractor mean?',
+    answer:
+      'CHAS (the Contractors Health and Safety Assessment Scheme) is one of the UK\'s longest-established SSIP-recognised health-and-safety pre-qualification schemes. CHAS Accredited Contractor status confirms an organisation\'s health-and-safety policies, risk-assessment procedures and competence have been independently audited against a recognised national standard. GNAT UK Limited holds current CHAS accreditation and can supply certificates for pre-qualification on request.',
+  },
+  {
+    question: 'What is RISQS Verified, and why does it matter for rail work?',
+    answer:
+      'RISQS (Railway Industry Supplier Qualification Scheme) is the pre-qualification scheme used by Network Rail and the wider GB rail industry. RISQS Verified status means a supplier has passed Network Rail\'s required audits for health, safety, quality, environmental and financial standards. Most rail-adjacent demolition and concrete-cutting work cannot proceed without a RISQS-verified contractor on site. GNAT UK Limited is currently RISQS Verified.',
+  },
+  {
+    question: 'What is Constructionline Gold Member status?',
+    answer:
+      'Constructionline is the UK\'s largest pre-qualification database for the construction industry. Gold Member is the highest standard tier — beyond basic compliance (Bronze) and SSIP-equivalent verification (Silver), Gold adds independent verification of insurance, equality, modern-slavery, environmental and quality-management policies. Tier-1 contractors typically require Gold Member status before pre-qualification.',
+  },
+  {
+    question: 'What is the Common Assessment Standard?',
+    answer:
+      'The Common Assessment Standard (CAS) is a unified UK construction pre-qualification framework developed by Build UK and CECA to replace the previous patchwork of duplicate PQQs. CAS-verified suppliers have been independently assessed against a single, standardised question set covering health and safety, quality, environment, financial standing, anti-bribery, modern slavery and equality. Holding CAS reduces duplicate paperwork across major contractor frameworks.',
+  },
+  {
+    question: 'Is GNAT UK a member of NFDC (the National Federation of Demolition Contractors)?',
+    answer:
+      'Yes — GNAT UK Limited is a member of the National Federation of Demolition Contractors (NFDC), the trade body representing the UK demolition industry. NFDC members are independently audited against industry-specific competence standards including the NFDC Code of Conduct and operational safety requirements. Membership is restricted to demolition contractors who can demonstrate the necessary expertise, safety record and insurance cover.',
+  },
+  {
+    question: 'What does WJA Audited Member mean for hydrodemolition work?',
+    answer:
+      'The Water Jetting Association (WJA) is the UK trade body for high-pressure water-jetting work, including hydrodemolition. WJA Audited Member status indicates the contractor has been independently assessed against the WJA Code of Practice covering operator training, equipment maintenance and on-site safety procedures specific to high-pressure water work. GNAT UK Limited is an Audited Member.',
+  },
+  {
+    question: 'What is Achilles BuildingConfidence?',
+    answer:
+      'Achilles BuildingConfidence is a pre-qualification scheme used widely across UK construction, particularly by Tier-1 main contractors, to verify supply-chain compliance with health-and-safety and quality-management standards. BuildingConfidence Audited status reflects a third-party, on-site audit of the supplier\'s systems, beyond paper-based pre-qualification.',
+  },
+  {
+    question: 'What is SSIP Acclaim Accreditation?',
+    answer:
+      'SSIP (Safety Schemes in Procurement) is the umbrella body recognising compliant H&S pre-qualification schemes across the UK construction industry. Acclaim Accreditation is one of the SSIP-recognised member schemes, providing equivalent verification to CHAS for buyer organisations. SSIP recognition means that holding one accredited member scheme is acknowledged across all others — reducing duplicate audits.',
+  },
+];
 
 export const revalidate = 60;
 
@@ -24,6 +72,7 @@ export default async function AccreditationsPage() {
   const ACCREDITATIONS = await getAccreditations();
   return (
     <>
+      <FAQPageSchema faqs={accreditationFAQs} />
       <Breadcrumbs items={[{ name: 'Accreditations', href: '/accreditations' }]} />
 
       <section className="bg-white">
@@ -96,6 +145,23 @@ export default async function AccreditationsPage() {
               </li>
             ))}
           </ul>
+
+          <div className="mt-16 border-t border-gnat-concrete pt-12">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gnat-orange">
+              FAQ
+            </p>
+            <h2 className="mt-3 text-2xl font-bold text-gnat-navy md:text-3xl">
+              What these accreditations actually mean.
+            </h2>
+            <p className="mt-3 max-w-3xl text-base leading-relaxed text-gnat-steel-dark">
+              The scheme acronyms can be a thicket — these are the questions
+              procurement and PQQ teams most often ask when reviewing suppliers
+              for the first time.
+            </p>
+            <div className="mt-8">
+              <FAQAccordion faqs={accreditationFAQs} />
+            </div>
+          </div>
 
           <div className="mt-14 rounded-lg border border-gnat-orange/20 bg-gnat-orange/5 p-6 md:p-8">
             <h2 className="text-lg font-bold text-gnat-navy">
