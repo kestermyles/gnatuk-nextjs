@@ -38,13 +38,23 @@ export const ACCREDITATIONS: Accreditation[] = [
     logoHeight: 80,
   },
   {
-    name: 'SSIP — Acclaim / Once For All',
-    level: 'SSIP Recognised',
+    name: 'SSIP',
+    level: 'Safety Schemes in Procurement',
     blurb:
-      "Safety Schemes in Procurement (SSIP) recognised — Acclaim Accreditation, now operating as Once For All Health & Safety SSIP. Recognised across UK construction and infrastructure procurement; confirms audited health-and-safety competence.",
+      "The umbrella body that recognises compliant health-and-safety pre-qualification schemes across UK construction. Holding any one SSIP-recognised scheme is accepted across all others — eliminates duplicate H&S audits across major-contractor frameworks.",
     schemeUrl: 'https://ssip.org.uk',
     logo: '/images/accreditations/ssip.png',
     logoWidth: 140,
+    logoHeight: 88,
+  },
+  {
+    name: 'Acclaim Accreditation',
+    level: 'SSIP Recognised',
+    blurb:
+      "An SSIP-recognised member scheme (provided by Supplier Assessment Services / Capita, now under Once For All Health & Safety SSIP). Confirms independently-audited health-and-safety competence to SSIP Core Criteria — equivalent to CHAS for procurement purposes.",
+    schemeUrl: 'https://www.constructionline.co.uk/products-services/acclaim/',
+    logo: '/images/accreditations/acclaim.jpg',
+    logoWidth: 200,
     logoHeight: 88,
   },
   {
