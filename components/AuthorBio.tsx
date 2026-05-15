@@ -32,6 +32,11 @@ export async function AuthorBio({ authorName }: AuthorBioProps) {
 
   const profileHref = `/authors/${author.slug ?? authorSlug(author.name)}`;
 
+  // Show only the first paragraph of the bio on the post-level card — keeps
+  // the read flow tight and gives "Read more about Nick →" a real reason to
+  // click (the full bio + project portfolio detail live on /authors/[slug]).
+  const cardBlurb = author.blurb.split(/\n\n+/)[0]?.trim() ?? author.blurb;
+
   return (
     <aside
       className="mt-12 flex flex-col gap-4 rounded-lg border border-gnat-concrete bg-gnat-concrete-light p-6 sm:flex-row sm:items-start"
@@ -69,7 +74,7 @@ export async function AuthorBio({ authorName }: AuthorBioProps) {
           </Link>
         </p>
         <p className="text-sm text-gnat-steel-dark">{author.role}</p>
-        <p className="mt-3 text-sm leading-relaxed text-gnat-navy">{author.blurb}</p>
+        <p className="mt-3 text-sm leading-relaxed text-gnat-navy">{cardBlurb}</p>
         <p className="mt-3">
           <Link
             href={profileHref}
