@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "TodoWrite",
+      "ToolSearch",
+      "Bash(curl *)",
+      "Bash(date *)",
+      "Bash(jq *)",
+      "Bash(ls *)",
+      "Bash(wc *)",
+      "Bash(grep *)",
+      "Bash(sips -g *)",
+      "Bash(unzip -l *)",
+      "Bash(pdfinfo *)",
+      "mcp__3afe8947-c74c-4361-a801-d16e14550be2__search_crm_objects",
+      "mcp__3afe8947-c74c-4361-a801-d16e14550be2__manage_crm_objects",
+      "mcp__3afe8947-c74c-4361-a801-d16e14550be2__get_crm_objects",
+      "mcp__3afe8947-c74c-4361-a801-d16e14550be2__search_owners",
+      "mcp__3afe8947-c74c-4361-a801-d16e14550be2__search_properties",
+      "mcp__3afe8947-c74c-4361-a801-d16e14550be2__get_properties",
+      "mcp__d02b5cbb-be4e-4a5f-be2a-363879ab4eff__search_threads",
+      "mcp__d02b5cbb-be4e-4a5f-be2a-363879ab4eff__get_thread",
+      "mcp__d02b5cbb-be4e-4a5f-be2a-363879ab4eff__list_labels",
+      "mcp__e6d129b5-f173-4488-af8a-c42244a4ec63__read_file_content",
+      "mcp__e6d129b5-f173-4488-af8a-c42244a4ec63__search_files",
+      "mcp__e6d129b5-f173-4488-af8a-c42244a4ec63__get_file_metadata",
+      "mcp__e6d129b5-f173-4488-af8a-c42244a4ec63__list_recent_files",
+      "mcp__scheduled-tasks__list_scheduled_tasks"
+    ]
+  }
+}

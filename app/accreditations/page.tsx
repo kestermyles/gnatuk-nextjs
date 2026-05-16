@@ -101,17 +101,17 @@ export default async function AccreditationsPage() {
               >
                 <div className="flex items-start gap-4">
                   {a.logo ? (
-                    <div className="flex h-16 w-40 flex-none items-center justify-center">
+                    <div className="flex h-28 w-28 flex-none items-center justify-center sm:h-32 sm:w-32">
                       <Image
                         src={a.logo}
                         alt={`${a.name} logo`}
                         width={a.logoWidth ?? 200}
-                        height={a.logoHeight ?? 80}
-                        className="max-h-16 max-w-full w-auto object-contain"
+                        height={a.logoHeight ?? 200}
+                        className="max-h-full max-w-full object-contain"
                       />
                     </div>
                   ) : (
-                    <div className="flex h-16 w-40 flex-none items-center justify-center rounded border border-gnat-concrete bg-gnat-concrete-light px-2 text-center text-[10px] font-bold uppercase tracking-wider text-gnat-steel-dark">
+                    <div className="flex h-28 w-28 flex-none items-center justify-center rounded border border-gnat-concrete bg-gnat-concrete-light px-2 text-center text-[10px] font-bold uppercase tracking-wider text-gnat-steel-dark sm:h-32 sm:w-32">
                       {a.name.split(' ')[0]}
                     </div>
                   )}
