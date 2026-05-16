@@ -63,9 +63,9 @@ export const INDUSTRIES: Record<IndustrySlug, IndustryHub> = {
     hero: 'Specialist demolition for UK water — AMP8 and beyond.',
     subtitle:
       'Treatment plants, reservoirs, sewer flumes, bridge decks and dockside structures — delivered without taking the asset offline.',
-    heroImage: '/images/services/hydrodemolition-hero.jpg',
+    heroImage: '/images/banners/water-hilti-vortex-chamber.webp',
     heroAlt:
-      'Aquajet hydrodemolition robot selectively removing concrete on a water-industry refurbishment, water-management kit alongside',
+      'HILTI track saw operating inside a water-industry vortex chamber — top-down view of the cutting setup on concrete structure',
     benefits: [
       'AMP8 framework experience',
       'Non-percussive methods on live assets',
@@ -146,9 +146,9 @@ export const INDUSTRIES: Record<IndustrySlug, IndustryHub> = {
     hero: 'Specialist demolition for COMAH-regulated sites.',
     subtitle:
       'Petrochemical, oil & gas, refining — spark-free, ATEX-compliant methods built around DSEAR and major-hazard safety regimes.',
-    heroImage: '/images/services/cold-cutting-hero.jpg',
+    heroImage: '/images/banners/petrochemical-comah-husqvarna-confined.webp',
     heroAlt:
-      'Abrasive cold cutting equipment isolating pipework on a COMAH-regulated petrochemical site, full PPE and atmosphere monitoring in place',
+      'Husqvarna robot deployed in a confined, atmospheric petrochemical environment with hanging chains — operator-out, remote-controlled work on a COMAH-regulated site',
     benefits: [
       'Spark-free isolation methods',
       'ATEX-zone-compliant kit',
@@ -227,9 +227,9 @@ export const INDUSTRIES: Record<IndustrySlug, IndustryHub> = {
     hero: 'Refractory kiln strip and process-vessel demolition.',
     subtitle:
       'Confined-space robotic work inside kilns, furnaces and process vessels — controlled contaminant handling, operator-safe remote operation.',
-    heroImage: '/images/services/robotic-demolition-hero.jpg',
+    heroImage: '/images/banners/process-refractory-brokk-kiln.webp',
     heroAlt:
-      'Brokk robotic demolition machine inside the confined space of a refractory kiln, removing high-temperature brick lining from the kiln wall',
+      'Brokk robotic demolition machine inside the confined space of a refractory kiln, removing high-temperature brick lining from the kiln wall with hydraulic hammer attachment',
     benefits: [
       'Confined-vessel access',
       'Contaminant containment',
@@ -310,9 +310,9 @@ export const INDUSTRIES: Record<IndustrySlug, IndustryHub> = {
     hero: 'Highways and bridges — selective removal, live carriageway adjacent.',
     subtitle:
       'Bridge-deck refurbishment, parapet removal, deck saddling and structural break-outs delivered without compromising the live network.',
-    heroImage: '/images/services/hydrodemolition-hero.jpg',
+    heroImage: '/images/banners/highways-aquajet-motorway-parapet.webp',
     heroAlt:
-      'Aquajet hydrodemolition robot performing selective concrete removal on a motorway bridge deck, with the live carriageway running alongside',
+      'GNAT-branded Aquajet hydrodemolition robot performing selective concrete removal on a motorway bridge parapet — water management and live-carriageway-adjacent working',
     benefits: [
       'Reinforcement-safe selective removal',
       'Possessions and lane-closure aware',
@@ -392,9 +392,9 @@ export const INDUSTRIES: Record<IndustrySlug, IndustryHub> = {
     hero: 'Listed-building demolition — preserve what stays.',
     subtitle:
       'Grade I, Grade II and Grade II* schemes where the original fabric must survive while non-original elements come out cleanly.',
-    heroImage: '/images/services/diamond-drilling-hero.jpg',
+    heroImage: '/images/banners/heritage-plunge-wire-sawing.webp',
     heroAlt:
-      'Diamond wire saw making a controlled cut through reinforced concrete inside a Grade-listed building, with original fabric preserved alongside',
+      'Plunge wire-sawing of cut concrete sections in a deep basement excavation, with original fabric preserved above the cut line — heritage-grade access and tolerance',
     benefits: [
       'Listed-building consent aware',
       'Millimetric cut tolerance',

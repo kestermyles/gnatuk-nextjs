@@ -46,7 +46,7 @@ const ENTRIES: Entry[] = [
     blurb:
       'Pre-qualification information system used across the UK construction sector — verified company, insurance and competence data.',
     schemeUrl: 'https://www.builders-profile.co.uk',
-    logoFile: 'builders-profile.png',
+    logoFile: 'builders-profile.jpg',
     sortOrder: 1,
   },
   {
@@ -56,7 +56,7 @@ const ENTRIES: Entry[] = [
     blurb:
       'The UK trade body for high-pressure water jetting. Membership requires audited compliance with the WJA Code of Practice for hydrodemolition and water-jetting operations.',
     schemeUrl: 'https://www.waterjetting.org.uk',
-    logoFile: 'wja.svg',
+    logoFile: 'wja.jpg',
     sortOrder: 2,
   },
   {
@@ -66,7 +66,7 @@ const ENTRIES: Entry[] = [
     blurb:
       'The umbrella body that recognises compliant health-and-safety pre-qualification schemes across UK construction. Holding any one SSIP-recognised scheme is accepted across all others — eliminates duplicate H&S audits across major-contractor frameworks.',
     schemeUrl: 'https://ssip.org.uk',
-    logoFile: 'ssip.png',
+    logoFile: 'ssip.jpg',
     sortOrder: 3,
   },
   {
@@ -86,7 +86,7 @@ const ENTRIES: Entry[] = [
     blurb:
       'Independent supply-chain audit programme used by major UK construction clients. Audited compliance with industry standards on safety, quality, environment and ethics.',
     schemeUrl: 'https://www.achilles.com',
-    logoFile: 'achilles.svg',
+    logoFile: 'achilles.jpg',
     sortOrder: 5,
   },
   {
@@ -96,7 +96,7 @@ const ENTRIES: Entry[] = [
     blurb:
       'The UK trade body for concrete cutting, drilling and sawing contractors. Membership signals adherence to DSA technical standards and safe-working practice.',
     schemeUrl: 'https://www.drillandsaw.org.uk',
-    logoFile: 'dsa.png',
+    logoFile: 'dsa.jpg',
     sortOrder: 6,
   },
   {
@@ -106,7 +106,7 @@ const ENTRIES: Entry[] = [
     blurb:
       'Contractors Health & Safety Assessment Scheme — the founding member of SSIP. CHAS accreditation is a procurement requirement on the majority of UK infrastructure frameworks.',
     schemeUrl: 'https://www.chas.co.uk',
-    logoFile: 'chas.png',
+    logoFile: 'chas.jpg',
     sortOrder: 7,
   },
   {
@@ -116,7 +116,7 @@ const ENTRIES: Entry[] = [
     blurb:
       'Railway Industry Supplier Qualification Scheme — the standard pre-qualification system for the UK rail sector. RISQS verification is required for work on Network Rail and its supply chain.',
     schemeUrl: 'https://www.risqs.org',
-    logoFile: 'risqs.png',
+    logoFile: 'risqs.jpg',
     sortOrder: 8,
   },
   {
@@ -126,7 +126,7 @@ const ENTRIES: Entry[] = [
     blurb:
       "The UK's largest pre-qualification certification body for the construction sector. Gold-level membership confirms enhanced financial, H&S, environmental and CSR verification.",
     schemeUrl: 'https://www.constructionline.co.uk',
-    logoFile: 'constructionline.png',
+    logoFile: 'constructionline.jpg',
     sortOrder: 9,
   },
   {
@@ -135,7 +135,7 @@ const ENTRIES: Entry[] = [
     blurb:
       'Industry-wide PQ standard developed by Build UK and CECA to streamline supply-chain assessment. Accredited via Constructionline.',
     schemeUrl: 'https://builduk.org/commonassessmentstandard',
-    logoFile: 'cas.png',
+    logoFile: 'cas.jpg',
     sortOrder: 10,
   },
   {
@@ -145,7 +145,7 @@ const ENTRIES: Entry[] = [
     blurb:
       'Royal Society for the Prevention of Accidents — UK occupational health-and-safety membership demonstrating ongoing investment in safe-working culture.',
     schemeUrl: 'https://www.rospa.com',
-    logoFile: 'rospa.png',
+    logoFile: 'rospa.jpg',
     sortOrder: 11,
   },
   {
@@ -155,7 +155,7 @@ const ENTRIES: Entry[] = [
     blurb:
       "The National Federation of Demolition Contractors is the UK demolition industry's voice and standard-setter. NFDC membership signals adherence to the federation's Demolition Code of Practice and operative-competence schemes (CCDO).",
     schemeUrl: 'https://www.demolition-nfdc.com',
-    logoFile: 'nfdc.png',
+    logoFile: 'nfdc.jpg',
     sortOrder: 12,
   },
 ];
