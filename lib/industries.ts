@@ -152,9 +152,9 @@ export const INDUSTRIES: Record<IndustrySlug, IndustryHub> = {
     hero: 'Specialist demolition for COMAH-regulated sites.',
     subtitle:
       'Petrochemical, oil & gas, refining — spark-free, ATEX-compliant methods built around DSEAR and major-hazard safety regimes.',
-    heroImage: '/images/banners/petrochemical-comah-husqvarna-confined.webp',
+    heroImage: '/images/banners/petrochemical-comah-refinery-mobilisation.jpg',
     heroAlt:
-      'Husqvarna robot deployed in a confined, atmospheric petrochemical environment with hanging chains — operator-out, remote-controlled work on a COMAH-regulated site',
+      'GNAT UK Brokk Hire mobilisation on a live COMAH-regulated refinery site — JLG access platform, scaffolding, crane lifting a process vessel, hi-vis operator and the GNAT UK fleet van staged in the foreground',
     benefits: [
       'Spark-free isolation methods',
       'ATEX-zone-compliant kit',
