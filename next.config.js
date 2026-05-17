@@ -62,6 +62,9 @@ const nextConfig = {
       ['/blog/brokk-60-refractory-kiln-strip', '/blog/chromium-kiln-debricking-elementis'],
       // Site comments PDF (17 May 2026) — mezzanine and Leeds were the same job.
       ['/blog/mezzanine-floor-deconstruction-warehouse', '/blog/leeds-factory-floor-cutting-track-saws'],
+      // Mast-Climber Insight deleted (imagery used elsewhere; subject covered
+      // more comprehensively on the process/refractory industry hub).
+      ['/blog/mast-climber-refractory-kiln-debricking', '/industries/process-refractory'],
     ];
     // Old fabricated case-study and insight detail slugs (briefly live before being
     // replaced by the curated views). Redirect to the index pages.
