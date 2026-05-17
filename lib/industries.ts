@@ -50,6 +50,12 @@ export type IndustryHub = {
   faqs: { question: string; answer: string }[];
   /** Final CTA block. */
   cta: { heading: string; body: string };
+  /**
+   * Optional in-sector project gallery — additional on-site photos that
+   * don't sit cleanly under any one case study but illustrate the sector
+   * work. Rendered as a grid on the industry hub.
+   */
+  projectGallery?: { src: string; alt: string; caption?: string }[];
 };
 
 export const INDUSTRIES: Record<IndustrySlug, IndustryHub> = {
@@ -392,9 +398,9 @@ export const INDUSTRIES: Record<IndustrySlug, IndustryHub> = {
     hero: 'Listed-building demolition — preserve what stays.',
     subtitle:
       'Grade I, Grade II and Grade II* schemes where the original fabric must survive while non-original elements come out cleanly.',
-    heroImage: '/images/banners/heritage-plunge-wire-sawing.webp',
+    heroImage: '/images/banners/heritage-facade-retention.jpg',
     heroAlt:
-      'Plunge wire-sawing of cut concrete sections in a deep basement excavation, with original fabric preserved above the cut line — heritage-grade access and tolerance',
+      'Yellow Brokk robotic demolition machine working inside a partially-demolished heritage building, the listed facade retained around it while the internal concrete structure comes out cleanly — top-down deconstruction under a facade-retention scheme',
     benefits: [
       'Listed-building consent aware',
       'Millimetric cut tolerance',
@@ -462,6 +468,28 @@ export const INDUSTRIES: Record<IndustrySlug, IndustryHub> = {
       heading: 'Listed-building scheme in design?',
       body: "Bring us in alongside the heritage team. Method conversations early help shape what the consent application can credibly propose — and avoid the situations where the consent is granted but the method to deliver it doesn't exist.",
     },
+    projectGallery: [
+      {
+        src: '/images/banners/heritage-gallery-1.jpg',
+        alt: 'GNAT UK operator with a Brokk pecker breaking out the deck of a heritage building, listed cathedral spire visible through the cleared facade — top-down robotic deconstruction under conservation control',
+        caption: 'Top-down deck break-out under facade retention',
+      },
+      {
+        src: '/images/banners/heritage-gallery-2.jpg',
+        alt: 'Yellow Brokk demolition robot working through the upper-floor structure of a Georgian-shell building, original sash-window facade preserved while the post-war concrete intervention comes out',
+        caption: 'Internal deconstruction inside a retained Georgian shell',
+      },
+      {
+        src: '/images/banners/heritage-gallery-3.jpg',
+        alt: 'GNAT UK operator and orange Brokk pecker working from the cleared top floor of a listed brick building, with "The Pearl" listed structure visible across the cleared site',
+        caption: 'Facade-retention works on a listed urban facade',
+      },
+      {
+        src: '/images/banners/heritage-gallery-4.jpg',
+        alt: 'Wide view of a heritage facade-retention scheme — the listed elevation propped in place while a Brokk robot deconstructs the internal floors and structure behind it',
+        caption: 'Wide view: facade retained, internal structure removed',
+      },
+    ],
   },
 
   'offshore-marine': {

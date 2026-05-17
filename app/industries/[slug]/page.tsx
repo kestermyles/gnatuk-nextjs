@@ -135,6 +135,38 @@ export default async function IndustryHubPage({ params }: { params: Params }) {
         <CheckList items={ind.subSectors} />
       </ContentSection>
 
+      {ind.projectGallery && ind.projectGallery.length > 0 && (
+        <ContentSection
+          variant="concrete"
+          eyebrow="On site"
+          heading="Project imagery from the sector."
+          intro="Additional on-site photography from recent schemes — supplements the case studies below."
+        >
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {ind.projectGallery.map((img) => (
+              <li key={img.src}>
+                <figure className="overflow-hidden rounded-lg border border-gnat-concrete bg-white shadow-sm">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-gnat-concrete-light">
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fill
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  {img.caption && (
+                    <figcaption className="p-3 text-xs leading-snug text-gnat-steel-dark">
+                      {img.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              </li>
+            ))}
+          </ul>
+        </ContentSection>
+      )}
+
       {caseStudies.length > 0 && (
         <ContentSection
           eyebrow="Documented projects"
