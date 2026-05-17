@@ -571,6 +571,18 @@ export const INDUSTRIES: Record<IndustrySlug, IndustryHub> = {
       heading: 'Marine or offshore brief in early planning?',
       body: 'Mobilisation logistics and weather-window planning shape the method. Bring us in before the lift plan and decommissioning sequence are locked — method changes after that are an order of magnitude more expensive.',
     },
+    projectGallery: [
+      {
+        src: '/images/banners/offshore-marine-gallery-1.jpg',
+        alt: 'After hydrodemolition on a marine jetty: rebar emerges clean and bond-ready while the surrounding concrete is selectively removed — preparation for replacement-concrete reinstatement on a coastal structure',
+        caption: 'After hydrodemolition — rebar intact and ready for replacement concrete',
+      },
+      {
+        src: '/images/banners/offshore-marine-gallery-2.jpg',
+        alt: 'GNAT UK operator and Brokk pecker working from a confined-access platform inside a deep coastal excavation — selective concrete removal against an in-service marine asset',
+        caption: 'Confined-access concrete removal in a coastal excavation',
+      },
+    ],
   },
 };
 
