@@ -474,9 +474,9 @@ export const INDUSTRIES: Record<IndustrySlug, IndustryHub> = {
     hero: 'Offshore decommissioning and marine demolition.',
     subtitle:
       'Coastal jetties, dockside structures, offshore decommissioning and tidal working — methods that deliver inside marine and weather constraints.',
-    heroImage: '/images/services/hydrodemolition-hero.jpg',
+    heroImage: '/images/banners/offshore-marine-aquajet-jetty.jpg',
     heroAlt:
-      'Hydrodemolition equipment working on a North Sea coastal jetty, removing deteriorated concrete from marine infrastructure while the structure remains operational',
+      'Aquajet hydrodemolition rig with GNAT UK branding mobilised on a North Sea coastal jetty, selectively removing deteriorated marine concrete while preserving the rebar',
     benefits: [
       'Tidal-window aware',
       'Marine-compatible methods',

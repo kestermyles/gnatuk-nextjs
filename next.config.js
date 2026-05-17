@@ -60,6 +60,8 @@ const nextConfig = {
       ['/blog/breaking-into-bank-vaults-legally-linkedin', '/blog/bank-of-england-vault-grade-1-london'],
       ['/blog/bank-vault-demolition-brokk-husqvarna', '/blog/bank-of-england-vault-grade-1-london'],
       ['/blog/brokk-60-refractory-kiln-strip', '/blog/chromium-kiln-debricking-elementis'],
+      // Site comments PDF (17 May 2026) — mezzanine and Leeds were the same job.
+      ['/blog/mezzanine-floor-deconstruction-warehouse', '/blog/leeds-factory-floor-cutting-track-saws'],
     ];
     // Old fabricated case-study and insight detail slugs (briefly live before being
     // replaced by the curated views). Redirect to the index pages.
