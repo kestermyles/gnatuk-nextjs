@@ -233,9 +233,9 @@ export const INDUSTRIES: Record<IndustrySlug, IndustryHub> = {
     hero: 'Refractory kiln strip and process-vessel demolition.',
     subtitle:
       'Confined-space robotic work inside kilns, furnaces and process vessels — controlled contaminant handling, operator-safe remote operation.',
-    heroImage: '/images/banners/process-refractory-brokk-kiln.webp',
+    heroImage: '/images/banners/process-refractory-british-steel.webp',
     heroAlt:
-      'Brokk robotic demolition machine inside the confined space of a refractory kiln, removing high-temperature brick lining from the kiln wall with hydraulic hammer attachment',
+      'Wide black-and-white view of a British Steel works — blast furnace and process plant infrastructure on the Teesside skyline, the scale of UK heavy-industrial refractory and process work GNAT UK operates in',
     benefits: [
       'Confined-vessel access',
       'Contaminant containment',
@@ -304,6 +304,23 @@ export const INDUSTRIES: Record<IndustrySlug, IndustryHub> = {
       heading: 'Kiln strip or vessel work coming up?',
       body: "Outage windows are unforgiving. Bring us into the planning early — method, plant and access sequencing get defined together, so the strip-out doesn't slip the relining programme.",
     },
+    projectGallery: [
+      {
+        src: '/images/banners/process-refractory-gallery-1.jpg',
+        alt: 'Close-up black-and-white study of a British Steel blast-furnace head — the structural scale and pipework complexity of UK heavy-industrial process equipment',
+        caption: 'Blast-furnace head detail — UK heavy-industrial scale',
+      },
+      {
+        src: '/images/banners/process-refractory-gallery-2.jpg',
+        alt: 'British Steel blast-furnace standing tall behind the approach road — the kind of operational refractory asset GNAT UK is brought in to strip during outage windows',
+        caption: 'Blast-furnace exterior — approach view',
+      },
+      {
+        src: '/images/banners/process-refractory-gallery-3.webp',
+        alt: 'Wide black-and-white view of a British Steel shutdown scene — process plant infrastructure prepared for refractory works during an outage',
+        caption: 'Process plant during shutdown — pre-outage view',
+      },
+    ],
   },
 
   highways: {
