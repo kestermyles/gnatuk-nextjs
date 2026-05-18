@@ -80,6 +80,11 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // Ad-platform tracker IDs — env-driven so the scripts only fire when the
+  // platform is actually being used. No IDs = no tracker, no noise.
+  const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+  const linkedinPartnerId = process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID;
+
   return (
     <html lang="en-GB" className={inter.variable}>
       <head>
@@ -107,6 +112,63 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </noscript>
           </>
         )}
+
+        {/* Meta (Facebook + Instagram) Pixel — fires PageView on load. Custom
+            events (Lead, Contact, ViewContent) are pushed from track() in
+            lib/analytics.ts so the dataLayer + Pixel stay in sync. */}
+        {metaPixelId && (
+          <>
+            <Script id="meta-pixel" strategy="afterInteractive">
+              {`!function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window,document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init','${metaPixelId}');
+              fbq('track','PageView');`}
+            </Script>
+            <noscript>
+              <img
+                height="1"
+                width="1"
+                style={{ display: 'none' }}
+                src={`https://www.facebook.com/tr?id=${metaPixelId}&ev=PageView&noscript=1`}
+                alt=""
+              />
+            </noscript>
+          </>
+        )}
+
+        {/* LinkedIn Insight Tag — fires page-view-equivalent on load. Lead
+            conversions are sent via lintrk('track', { conversion_id }) from
+            the contact form on success. */}
+        {linkedinPartnerId && (
+          <>
+            <Script id="linkedin-insight" strategy="afterInteractive">
+              {`_linkedin_partner_id="${linkedinPartnerId}";
+              window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];
+              window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+              (function(l){if(!l){window.lintrk=function(a,b){window.lintrk.q.push([a,b])};
+              window.lintrk.q=[]}var s=document.getElementsByTagName("script")[0];
+              var b=document.createElement("script");b.type="text/javascript";b.async=!0;
+              b.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";
+              s.parentNode.insertBefore(b,s);})(window.lintrk);`}
+            </Script>
+            <noscript>
+              <img
+                height="1"
+                width="1"
+                style={{ display: 'none' }}
+                src={`https://px.ads.linkedin.com/collect/?pid=${linkedinPartnerId}&fmt=gif`}
+                alt=""
+              />
+            </noscript>
+          </>
+        )}
+
         <Header />
         <main id="main" className="flex-1">
           {children}

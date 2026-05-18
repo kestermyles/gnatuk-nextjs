@@ -69,6 +69,24 @@ export const contactFormSchema = z.object({
   website: z.string().max(0).optional().or(z.literal('')),
   // Cloudflare Turnstile token — only validated server-side if TURNSTILE_SECRET_KEY is set.
   turnstileToken: z.string().optional(),
+  // Optional attribution payload — captured client-side from URL UTMs and
+  // posted along with the form. Surfaced in the team-notification email so
+  // Nick/Marc can see which campaign delivered the lead.
+  attribution: z
+    .object({
+      utm_source: z.string().max(120).optional(),
+      utm_medium: z.string().max(120).optional(),
+      utm_campaign: z.string().max(200).optional(),
+      utm_term: z.string().max(200).optional(),
+      utm_content: z.string().max(200).optional(),
+      gclid: z.string().max(200).optional(),
+      fbclid: z.string().max(200).optional(),
+      li_fat_id: z.string().max(200).optional(),
+      landing_path: z.string().max(500).optional(),
+      landing_referrer: z.string().max(500).optional(),
+      captured_at: z.string().max(40).optional(),
+    })
+    .optional(),
 });
 
 export type ContactFormValues = z.infer<typeof contactFormSchema>;

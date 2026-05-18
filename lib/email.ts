@@ -58,6 +58,14 @@ export async function sendContactEmail(data: ContactFormValues) {
 
   const svcLabel = serviceRowLabel(data.enquiryType);
 
+  const attr = data.attribution;
+  const attrLine = attr
+    ? [attr.utm_source, attr.utm_medium, attr.utm_campaign].filter(Boolean).join(' · ')
+    : '';
+  const attrText = attr
+    ? `\nMARKETING SOURCE\nSource:        ${attr.utm_source || '—'}\nMedium:        ${attr.utm_medium || '—'}\nCampaign:      ${attr.utm_campaign || '—'}\nLanded on:     ${attr.landing_path || '—'}\nReferrer:      ${attr.landing_referrer || '—'}${attr.gclid ? `\nGoogle clk id: ${attr.gclid}` : ''}${attr.fbclid ? `\nMeta clk id:   ${attr.fbclid}` : ''}${attr.li_fat_id ? `\nLinkedIn clk:  ${attr.li_fat_id}` : ''}\n`
+    : '';
+
   const text = `New enquiry from gnatuk.com
 
 AT A GLANCE
@@ -74,7 +82,7 @@ Company:       ${data.company || '—'}
 Email:         ${data.email}
 Phone:         ${data.phone || '—'}
 Consent:       Granted (Privacy Policy)
-
+${attrText}
 Their message:
 ${data.message}
 
@@ -113,6 +121,12 @@ Hit Reply on this email to respond directly to ${data.name.split(' ')[0] || data
       <tr><td style="padding: 6px 0; color: #5a6470;">Phone</td><td style="padding: 6px 0;">${data.phone ? `<a href="tel:${escapeHtml(data.phone)}" style="color: #1a2332;">${escapeHtml(data.phone)}</a>` : '—'}</td></tr>
       <tr><td style="padding: 6px 0; color: #5a6470;">Consent</td><td style="padding: 6px 0;">Granted (<a href="${SITE.url}/privacy-policy" style="color: #1a2332;">Privacy Policy</a>)</td></tr>
     </table>
+
+    ${attr ? `<div style="background: #f0f7ff; border-left: 3px solid #2563eb; padding: 12px 16px; margin: 0 0 24px; border-radius: 0 4px 4px 0; font-size: 13px;">
+      <p style="margin: 0 0 6px; font-weight: 600; color: #1a2332;">Marketing source</p>
+      <p style="margin: 0; color: #5a6470;">${attrLine ? escapeHtml(attrLine) : 'organic / direct'}</p>
+      ${attr.landing_path ? `<p style="margin: 4px 0 0; color: #5a6470;">Landed on <code>${escapeHtml(attr.landing_path)}</code>${attr.landing_referrer ? ` from ${escapeHtml(attr.landing_referrer)}` : ''}.</p>` : ''}
+    </div>` : ''}
 
     <h3 style="color: #1a2332; margin: 0 0 12px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; color: #5a6470;">Their message</h3>
     <div style="white-space: pre-wrap; padding: 16px; background: #f5f6f8; border-left: 3px solid #ff6b35; border-radius: 0 4px 4px 0;">${escapeHtml(data.message)}</div>

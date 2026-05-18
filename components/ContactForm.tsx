@@ -12,6 +12,8 @@ import {
 } from '@/lib/validation';
 import { CTAButton } from './CTAButton';
 import { cn } from '@/lib/utils';
+import { track } from '@/lib/analytics';
+import { captureUtmsFromLocation, readStoredUtms } from '@/lib/utm';
 
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
@@ -65,6 +67,12 @@ export function ContactForm({ defaultEnquiryType, defaultService }: ContactFormP
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enquiryType]);
 
+  // Capture UTM params on mount so they're persisted in sessionStorage for
+  // the duration of the visit; submission will pull whatever's stored.
+  useEffect(() => {
+    captureUtmsFromLocation();
+  }, []);
+
   const formRef = useRef<HTMLFormElement>(null);
 
   const onSubmit = async (values: ContactFormValues) => {
@@ -85,22 +93,23 @@ export function ContactForm({ defaultEnquiryType, defaultService }: ContactFormP
         }
       }
 
+      const attribution = readStoredUtms() ?? undefined;
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...values, turnstileToken }),
+        body: JSON.stringify({ ...values, turnstileToken, attribution }),
       });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
         throw new Error(body.error || 'Something went wrong. Please try again.');
       }
-      if (typeof window !== 'undefined' && (window as any).dataLayer) {
-        (window as any).dataLayer.push({
-          event: 'form_submission',
-          form_type: values.enquiryType,
-          service: values.service || 'unspecified',
-        });
-      }
+      // Fire across GTM dataLayer, Meta Pixel (Lead), and LinkedIn Insight Tag
+      // (Lead conversion) in one call. Each is a no-op if its tracker isn't loaded.
+      track({
+        event: 'form_submission',
+        form_type: values.enquiryType,
+        service: values.service || 'unspecified',
+      });
       reset();
       setStatus('success');
     } catch (err) {
