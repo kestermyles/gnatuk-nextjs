@@ -65,6 +65,11 @@ const nextConfig = {
       // Mast-Climber Insight deleted (imagery used elsewhere; subject covered
       // more comprehensively on the process/refractory industry hub).
       ['/blog/mast-climber-refractory-kiln-debricking', '/industries/process-refractory'],
+      // Costain Rugby Newbold LinkedIn cross-post deleted (18 May 2026) —
+      // shallow announcement copy with no genuine project photography to
+      // back it up. AMP8 narrative covered by /industries/water + the
+      // "Ready for the AMP8 Infrastructure Wave" Insight.
+      ['/blog/costain-rugby-newbold-amp8-moving-to-delivery-linkedin', '/industries/water'],
     ];
     // Old fabricated case-study and insight detail slugs (briefly live before being
     // replaced by the curated views). Redirect to the index pages.
