@@ -19,6 +19,7 @@ export const SITE = {
   social: {
     instagram: 'https://www.instagram.com/gnatuk_roboticdemolition/',
     facebook: 'https://www.facebook.com/GnatUKDemolitionSpecialists',
+    linkedin: 'https://www.linkedin.com/company/gnatuk',
   },
   gtmId: process.env.NEXT_PUBLIC_GTM_ID || 'GTM-5RHLSCR',
 } as const;

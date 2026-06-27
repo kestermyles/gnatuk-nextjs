@@ -127,7 +127,7 @@ export async function OrganizationSchema() {
         url: a.schemeUrl,
       },
     })),
-    sameAs: [SITE.social.instagram, SITE.social.facebook],
+    sameAs: [SITE.social.instagram, SITE.social.facebook, SITE.social.linkedin],
   };
   return <JsonLd data={data} />;
 }
