@@ -124,7 +124,9 @@ export async function OrganizationSchema() {
       recognizedBy: {
         '@type': 'Organization',
         name: a.name,
-        url: a.schemeUrl,
+        // url omitted when the scheme has no clean standalone URL (e.g.
+        // Acclaim post-Capita merger). JSON.stringify drops undefined keys.
+        ...(a.schemeUrl ? { url: a.schemeUrl } : {}),
       },
     })),
     sameAs: [SITE.social.instagram, SITE.social.facebook, SITE.social.linkedin],

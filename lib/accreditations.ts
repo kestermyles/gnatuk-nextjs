@@ -11,8 +11,10 @@ export type Accreditation = {
   level?: string;
   /** What this scheme tells a procurement team. ~one sentence. */
   blurb: string;
-  /** Official scheme website — verifies the scheme exists. */
-  schemeUrl: string;
+  /** Official scheme website — verifies the scheme exists. Optional: a few
+   * schemes (e.g. Acclaim, post-Capita-merger) no longer have a clean
+   * standalone landing page worth linking out to. */
+  schemeUrl?: string;
   /** Path under /public/images/accreditations/ — omit to render a text badge. */
   logo?: string;
   /** Aspect-aware width in px the logo prefers (max — we constrain by height). */
@@ -25,7 +27,9 @@ export const ACCREDITATIONS: Accreditation[] = [
     name: "Builder's Profile",
     blurb:
       "Pre-qualification information system used across the UK construction sector — verified company, insurance and competence data.",
-    schemeUrl: 'https://www.builders-profile.co.uk',
+    // schemeUrl intentionally omitted — builders-profile.co.uk redirect chain
+    // was unreliable (Keith review, Jun 2026); listed as a verified credential
+    // without an outbound link.
     logo: '/images/accreditations/builders-profile.jpg',
     logoWidth: 280,
     logoHeight: 88,
@@ -55,7 +59,10 @@ export const ACCREDITATIONS: Accreditation[] = [
     level: 'SSIP Recognised',
     blurb:
       "An SSIP-recognised member scheme (provided by Supplier Assessment Services / Capita, now under Once For All Health & Safety SSIP). Confirms independently-audited health-and-safety competence to SSIP Core Criteria — equivalent to CHAS for procurement purposes.",
-    schemeUrl: 'https://www.constructionline.co.uk/products-services/acclaim/',
+    // schemeUrl intentionally omitted — acclaim-accreditation.com is dead and
+    // the constructionline.co.uk Acclaim product page silently redirects to
+    // the new "Once For All H&S" brand (Capita merger). No clean Acclaim URL
+    // exists post-merger; listed without an outbound link.
     logo: '/images/accreditations/acclaim.jpg',
     logoWidth: 200,
     logoHeight: 88,
@@ -114,7 +121,9 @@ export const ACCREDITATIONS: Accreditation[] = [
     name: 'Common Assessment Standard',
     blurb:
       "Industry-wide PQ standard developed by Build UK and CECA to streamline supply-chain assessment. Accredited via Constructionline.",
-    schemeUrl: 'https://builduk.org/commonassessmentstandard',
+    // schemeUrl intentionally omitted — Build UK landing page resolves to a
+    // PDF (Keith review, Jun 2026), not a navigable page worth sending users
+    // to. Listed without an outbound link.
     logo: '/images/accreditations/cas.jpg',
     logoWidth: 200,
     logoHeight: 88,

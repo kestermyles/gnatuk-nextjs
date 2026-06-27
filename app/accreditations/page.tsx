@@ -127,15 +127,17 @@ export default async function AccreditationsPage() {
                           </p>
                         )}
                       </div>
-                      <a
-                        href={a.schemeUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-none text-xs font-semibold text-gnat-steel-dark hover:text-gnat-orange"
-                        aria-label={`Visit the ${a.name} scheme website`}
-                      >
-                        Scheme ↗
-                      </a>
+                      {a.schemeUrl && (
+                        <a
+                          href={a.schemeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-none text-xs font-semibold text-gnat-steel-dark hover:text-gnat-orange"
+                          aria-label={`Visit the ${a.name} scheme website`}
+                        >
+                          Scheme ↗
+                        </a>
+                      )}
                     </div>
                     <p className="mt-3 text-sm leading-relaxed text-gnat-steel-dark">
                       {a.blurb}

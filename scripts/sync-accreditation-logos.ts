@@ -31,7 +31,8 @@ type Entry = {
   name: string;
   level?: string;
   blurb: string;
-  schemeUrl: string;
+  /** Optional — omitted for schemes where no clean outbound URL exists. */
+  schemeUrl?: string;
   /** Filename under /public/images/accreditations/, or undefined for no logo. */
   logoFile?: string;
   sortOrder: number;
@@ -45,7 +46,7 @@ const ENTRIES: Entry[] = [
     name: "Builder's Profile",
     blurb:
       'Pre-qualification information system used across the UK construction sector — verified company, insurance and competence data.',
-    schemeUrl: 'https://www.builders-profile.co.uk',
+    // schemeUrl omitted — dodgy outbound (Keith review, Jun 2026).
     logoFile: 'builders-profile.jpg',
     sortOrder: 1,
   },
@@ -75,7 +76,10 @@ const ENTRIES: Entry[] = [
     level: 'SSIP Recognised',
     blurb:
       'An SSIP-recognised member scheme (provided by Supplier Assessment Services / Capita, now under Once For All Health & Safety SSIP). Confirms independently-audited health-and-safety competence to SSIP Core Criteria — equivalent to CHAS for procurement purposes.',
-    schemeUrl: 'https://www.constructionline.co.uk/products-services/acclaim/',
+    // schemeUrl omitted — acclaim-accreditation.com is dead and the
+    // constructionline /products-services/acclaim/ URL silently 301s to
+    // /once-for-all-health-and-safety/ (Capita merger). No standalone Acclaim
+    // URL exists post-merger.
     logoFile: 'acclaim.jpg',
     sortOrder: 4,
   },
@@ -134,7 +138,8 @@ const ENTRIES: Entry[] = [
     name: 'Common Assessment Standard',
     blurb:
       'Industry-wide PQ standard developed by Build UK and CECA to streamline supply-chain assessment. Accredited via Constructionline.',
-    schemeUrl: 'https://builduk.org/commonassessmentstandard',
+    // schemeUrl omitted — Build UK landing resolves to a PDF, not a
+    // navigable page (Keith review, Jun 2026).
     logoFile: 'cas.jpg',
     sortOrder: 10,
   },
@@ -184,14 +189,16 @@ async function uploadLogo(filename: string): Promise<string> {
 }
 
 async function syncEntry(entry: Entry) {
+  // createOrReplace fully overwrites the doc, so omitting schemeUrl here
+  // removes any URL previously stored on the Sanity doc.
   const doc: Record<string, unknown> = {
     _id: entry.id,
     _type: 'accreditation',
     name: entry.name,
     blurb: entry.blurb,
-    schemeUrl: entry.schemeUrl,
     sortOrder: entry.sortOrder,
   };
+  if (entry.schemeUrl) doc.schemeUrl = entry.schemeUrl;
   if (entry.level) doc.level = entry.level;
   if (entry.logoFile) {
     const assetId = await uploadLogo(entry.logoFile);
