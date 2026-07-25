@@ -85,6 +85,66 @@ const nextConfig = {
       ['/insights/amp8-demolition-supply-chain', '/insights'],
       ['/insights/cold-cutting-atex-zones-dsear', '/insights'],
     ];
+    // Legacy Wix service-page aliases: single service had multiple entry points
+    // (Google Ads landing pages, "-landing" variants, "confined-space" split,
+    // AMP8 microsite). All collapse into their canonical service or hub.
+    const legacyServiceAliases = [
+      ['/brokk-800-hire', '/machine-hire'],
+      ['/machine-hire-2', '/machine-hire'],
+      ['/machine-hire-landing', '/machine-hire'],
+      ['/cold-cutting-landing', '/cold-cutting'],
+      ['/diamond-drilling-and-sawing-landing', '/diamond-drilling'],
+      ['/diamond-drilling-sawing-and-concrete-cutting', '/diamond-drilling'],
+      ['/robotic-demolition-confined-space', '/robotic-demolition'],
+      ['/robotic-demolition-confined-spaces', '/robotic-demolition'],
+      ['/robotic-demolition-amp8', '/industries/water'],
+      ['/hydrodemolition-lp', '/hydrodemolition'],
+      ['/top-down-demolition', '/robotic-demolition'],
+      ['/projects-1', '/case-studies'],
+      // Wix "Duplicate page" leftovers — Wix prefixes duplicated pages with "Copy of".
+      ['/copy-of-contact', '/contact'],
+      ['/copy-of-privacy-policy', '/privacy-policy'],
+    ];
+    // Old Wix /services/* structure. Wix's site tree nested each service under
+    // /services/; the new site puts them at the root.
+    const legacyServicesPaths = [
+      ['/services', '/'],
+      ['/services/brokk-and-husqvarna-robotic-demolition', '/robotic-demolition'],
+      ['/services/robotic-hydrodemolition', '/hydrodemolition'],
+      ['/services/cold-cutting-in-volatile-areas', '/cold-cutting'],
+      ['/services/diamond-drilling-and-concrete-sawing', '/diamond-drilling'],
+      ['/services/plunge-wire-sawing', '/diamond-drilling'],
+      ['/services/top-down-demolition', '/robotic-demolition'],
+    ];
+    // Old Wix /robotic-solutions/* deep paths — a big product tree of robot
+    // applications. Individual sub-pages route to whichever canonical page
+    // best matches; catch-all fallback (added below the map) sends anything
+    // unmatched to /robotic-demolition (safe default — the whole tree was
+    // robot-application landing pages).
+    const legacyRoboticSolutions = [
+      // Cutting / drilling applications → /diamond-drilling
+      ['/robotic-solutions/core-drilling', '/diamond-drilling'],
+      ['/robotic-solutions/wall-sawing', '/diamond-drilling'],
+      ['/robotic-solutions/floor-sawing', '/diamond-drilling'],
+      ['/robotic-solutions/track-sawing', '/diamond-drilling'],
+      ['/robotic-solutions/wire-sawing', '/diamond-drilling'],
+      // Robotic breaking / preparation → /robotic-demolition
+      ['/robotic-solutions/concrete-crunching', '/robotic-demolition'],
+      ['/robotic-solutions/steel-shears', '/robotic-demolition'],
+      ['/robotic-solutions/tunnelling', '/robotic-demolition'],
+      ['/robotic-solutions/wall-preparation', '/robotic-demolition'],
+      ['/robotic-solutions/floor-preparation', '/robotic-demolition'],
+      // Slurry handling → /hydrodemolition
+      ['/robotic-solutions/slurry-solutions', '/hydrodemolition'],
+      // Marquee project pages → their canonical case-study post
+      ['/robotic-solutions/bank-vault-demolition', '/blog/bank-of-england-vault-grade-1-london'],
+      ['/robotic-solutions/facade-retention', '/blog/large-facade-retention-scheme'],
+      // Sector / commercial pages. Default choices flagged for Keith's review:
+      //   nuclear-industry → /robotic-demolition (upgrade to /industries/nuclear if we ever build the hub)
+      //   sales-and-parts  → /machine-hire (nearest business surface; switch to 410 if machine sales is truly retired)
+      ['/robotic-solutions/nuclear-industry', '/robotic-demolition'],
+      ['/robotic-solutions/sales-and-parts', '/machine-hire'],
+    ];
     return [
       { source: '/diamond-drilling-and-sawing', destination: '/diamond-drilling', permanent: true },
       { source: '/abrasive-cold-cutting', destination: '/cold-cutting', permanent: true },
@@ -92,6 +152,8 @@ const nextConfig = {
       // /news was a brief intermediate route name; consolidated under /blog.
       { source: '/news', destination: '/blog', permanent: true },
       { source: '/news/:slug', destination: '/blog/:slug', permanent: true },
+      // Wildcard alias for the old /machine-hire-old/... product tree.
+      { source: '/machine-hire-old/:path*', destination: '/machine-hire', permanent: true },
       ...wixToBlog.map(([wix, blog]) => ({
         source: `/post/${wix}`,
         destination: `/blog/${blog}`,
@@ -107,6 +169,27 @@ const nextConfig = {
         destination,
         permanent: true,
       })),
+      ...legacyServiceAliases.map(([source, destination]) => ({
+        source,
+        destination,
+        permanent: true,
+      })),
+      ...legacyServicesPaths.map(([source, destination]) => ({
+        source,
+        destination,
+        permanent: true,
+      })),
+      // /robotic-solutions bare + specifics BEFORE the catch-all — Next
+      // evaluates in order, first match wins.
+      { source: '/robotic-solutions', destination: '/robotic-demolition', permanent: true },
+      ...legacyRoboticSolutions.map(([source, destination]) => ({
+        source,
+        destination,
+        permanent: true,
+      })),
+      // Catch-all for anything else under /robotic-solutions/*. MUST be last
+      // in this block so the specific mappings above win first.
+      { source: '/robotic-solutions/:path*', destination: '/robotic-demolition', permanent: true },
     ];
   },
   async headers() {
