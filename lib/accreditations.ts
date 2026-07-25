@@ -27,9 +27,9 @@ export const ACCREDITATIONS: Accreditation[] = [
     name: "Builder's Profile",
     blurb:
       "Pre-qualification information system used across the UK construction sector — verified company, insurance and competence data.",
-    // schemeUrl intentionally omitted — builders-profile.co.uk redirect chain
-    // was unreliable (Keith review, Jun 2026); listed as a verified credential
-    // without an outbound link.
+    // Note the URL has NO hyphen: buildersprofile.co.uk (not
+    // builders-profile.co.uk, which was the earlier broken link).
+    schemeUrl: 'https://www.buildersprofile.co.uk/website/',
     logo: '/images/accreditations/builders-profile.jpg',
     logoWidth: 280,
     logoHeight: 88,

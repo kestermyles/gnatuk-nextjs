@@ -33,7 +33,13 @@ const LINKEDIN_CONVERSIONS = {
 } as const;
 
 function pushDataLayer(payload: AnalyticsEvent, w: DataLayerWindow): void {
-  if (!w.dataLayer) return;
+  // Initialize-if-missing pattern: GTM's own bootstrap does the same
+  // `w[l] = w[l] || []`, so it respects any array we've already created.
+  // Without this, an event pushed BEFORE GTM's script has executed (fast
+  // form submits, slow networks, ad-blockers delaying gtm.js) is dropped
+  // on the floor. With this, the event queues on the array we own; when
+  // GTM's bootstrap runs it inherits the queue and processes it.
+  w.dataLayer = w.dataLayer || [];
   w.dataLayer.push(payload);
 }
 

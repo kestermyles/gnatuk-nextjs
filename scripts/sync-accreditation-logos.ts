@@ -46,7 +46,9 @@ const ENTRIES: Entry[] = [
     name: "Builder's Profile",
     blurb:
       'Pre-qualification information system used across the UK construction sector — verified company, insurance and competence data.',
-    // schemeUrl omitted — dodgy outbound (Keith review, Jun 2026).
+    // Note NO hyphen in the domain: buildersprofile.co.uk (not the earlier
+    // broken builders-profile.co.uk).
+    schemeUrl: 'https://www.buildersprofile.co.uk/website/',
     logoFile: 'builders-profile.jpg',
     sortOrder: 1,
   },
