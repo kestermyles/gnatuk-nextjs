@@ -89,6 +89,10 @@ const nextConfig = {
     // (Google Ads landing pages, "-landing" variants, "confined-space" split,
     // AMP8 microsite). All collapse into their canonical service or hub.
     const legacyServiceAliases = [
+      // Direct link from the older Wix "Request a method proposal" CTA. The
+      // new site's contact page handles method-proposal enquiries via the
+      // enquiryType selector on the form.
+      ['/request-a-method-proposal', '/contact'],
       ['/brokk-800-hire', '/machine-hire'],
       ['/machine-hire-2', '/machine-hire'],
       ['/machine-hire-landing', '/machine-hire'],
