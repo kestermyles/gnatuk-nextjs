@@ -200,8 +200,8 @@ export default function ContactPage() {
                   <div>
                     <dt className="inline font-semibold text-gnat-navy">email </dt>
                     <dd className="inline">
-                      <a href="mailto:mike.hill@gnatuk.com" className="hover:text-gnat-orange">
-                        mike.hill@gnatuk.com
+                      <a href="mailto:office@gnatuk.com" className="hover:text-gnat-orange">
+                        office@gnatuk.com
                       </a>
                     </dd>
                   </div>
