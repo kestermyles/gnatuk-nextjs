@@ -294,7 +294,16 @@ export function Header() {
 
       {open && (
         <div className="min-[1400px]:hidden">
-          <nav aria-label="Mobile" className="border-t border-gnat-concrete bg-white">
+          <nav
+            aria-label="Mobile"
+            // Body scroll is locked while the menu is open (see useEffect
+            // above), so the menu must scroll internally. Sticky header
+            // above is h-10 (utility) + h-20 (main) = 7.5rem on mobile;
+            // 100dvh (not 100vh) so iOS Safari's collapsing URL bar is
+            // accounted for. overscroll-contain stops the scroll from
+            // chaining to the (locked) body.
+            className="max-h-[calc(100dvh-7.5rem)] overflow-y-auto overscroll-contain border-t border-gnat-concrete bg-white"
+          >
             <ul className="container-prose space-y-1 py-4">
               <li className="px-3 pb-1 pt-2 text-xs font-semibold uppercase tracking-wider text-gnat-steel-dark">
                 Services
